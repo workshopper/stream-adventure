@@ -26,7 +26,9 @@ if (argv._[0] === 'verify') {
         console.log('\nYour solution to ' + current + ' passed!');
         updateData('current', function () { return false });
         updateData('completed', function (xs) {
-            return (xs || []).concat(current);
+            if (!xs) xs = [];
+            var ix = xs.indexOf(current);
+            return ix >= 0 ? xs : xs.concat(current);
         });
         
         try { var completed = require('../data/completed.json') }
