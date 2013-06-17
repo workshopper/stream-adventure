@@ -16,7 +16,7 @@ if (argv._[0] === 'verify') {
         return process.exit(1);
     }
     var dir = dirFromName(current);
-    var setup = require(dir + '/setup.js');
+    var setup = require(dir + '/setup.js')();
     var a = [ argv._[1] ].concat(setup.args);
     var b = [ dir + '/solution.js' ].concat(setup.args);
     var v = verify(a, b);

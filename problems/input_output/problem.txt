@@ -1,0 +1,6 @@
+Take data from `process.stdin` and pipe it to `process.stdout`.
+
+Don't overthink this.
+
+To verify your program, run: `stream-adventure verify program.js`
+
