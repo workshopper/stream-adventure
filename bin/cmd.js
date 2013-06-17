@@ -24,6 +24,15 @@ if (argv._[0] === 'verify') {
     v.on('pass', function () {
         console.log('# PASS');
         console.log('\nYour solution to ' + current + ' passed!');
+        console.log(
+            '\nHere\'s what the official solution'
+            + ' is if you want to compare notes:\n'
+        );
+        var src = fs.readFileSync(path.join(dir, 'solution.js'), 'utf8');
+        src.split('\n').forEach(function (line) {
+            console.log('    ' + line);
+        });
+        
         updateData('current', function () { return false });
         updateData('completed', function (xs) {
             if (!xs) xs = [];
@@ -36,11 +45,11 @@ if (argv._[0] === 'verify') {
         
         var remaining = order.length - completed.length;
         if (remaining === 0) {
-            console.log("You've finished all the challenges! Hooray!");
+            console.log("You've finished all the challenges! Hooray!\n");
         }
         else {
             console.log('You have ' + remaining + ' challenges left.');
-            console.log('Type `stream-adventure` to show the menu.');
+            console.log('Type `stream-adventure` to show the menu.\n');
         }
     });
     
@@ -67,8 +76,8 @@ else {
         var rs = fs.createReadStream(file);
         rs.on('close', function () {
             console.log(
-                'To verify your program, run: '
-                + '`stream-adventure verify program.js`.'
+                '\nTo verify your program, run: '
+                + '`stream-adventure verify program.js`.\n'
             );
         });
         rs.pipe(process.stdout);
