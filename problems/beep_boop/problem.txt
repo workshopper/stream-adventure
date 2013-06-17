@@ -1,0 +1,8 @@
+Just to make sure everything is working, just write a `program.js` that outputs
+the string "beep boop" with a `console.log()`.
+
+To verify your program is working, do:
+
+  stream-adventure verify program.js
+
+
