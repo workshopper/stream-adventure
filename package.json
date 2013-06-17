@@ -1,0 +1,34 @@
+{
+    "name": "stream-adventure",
+    "version": "0.0.0",
+    "description": "an educational stream adventure",
+    "bin": {
+        "stream-adventure": "bin/cmd.js"
+    },
+    "dependencies": {
+        "x256": "~0.0.1",
+        "optimist": "~0.5.2",
+        "through": "~2.3.4",
+        "tuple-stream": "~0.0.2",
+        "terminal-menu": "~0.0.0",
+        "split": "~0.2.5"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/substack/stream-adventure.git"
+    },
+    "homepage": "https://github.com/substack/stream-adventure",
+    "keywords": [
+        "stream",
+        "educational",
+        "guide",
+        "tutorial",
+        "learn"
+    ],
+    "author": {
+        "name": "James Halliday",
+        "email": "mail@substack.net",
+        "url": "http://substack.net"
+    },
+    "license": "MIT"
+}
