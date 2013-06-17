@@ -35,17 +35,14 @@ by calling `.write()` and `.end()` manually:
     function write (buf) { console.dir(buf) }
     function end () { console.log('__END__') }
 
-If you want to output data, call `.queue(buf)`. For example, here's some code
-that outputs some messages to stdout with a through stream:
+Instead of calling `console.dir(buf)`, your code should use `this.queue()` in
+your `write()` function to output upper-cased data.
 
-    var through = require('through');
-    var tr = through();
-    tr.pipe(process.stdout);
-    tr.queue('abc\n');
-    tr.queue('def\n');
-    tr.queue('hij\n');
-    tr.queue(null);
+Don't forget to feed data into your stream from stdin and output data from
+stdout, which should look something like:
 
-To complete this challenge, pipe process.stdin to a through stream with a write
-callback that will .queue() upper-cased version of its input to process.stdout.
+    process.stdin.pipe(tr).pipe(process.stdout);
+
 Note that the chunks you will get from `process.stdin` are Buffers, not strings.
+You can call `buf.toString()` on a Buffer to get a string and strings can do
+`.toUpperCase()`.
