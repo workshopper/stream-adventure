@@ -1,0 +1,51 @@
+Convert data from `process.stdin` to upper-case data on `process.stdout`
+using the `through` module.
+
+through(write, end) returns a readable/writable stream and given `write` and
+`end` functions, both of which are optional.
+
+When you call `src.pipe(dst)` on some stream `dst` created with `through()`, the
+`write(buf)` function will be called when data from `src` is available.
+When `src` is done sending data, the `end()` function is called.
+
+Inside the `write` and `end` callbacks, `this` is set to the through stream
+returned by `through()` so you can just call `this.queue()` inside the callbacks
+to transform data.
+
+When you specify a falsy value for the `write` argument, this function is used
+to pass input data directly through to the output unmodified:
+
+    function write (buf) { this.queue(buf) }
+ 
+The `this.queue(null)` tells the consuming stream to not expect any more data.
+
+The default `end` function is just:
+
+    function end () { this.queue(null) }
+
+For example, here is a program that fires the `write(buf)` and `end()` callbacks
+by calling `.write()` and `.end()` manually:
+
+    var through = require('through');
+    var tr = through(write, end);
+    tr.write('beep\n');
+    tr.write('boop\n');
+    tr.end();
+    
+    function write (buf) { console.dir(buf) }
+    function end () { console.log('__END__') }
+
+If you want to output data, call `.queue(buf)`. For example, here's some code
+that outputs some messages to stdout with a through stream:
+
+    var through = require('through');
+    var tr = through();
+    tr.pipe(process.stdout);
+    tr.queue('abc\n');
+    tr.queue('def\n');
+    tr.queue('hij\n');
+    tr.queue(null);
+
+To complete this challenge, pipe process.stdin to a through stream with a write
+callback that will .queue() upper-cased version of its input to process.stdout.
+Note that the chunks you will get from `process.stdin` are Buffers, not strings.

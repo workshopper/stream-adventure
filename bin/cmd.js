@@ -64,7 +64,14 @@ else {
         var dir = dirFromName(name);
         var file = path.resolve(dir, 'problem.txt');
         updateData('current', function (c) { return name });
-        fs.createReadStream(file).pipe(process.stdout);
+        var rs = fs.createReadStream(file);
+        rs.on('close', function () {
+            console.log(
+                'To verify your program, run: '
+                + '`stream-adventure verify program.js`.'
+            );
+        });
+        rs.pipe(process.stdout);
     });
     menu.on('exit', function () {
         console.log();
