@@ -44,7 +44,10 @@ if (argv._[0] === 'verify') {
     
     v.on('fail', function () {
         console.log('# FAIL');
-        console.log();
+        console.log(
+            "\nYour solution didn't match the expected output."
+            + ' Try again!'
+        );
     });
     
     if (setup.stdin) setup.stdin.pipe(v);
@@ -61,7 +64,10 @@ else {
         updateData('current', function (c) { return name });
         fs.createReadStream(file).pipe(process.stdout);
     });
-    menu.on('exit', process.exit);
+    menu.on('exit', function () {
+        console.log();
+        process.exit(0);
+    });
 }
 
 function updateData (name, fn) {
