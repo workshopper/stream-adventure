@@ -1,0 +1,51 @@
+In this challenge, write an http server that uses a through stream to write back
+the request stream as upper-cased response data for POST requests.
+
+Streams aren't just for text files and stdin/stdout. Did you know that http
+request and response objects from node core's `http.createServer()` handler are
+also streams?
+
+For example, we can stream a file to the response object:
+
+    var http = require('http');
+    var fs = require('fs');
+    var server = http.createServer(function (req, res) {
+        fs.createReadStream('file.txt').pipe(res);
+    });
+    server.listen(8000);
+
+This is great because our server can response immediately without buffering
+everything in memory first.
+
+We can also stream a request to populate a file with data:
+
+    var http = require('http');
+    var fs = require('fs');
+    var server = http.createServer(function (req, res) {
+        if (req.method === 'POST') {
+            req.pipe(fs.createWriteStream('post.txt'));
+        }
+        res.end('beep boop\n');
+    });
+    server.listen(8000);
+
+You can test this post server with curl:
+
+    $ echo hack the planet | curl -d@- http://localhost:8000
+    beep boop
+    $ cat post.txt
+    hack the planet
+
+Your http server should listen on port 8000 and convert the POST request written
+to it to upper-case using the same approach as the TRANSFORM example.
+
+As a refresher, here's an example with the default through callbacks explicitly
+defined:
+
+    var through = require('through')
+    process.stdin.pipe(through(write, end)).pipe(process.stdout);
+    
+    function write (buf) { this.queue(buf) }
+    function end () { this.queue(null)
+
+Do that, but send upper-case data in your http server in response to POST data.

@@ -19,18 +19,24 @@ var COLORS = (function () {
 })();
 COLORS.RESET = '\x1b[00m';
 
-module.exports = function (acmd, bcmd) {
+module.exports = function (acmd, bcmd, opts) {
+    if (!opts) opts = {};
     var a = spawn(process.execPath, acmd);
     var b = spawn(process.execPath, bcmd);
+    var c = compare(opts.a || a.stdout, opts.b || b.stdout);
     
-    var c = compare(a.stdout, b.stdout);
-    c.on('pass', function () { tr.emit('pass') });
-    c.on('fail', function () { tr.emit('fail') });
+    c.on('pass', function () { kill(); tr.emit('pass') });
+    c.on('fail', function () { kill(); tr.emit('fail') });
     
     var tr = through();
-    tr.pipe(a.stdin);
-    tr.pipe(b.stdin);
+    tr.pipe(opts.a || a.stdin);
+    tr.pipe(opts.b || b.stdin);
     return tr;
+    
+    function kill () {
+        if (a.kill) a.kill();
+        if (b.kill) b.kill();
+    }
 };
 
 function compare (actual, expected) {

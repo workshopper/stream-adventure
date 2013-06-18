@@ -19,7 +19,7 @@ if (argv._[0] === 'verify') {
     var setup = require(dir + '/setup.js')();
     var a = [ argv._[1] ].concat(setup.args);
     var b = [ dir + '/solution.js' ].concat(setup.args);
-    var v = verify(a, b);
+    var v = verify(a, b, { a: setup.a, b: setup.b });
     
     v.on('pass', function () {
         console.log('# PASS');
@@ -33,7 +33,6 @@ if (argv._[0] === 'verify') {
             console.log('    ' + line);
         });
         
-        updateData('current', function () { return false });
         updateData('completed', function (xs) {
             if (!xs) xs = [];
             var ix = xs.indexOf(current);

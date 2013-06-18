@@ -3,5 +3,7 @@
   "MEET PIPE",
   "INPUT OUTPUT",
   "TRANSFORM",
-  "LINES"
+  "LINES",
+  "HTTP SERVER",
+  "HTTP CLIENT"
 ]
