@@ -11,6 +11,17 @@ if (argv.h || argv.help || argv._[0] === 'help') {
     return fs.createReadStream(__dirname + '/usage.txt').pipe(process.stdout);
 }
 
+if (argv._[0] === 'list') {
+    order.forEach(function (name) {
+        console.log(name);
+    });
+    return;
+}
+
+if (argv._[0] === 'select') {
+    return onselect(argv._.slice(1).join(' '));
+}
+
 if (argv._[0] === 'verify' || argv._[0] === 'run') {
     var current = getData('current');
     if (!current) {
@@ -84,27 +95,29 @@ if (argv._[0] === 'verify' || argv._[0] === 'run') {
 }
 else {
     var menu = showMenu();
-    menu.on('select', function (name) {
-        console.log('\n  ' + Array(70).join('#'));
-        console.log(center('~~  ' + name + '  ~~'));
-        console.log('  ' + Array(70).join('#') + '\n');
-        
-        var dir = dirFromName(name);
-        var file = path.resolve(dir, 'problem.txt');
-        updateData('current', function (c) { return name });
-        var rs = fs.createReadStream(file);
-        rs.on('close', function () {
-            console.log(
-                '\nTo verify your program, run: '
-                + '`stream-adventure verify program.js`.\n'
-            );
-        });
-        rs.pipe(process.stdout);
-    });
+    menu.on('select', onselect);
     menu.on('exit', function () {
         console.log();
         process.exit(0);
     });
+}
+
+function onselect (name) {
+    console.log('\n  ' + Array(70).join('#'));
+    console.log(center('~~  ' + name + '  ~~'));
+    console.log('  ' + Array(70).join('#') + '\n');
+    
+    var dir = dirFromName(name);
+    var file = path.resolve(dir, 'problem.txt');
+    updateData('current', function (c) { return name });
+    var rs = fs.createReadStream(file);
+    rs.on('close', function () {
+        console.log(
+            '\nTo verify your program, run: '
+            + '`stream-adventure verify program.js`.\n'
+        );
+    });
+    rs.pipe(process.stdout);
 }
 
 function updateData (name, fn) {
