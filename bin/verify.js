@@ -24,6 +24,7 @@ module.exports = function (acmd, bcmd, opts) {
     var a = spawn(process.execPath, acmd);
     if (opts.run) {
         (opts.a || a.stdout).pipe(process.stdout);
+        if (a.stderr) a.stderr.pipe(process.stderr);
         return opts.a || a.stdin;
     }
     
