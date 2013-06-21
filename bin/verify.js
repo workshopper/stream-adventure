@@ -22,6 +22,11 @@ COLORS.RESET = '\x1b[00m';
 module.exports = function (acmd, bcmd, opts) {
     if (!opts) opts = {};
     var a = spawn(process.execPath, acmd);
+    if (opts.run) {
+        (opts.a || a.stdout).pipe(process.stdout);
+        return opts.a || a.stdin;
+    }
+    
     var b = spawn(process.execPath, bcmd);
     var c = compare(opts.a || a.stdout, opts.b || b.stdout, opts);
     

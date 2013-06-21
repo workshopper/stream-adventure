@@ -6,5 +6,6 @@
   "LINES",
   "HTTP SERVER",
   "HTTP CLIENT",
-  "CRYPT"
+  "CRYPT",
+  "SECRETZ"
 ]

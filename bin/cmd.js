@@ -7,7 +7,7 @@ var showMenu = require('./menu.js');
 var verify = require('./verify.js');
 var order = require('../data/order.json');
 
-if (argv._[0] === 'verify') {
+if (argv._[0] === 'verify' || argv._[0] === 'run') {
     var current = getData('current');
     if (!current) {
         console.error('ERROR: No active problem. '
@@ -20,7 +20,12 @@ if (argv._[0] === 'verify') {
     setTimeout(function () {
         var a = [ argv._[1] ].concat(setup.args || []);
         var b = [ dir + '/solution.js' ].concat(setup.args || []);
-        var v = verify(a, b, { a: setup.a, b: setup.b, long: setup.long });
+        var v = verify(a, b, {
+            a: setup.a,
+            b: setup.b,
+            long: setup.long,
+            run: argv._[0] === 'run'
+        });
         v.on('pass', onpass);
         v.on('fail', onfail);
         
