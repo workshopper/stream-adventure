@@ -12,5 +12,5 @@ module.exports = function () {
         else tr.queue(buf)
     }, 50);
     
-    return { args: [], stdin: tr };
+    return { args: [], stdin: tr, long: true };
 };

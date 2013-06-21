@@ -20,7 +20,7 @@ if (argv._[0] === 'verify') {
     setTimeout(function () {
         var a = [ argv._[1] ].concat(setup.args);
         var b = [ dir + '/solution.js' ].concat(setup.args);
-        var v = verify(a, b, { a: setup.a, b: setup.b });
+        var v = verify(a, b, { a: setup.a, b: setup.b, long: setup.long });
         v.on('pass', onpass);
         v.on('fail', onfail);
         

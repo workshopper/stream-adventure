@@ -23,7 +23,7 @@ module.exports = function (acmd, bcmd, opts) {
     if (!opts) opts = {};
     var a = spawn(process.execPath, acmd);
     var b = spawn(process.execPath, bcmd);
-    var c = compare(opts.a || a.stdout, opts.b || b.stdout);
+    var c = compare(opts.a || a.stdout, opts.b || b.stdout, opts);
     
     c.on('pass', function () { kill(); tr.emit('pass') });
     c.on('fail', function () { kill(); tr.emit('fail') });
@@ -39,12 +39,16 @@ module.exports = function (acmd, bcmd, opts) {
     }
 };
 
-function compare (actual, expected) {
+function compare (actual, expected, opts) {
     var equal = true;
     var output = through(write, end).pause();
+    
     output.queue(COLORS.RESET);
-    output.queue(wrap('ACTUAL', 30) + '     EXPECTED\n');
-    output.queue(wrap('------', 30) + '     --------\n');
+    
+    if (!opts.long) {
+        output.queue(wrap('ACTUAL', 30) + '     EXPECTED\n');
+        output.queue(wrap('------', 30) + '     --------\n');
+    }
     
     tuple(actual.pipe(split()), expected.pipe(split()))
         .pipe(output)
@@ -56,13 +60,26 @@ function compare (actual, expected) {
     function write (pair) {
         var eq = pair[0] === pair[1];
         equal = equal && eq;
-        this.queue(
-            COLORS[eq ? 'PASS' : 'FAIL']
-            + wrap(JSON.stringify(pair[0]), 30)
-            + ' ' + (eq ? '   ' : '!==') + ' '
-            + wrap(JSON.stringify(pair[1]), 30)
-            + '\n'
-        );
+        
+        if (opts.long) {
+            this.queue('ACTUAL:   '
+                + COLORS[eq ? 'PASS' : 'FAIL']
+                + JSON.stringify(pair[0])
+                + COLORS.RESET + '\n'
+                + 'EXPECTED: '
+                + JSON.stringify(pair[1])
+                + '\n\n'
+            );
+        }
+        else {
+            this.queue(
+                COLORS[eq ? 'PASS' : 'FAIL']
+                + wrap(JSON.stringify(pair[0]), 30)
+                + ' ' + (eq ? '   ' : '!==') + ' '
+                + wrap(JSON.stringify(pair[1]), 30)
+                + '\n'
+            );
+        }
     }
     
     function end () {
