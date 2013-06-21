@@ -12,6 +12,10 @@ usage:
 
     Select an adventure.
 
+  stream-adventure current
+
+    Show the currently selected adventure.
+
   stream-adventure run program.js
 
     Run your program against the selected input.

@@ -18,6 +18,12 @@ if (argv._[0] === 'list') {
     return;
 }
 
+if (argv._[0] === 'current') {
+    var current = getData('current');
+    console.log(current);
+    return;
+}
+
 if (argv._[0] === 'select') {
     return onselect(argv._.slice(1).join(' '));
 }
