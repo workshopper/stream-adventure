@@ -7,6 +7,10 @@ var showMenu = require('./menu.js');
 var verify = require('./verify.js');
 var order = require('../data/order.json');
 
+if (argv.h || argv.help || argv._[0] === 'help') {
+    return fs.createReadStream(__dirname + '/usage.txt').pipe(process.stdout);
+}
+
 if (argv._[0] === 'verify' || argv._[0] === 'run') {
     var current = getData('current');
     if (!current) {

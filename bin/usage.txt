@@ -1,0 +1,22 @@
+usage:
+
+  stream-adventure
+
+    Show a menu to interactively select an adventure.
+ 
+  stream-adventure list 
+
+    Show a newline-separated list of all the adventures.
+
+  stream-adventure select NAME 
+
+    Select an adventure.
+
+  stream-adventure run program.js
+
+    Run your program against the selected input.
+
+  stream-adventure verify program.js
+
+    Verify your program against the expected output.
+    

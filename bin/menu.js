@@ -28,6 +28,8 @@ module.exports = function () {
         }
         else menu.add(name);
     });
+    menu.write('-----------------\n');
+    menu.add('HELP');
     menu.add('EXIT');
     
     menu.on('select', function (label) {
@@ -35,6 +37,12 @@ module.exports = function () {
         
         menu.close();
         if (name === 'EXIT') return emitter.emit('exit');
+        if (name === 'HELP') {
+            console.log();
+            return fs.createReadStream(__dirname + '/usage.txt')
+                .pipe(process.stdout)
+            ;
+        }
         
         emitter.emit('select', name);
     });
