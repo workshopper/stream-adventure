@@ -13,7 +13,9 @@
         "terminal-menu": "~0.0.0",
         "split": "~0.2.5",
         "duplexer": "~0.1.1",
-        "hyperquest": "~0.1.6"
+        "hyperquest": "~0.1.6",
+        "request": "~2.21.0",
+        "tar": "~0.1.17"
     },
     "repository": {
         "type": "git",

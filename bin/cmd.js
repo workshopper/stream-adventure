@@ -17,11 +17,22 @@ if (argv._[0] === 'verify') {
     }
     var dir = dirFromName(current);
     var setup = require(dir + '/setup.js')();
-    var a = [ argv._[1] ].concat(setup.args);
-    var b = [ dir + '/solution.js' ].concat(setup.args);
-    var v = verify(a, b, { a: setup.a, b: setup.b });
+    setTimeout(function () {
+        var a = [ argv._[1] ].concat(setup.args);
+        var b = [ dir + '/solution.js' ].concat(setup.args);
+        var v = verify(a, b, { a: setup.a, b: setup.b });
+        v.on('pass', onpass);
+        v.on('fail', onfail);
+        
+        if (setup.stdin) {
+            setup.stdin.pipe(v);
+            setup.stdin.resume();
+        }
+    }, setup.wait || 1);
     
-    v.on('pass', function () {
+    function onpass () {
+        if (setup.close) setup.close();
+        
         console.log('# PASS');
         console.log('\nYour solution to ' + current + ' passed!');
         console.log(
@@ -50,17 +61,17 @@ if (argv._[0] === 'verify') {
             console.log('You have ' + remaining + ' challenges left.');
             console.log('Type `stream-adventure` to show the menu.\n');
         }
-    });
+    }
     
-    v.on('fail', function () {
+    function onfail () {
+        if (setup.close) setup.close();
+        
         console.log('# FAIL');
         console.log(
             "\nYour solution didn't match the expected output."
             + ' Try again!'
         );
-    });
-    
-    if (setup.stdin) setup.stdin.pipe(v);
+    }
 }
 else {
     var menu = showMenu();
