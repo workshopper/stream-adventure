@@ -4,6 +4,7 @@
   "INPUT OUTPUT",
   "TRANSFORM",
   "LINES",
+  "CONCAT",
   "HTTP SERVER",
   "HTTP CLIENT",
   "CRYPT",

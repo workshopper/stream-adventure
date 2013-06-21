@@ -13,9 +13,12 @@
         "terminal-menu": "~0.0.0",
         "split": "~0.2.5",
         "duplexer": "~0.1.1",
+        "concat-stream": "~1.0.0",
         "hyperquest": "~0.1.6",
         "request": "~2.21.0",
         "chunky": "~0.0.0",
+        "clone": "~0.1.9",
+        "wordwrap": "~0.0.2",
         "tar": "~0.1.17"
     },
     "repository": {
