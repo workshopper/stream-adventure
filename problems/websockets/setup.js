@@ -29,19 +29,22 @@ module.exports = function () {
     
     var wsServer = new ws.Server({ noServer: true, clientTracking: false })
     httpServer.on('upgrade', function (req, socket, head) {
+        httpServer.on('_close', function () {
+            socket.destroy();
+        });
         wsServer.handleUpgrade(req, socket, head, function(conn) {
             var stream = websocket(conn)
             stream.pipe(actual);
-            httpServer.on('close', function () {
-                conn.close()
-            });
-        });
-        httpServer.on('close', function () {
-            req.connection.destroy();
         });
     });
     httpServer.listen(8000);
-    console.log('\nOpen localhost:8000 to run your code!\n');
+    
+    console.log('################################################');
+    console.log('#                                              #');
+    console.log('# Open http://localhost:8000 to run your code! #');
+    console.log('#                                              #');
+    console.log('################################################');
+    console.log();
     
     return {
         args: [],
@@ -49,7 +52,9 @@ module.exports = function () {
         b: expected,
         close: function () {
             httpServer.close();
+            httpServer.emit('_close');
             wsServer.close();
+            setTimeout(process.exit, 50);
         }
     };
 };

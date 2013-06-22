@@ -60,8 +60,6 @@ if (argv._[0] === 'verify' || argv._[0] === 'run') {
     }, setup.wait || 1);
     
     function onpass () {
-        if (setup.close) setup.close();
-        
         console.log('# PASS');
         console.log('\nYour solution to ' + current + ' passed!');
         console.log(
@@ -90,6 +88,8 @@ if (argv._[0] === 'verify' || argv._[0] === 'run') {
             console.log('You have ' + remaining + ' challenges left.');
             console.log('Type `stream-adventure` to show the menu.\n');
         }
+        
+        if (setup.close) setup.close();
     }
     
     function onfail () {
