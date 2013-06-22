@@ -37,6 +37,7 @@ module.exports = function (acmd, bcmd, opts) {
     var tr = through();
     tr.pipe(opts.a || a.stdin);
     tr.pipe(opts.b || b.stdin);
+    
     return tr;
     
     function kill () {

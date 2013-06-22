@@ -7,6 +7,7 @@
   "CONCAT",
   "HTTP SERVER",
   "HTTP CLIENT",
+  "WEBSOCKETS",
   "CRYPT",
   "SECRETZ"
 ]

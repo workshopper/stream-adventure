@@ -54,6 +54,9 @@ if (argv._[0] === 'verify' || argv._[0] === 'run') {
             setup.stdin.pipe(v);
             setup.stdin.resume();
         }
+        
+        if (setup.a) setup.a.resume();
+        if (setup.b) setup.b.resume();
     }, setup.wait || 1);
     
     function onpass () {

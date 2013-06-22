@@ -1,0 +1,9 @@
+This problem requires a web browser with web sockets!
+
+connect like this:
+
+var ws = require('websocket-stream')
+var stream = ws('ws://localhost:9000')
+stream.on('open', doStuff)
+
+then send the string 'hello' to the server!
