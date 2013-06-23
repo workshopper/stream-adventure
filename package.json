@@ -21,6 +21,7 @@
         "wordwrap": "~0.0.2",
         "tar": "~0.1.17",
         "websocket-stream": "~0.2.0",
+        "trumpet": "~1.2.1",
         "ws": "~0.4.25",
         "browserify": "~2.18.1"
     },
