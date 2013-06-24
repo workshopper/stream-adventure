@@ -23,7 +23,8 @@
         "websocket-stream": "~0.2.0",
         "trumpet": "~1.2.1",
         "ws": "~0.4.25",
-        "browserify": "~2.18.1"
+        "browserify": "~2.18.1",
+        "mkdirp": "~0.3.5"
     },
     "repository": {
         "type": "git",

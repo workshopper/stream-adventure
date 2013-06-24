@@ -3,7 +3,7 @@ var path = require('path');
 var fs = require('fs');
 var EventEmitter = require('events').EventEmitter;
 
-module.exports = function () {
+module.exports = function (opts) {
     var emitter = new EventEmitter;
     var menu = tmenu({ width: 65, x: 3, y : 2 });
     menu.reset();
@@ -12,12 +12,9 @@ module.exports = function () {
     menu.write('-----------------\n');
     
     var order = require('../data/order.json');
-    var completed = []
-    try { completed = require('../data/completed.json') }
-    catch (e) {}
     
     order.forEach(function (name) {
-        var isDone = completed.indexOf(name) >= 0;
+        var isDone = opts.completed.indexOf(name) >= 0;
         if (isDone) {
             var m = '[COMPLETED]';
             menu.add(

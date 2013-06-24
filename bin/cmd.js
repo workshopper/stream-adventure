@@ -2,6 +2,9 @@
 var argv = require('optimist').argv;
 var fs = require('fs');
 var path = require('path');
+var mkdirp = require('mkdirp');
+var dataDir = path.resolve(process.env.HOME, '.config/stream-adventure');
+mkdirp.sync(dataDir);
 
 var showMenu = require('./menu.js');
 var verify = require('./verify.js');
@@ -77,8 +80,7 @@ if (argv._[0] === 'verify' || argv._[0] === 'run') {
             return ix >= 0 ? xs : xs.concat(current);
         });
         
-        try { var completed = require('../data/completed.json') }
-        catch (e) { completed = [] }
+        var completed = getData('completed') || [];
         
         var remaining = order.length - completed.length;
         if (remaining === 0) {
@@ -103,7 +105,7 @@ if (argv._[0] === 'verify' || argv._[0] === 'run') {
     }
 }
 else {
-    var menu = showMenu();
+    var menu = showMenu({ completed: getData('completed') || [] });
     menu.on('select', onselect);
     menu.on('exit', function () {
         console.log();
@@ -133,12 +135,12 @@ function updateData (name, fn) {
     var json = {};
     try { json = getData(name) }
     catch (e) {}
-    var file = path.resolve(__dirname + '/../data', name + '.json');
+    var file = path.resolve(dataDir, name + '.json');
     fs.writeFileSync(file, JSON.stringify(fn(json)));
 }
 
 function getData (name) {
-    var file = path.resolve(__dirname + '/../data', name + '.json');
+    var file = path.resolve(dataDir, name + '.json');
     try { return JSON.parse(fs.readFileSync(file, 'utf8')) }
     catch (e) {}
     return null;
