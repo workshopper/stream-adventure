@@ -3,7 +3,7 @@ var path = require('path');
 var aliens = require('./aliens.json');
 
 module.exports = function () {
-    var file = path.relative(__dirname, 'data.txt');
+    var file = path.resolve(__dirname, 'data.txt');
     var data = '';
     
     var data = '';
