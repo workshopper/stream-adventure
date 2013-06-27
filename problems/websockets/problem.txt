@@ -13,3 +13,6 @@ Then write the string "hello\n" to the stream and end the stream.
 
 The readme for websocket-stream has more info if you're curious about how to
 write the server side code: https://github.com/maxogden/websocket-stream
+
+Make sure to `npm install websocket-stream` in the directory where your solution
+file lives.

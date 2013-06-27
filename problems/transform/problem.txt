@@ -46,3 +46,6 @@ stdout, which should look something like:
 Note that the chunks you will get from `process.stdin` are Buffers, not strings.
 You can call `buf.toString()` on a Buffer to get a string and strings can do
 `.toUpperCase()`.
+
+Make sure to `npm install through` in the directory where your solution
+file lives.

@@ -1,6 +1,6 @@
 {
     "name": "stream-adventure",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "an educational stream adventure",
     "bin": {
         "stream-adventure": "bin/cmd.js"

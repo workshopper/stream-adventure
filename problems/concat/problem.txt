@@ -21,3 +21,6 @@ concat to buffer POST content in order to JSON.parse() the submitted data:
 
 In your adventure you'll only need to buffer input with `concat()` from
 process.stdin.
+
+Make sure to `npm install concat-stream` in the directory where your solution
+file is located.

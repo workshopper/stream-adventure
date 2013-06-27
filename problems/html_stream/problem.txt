@@ -14,3 +14,6 @@ With `trumpet` you can create a transform stream from a css selector:
 
 Now `stream` outputs all the inner html content at `'.beep'` and the data you
 write to `stream` will appear as the new inner html content.
+
+Make sure to `npm install trumpet through` in the directory where your solution
+file lives.

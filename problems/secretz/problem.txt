@@ -29,3 +29,6 @@ Using the tar module looks like:
 
 Use `crypto.createHash('md5', { encoding: 'hex' })` to generate a stream that
 outputs a hex md5 hash for the content written to it.
+
+Make sure to `npm install tar through` in the directory where your solution
+file lives.
