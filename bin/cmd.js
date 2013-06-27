@@ -3,7 +3,7 @@ var argv = require('optimist').argv;
 var fs = require('fs');
 var path = require('path');
 var mkdirp = require('mkdirp');
-var dataDir = path.resolve(process.env.HOME, '.config/stream-adventure');
+var dataDir = path.resolve(process.env.HOME || process.env.USERPROFILE, '.config/stream-adventure');
 mkdirp.sync(dataDir);
 
 var showMenu = require('./menu.js');
