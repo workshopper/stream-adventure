@@ -7,7 +7,7 @@ prompt you to open `http://localhost:8000` in a browser to verify your solution.
 To open a stream with websocket-stream on localhost:8000, just write:
 
     var ws = require('websocket-stream');
-    var stream = ws('ws://localhost:9000');
+    var stream = ws('ws://localhost:8000');
    
 Then write the string "hello\n" to the stream and end the stream.
 
