@@ -14,7 +14,7 @@ For example, we can stream a file to the response object:
     });
     server.listen(8000);
 
-This is great because our server can response immediately without buffering
+This is great because our server can respond immediately without buffering
 everything in memory first.
 
 We can also stream a request to populate a file with data:
