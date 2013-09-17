@@ -105,12 +105,25 @@ if (argv._[0] === 'verify' || argv._[0] === 'run') {
     }
 }
 else {
-    var menu = showMenu({ completed: getData('completed') || [] });
-    menu.on('select', onselect);
-    menu.on('exit', function () {
-        console.log();
-        process.exit(0);
-    });
+  var opts = {
+    completed: getData('completed') || []
+  };
+
+  if (argv.b || argv.bg){
+    opts.bg = argv.b || argv.bg;
+  }
+
+  if (argv.f || argv.fg){
+    opts.fg = argv.f || argv.fg;
+  }
+
+  var menu = showMenu(opts);
+
+  menu.on('select', onselect);
+  menu.on('exit', function () {
+      console.log();
+      process.exit(0);
+  });
 }
 
 function onselect (name) {
