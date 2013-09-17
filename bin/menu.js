@@ -5,7 +5,14 @@ var EventEmitter = require('events').EventEmitter;
 
 module.exports = function (opts) {
     var emitter = new EventEmitter;
-    var menu = tmenu({ width: 65, x: 3, y : 2 });
+
+    var menu = tmenu({
+      width: 65,
+      x: 3, y: 2, 
+      bg: opts.bg || 'blue',
+      fg: opts.fg || 'white'
+    });
+
     menu.reset();
     
     menu.write('STREAMS ADVENTURE\n');
