@@ -24,8 +24,7 @@
         "trumpet": "~1.2.1",
         "ws": "~0.4.25",
         "browserify": "~2.18.1",
-        "mkdirp": "~0.3.5",
-        "coffee-script": "~1.6.3"
+        "mkdirp": "~0.3.5"
     },
     "repository": {
         "type": "git",

@@ -3,7 +3,6 @@ var tuple = require('tuple-stream');
 var through = require('through');
 var split = require('split');
 var path = require('path');
-var coffee = require('coffee-script');
 
 var x256 = require('x256');
 
@@ -24,8 +23,16 @@ module.exports = function (acmd, bcmd, opts) {
     var a;
     if (!opts) opts = {};
 
-    if (coffee.helpers.isCoffee(acmd)) {
-        a = spawn(__dirname + '/../node_modules/coffee-script/bin/coffee', acmd);
+    if (/\.coffee$/.test(acmd)) {
+        a = spawn('coffee', acmd);
+
+        a.on('error', function(err) {
+            console.log(COLORS['FAIL'] + 'ERROR:');
+            console.log('Please ensure coffee-script is installed');
+            console.log('$ npm install -g coffee-script');
+            console.log(COLORS.RESET);
+            throw err;
+        });
     }
     else {
         a = spawn(process.execPath, acmd);
