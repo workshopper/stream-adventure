@@ -36,7 +36,7 @@ You can test this post server with curl:
     $ cat post.txt
     hack the planet
 
-Your http server should listen on port 8000 and convert the POST request written
+Your http server should listen on port 8001 and convert the POST request written
 to it to upper-case using the same approach as the TRANSFORM example.
 
 As a refresher, here's an example with the default through callbacks explicitly
