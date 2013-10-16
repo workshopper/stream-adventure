@@ -25,9 +25,9 @@ You can use the `split` module to split input by newlines. For example:
         }))
     ;
 
-Will buffer and split chunks on newlines before you get them. For example, for
-the `split.js` we just wrote we will get separate events for each line even
-though the data probably all arrives on the same chunk:
+`split` will buffer chunks on newlines before you get them. In the previous
+example, we will get separate events for each line even though all the data
+probably arrives on the same chunk:
 
     $ echo -e 'one\ntwo\nthree' | node split.js
     'one'
