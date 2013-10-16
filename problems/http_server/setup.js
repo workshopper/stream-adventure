@@ -14,7 +14,7 @@ module.exports = function () {
         var hqa = hyperquest.post('http://localhost:8000');
         inputA.pipe(hqa).pipe(outputA);
         
-        var hqb = hyperquest.post('http://localhost:8001')
+        var hqb = hyperquest.post('http://localhost:8000')
         inputB.pipe(hqb).pipe(outputB);
         
         inputA.resume();
