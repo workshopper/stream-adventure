@@ -22,6 +22,8 @@ COLORS.RESET = '\x1b[00m';
 module.exports = function (acmd, bcmd, opts) {
     if (!opts) opts = {};
     var a = spawn(process.execPath, acmd);
+    if (opts.a) opts.a.on('kill', function () { if (a.kill) a.kill() });
+    
     if (opts.run) {
         (opts.a || a.stdout).pipe(process.stdout);
         if (a.stderr) a.stderr.pipe(process.stderr);
@@ -29,6 +31,8 @@ module.exports = function (acmd, bcmd, opts) {
     }
     
     var b = spawn(process.execPath, bcmd);
+    if (opts.b) b.on('kill', function () { if (b.kill) b.kill() });
+    
     var c = compare(opts.a || a.stdout, opts.b || b.stdout, opts);
     
     if (opts.showStdout) {

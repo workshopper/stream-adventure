@@ -3,7 +3,7 @@ var duplexer = require('duplexer');
 var hyperquest = require('hyperquest');
 var words = require('./words.json');
 
-module.exports = function () {
+module.exports = function (opts) {
     var inputA = through().pause();
     var inputB = through().pause();
     var aPort = Math.floor(Math.random() * 40000 + 10000);
@@ -19,11 +19,13 @@ module.exports = function () {
         });
         inputA.pipe(hqa).pipe(outputA);
         
-        var hqb = hyperquest.post('http://localhost:' + bPort)
-        hqb.on('error', function (err) {
-            console.error('EXPECTED SERVER ' + err.stack);
-        });
-        inputB.pipe(hqb).pipe(outputB);
+        if (!opts.run) {
+            var hqb = hyperquest.post('http://localhost:' + bPort)
+            hqb.on('error', function (err) {
+                console.error('EXPECTED SERVER ' + err.stack);
+            });
+            inputB.pipe(hqb).pipe(outputB);
+        }
         
         inputA.resume();
         inputB.resume();
@@ -40,13 +42,17 @@ module.exports = function () {
             clearInterval(iv);
             inputA.end();
             inputB.end();
+            a.emit('kill');
+            b.emit('kill');
         }
     }, 50);
     
+    var a = duplexer(inputA, outputA);
+    var b = duplexer(inputB, outputB);
     return {
-        a: duplexer(inputA, outputA),
+        a: a,
         aArgs: [ aPort ],
-        b: duplexer(inputB, outputB),
+        b: b,
         bArgs: [ bPort ],
         showStdout: true
     };
