@@ -12,7 +12,7 @@ For example, we can stream a file to the response object:
     var server = http.createServer(function (req, res) {
         fs.createReadStream('file.txt').pipe(res);
     });
-    server.listen(8000);
+    server.listen(process.argv[2]);
 
 This is great because our server can response immediately without buffering
 everything in memory first.
@@ -27,17 +27,19 @@ We can also stream a request to populate a file with data:
         }
         res.end('beep boop\n');
     });
-    server.listen(8000);
+    server.listen(process.argv[2]);
 
 You can test this post server with curl:
 
+    $ node server.js 8000 &
     $ echo hack the planet | curl -d@- http://localhost:8000
     beep boop
     $ cat post.txt
     hack the planet
 
-Your http server should listen on port 8000 and convert the POST request written
-to it to upper-case using the same approach as the TRANSFORM example.
+Your http server should listen on the port given at process.argv[2] and convert
+the POST request written to it to upper-case using the same approach as the
+TRANSFORM example.
 
 As a refresher, here's an example with the default through callbacks explicitly
 defined:
