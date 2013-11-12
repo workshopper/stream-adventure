@@ -31,6 +31,13 @@ module.exports = function (acmd, bcmd, opts) {
     var b = spawn(process.execPath, bcmd);
     var c = compare(opts.a || a.stdout, opts.b || b.stdout, opts);
     
+    if (opts.showStdout) {
+        a.stdout.pipe(process.stdout);
+        a.stderr.pipe(process.stderr);
+        b.stdout.pipe(process.stdout);
+        b.stderr.pipe(process.stderr);
+    }
+    
     c.on('pass', function () { kill(); tr.emit('pass') });
     c.on('fail', function () { kill(); tr.emit('fail') });
     

@@ -6,15 +6,23 @@ var words = require('./words.json');
 module.exports = function () {
     var inputA = through().pause();
     var inputB = through().pause();
+    var aPort = Math.floor(Math.random() * 40000 + 10000);
+    var bPort = aPort + 1;
     
     var outputA = through();
     var outputB = through();
     
     setTimeout(function () {
-        var hqa = hyperquest.post('http://localhost:8000');
+        var hqa = hyperquest.post('http://localhost:' + aPort);
+        hqa.on('error', function (err) {
+            console.error('ACTUAL SERVER ' + err.stack);
+        });
         inputA.pipe(hqa).pipe(outputA);
         
-        var hqb = hyperquest.post('http://localhost:8001')
+        var hqb = hyperquest.post('http://localhost:' + bPort)
+        hqb.on('error', function (err) {
+            console.error('EXPECTED SERVER ' + err.stack);
+        });
         inputB.pipe(hqb).pipe(outputB);
         
         inputA.resume();
@@ -36,8 +44,10 @@ module.exports = function () {
     }, 50);
     
     return {
-        args: [],
         a: duplexer(inputA, outputA),
-        b: duplexer(inputB, outputB)
+        aArgs: [ aPort ],
+        b: duplexer(inputB, outputB),
+        bArgs: [ bPort ],
+        showStdout: true
     };
 };

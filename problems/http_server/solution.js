@@ -9,4 +9,4 @@ var server = http.createServer(function (req, res) {
     }
     else res.end('send me a POST\n');
 });
-server.listen(8000);
+server.listen(parseInt(process.argv[2]));
