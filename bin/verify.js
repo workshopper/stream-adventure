@@ -21,7 +21,10 @@ COLORS.RESET = '\x1b[00m';
 
 module.exports = function (acmd, bcmd, opts) {
     if (!opts) opts = {};
-    var a = spawn(process.execPath, acmd);
+    var a = /^[.\/]/.test(acmd[0]) && !/\.js$/.test(acmd[0])
+        ? spawn(acmd[0], acmd.slice(1))
+        : spawn(process.execPath, acmd)
+    ;
     if (opts.a) opts.a.on('kill', function () { if (a.kill) a.kill() });
     
     if (opts.run) {

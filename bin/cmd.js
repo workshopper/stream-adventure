@@ -42,7 +42,7 @@ if (argv._[0] === 'verify' || argv._[0] === 'run') {
     var dir = dirFromName(current);
     var setup = require(dir + '/setup.js')({ run: argv._[0] === 'run' });
     setTimeout(function () {
-        var a = [ argv._[1] ]
+        var a = argv._.slice(1)
             .concat(setup.aArgs || setup.args || [])
         ;
         var b = [ dir + '/solution.js' ]
