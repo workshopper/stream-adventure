@@ -105,7 +105,8 @@ if (argv._[0] === 'verify' || argv._[0] === 'run') {
         console.log('# FAIL');
         console.log(
             "\nYour solution didn't match the expected output."
-            + ' Try again, or run `stream-adventure run program.js` to see your solution\'s output.'
+            + '\nTry again, or run `stream-adventure run program.js`'
+            + ' to see your solution\'s output.'
         );
     }
 }
