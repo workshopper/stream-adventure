@@ -6,6 +6,11 @@ var mkdirp = require('mkdirp');
 var dataDir = path.resolve(process.env.HOME || process.env.USERPROFILE, '.config/stream-adventure');
 mkdirp.sync(dataDir);
 
+var exitCode = 0;
+process.on('exit', function (code) {
+    process.exit(code || exitCode);
+});
+
 var showMenu = require('./menu.js');
 var verify = require('./verify.js');
 var order = require('../data/order.json');
@@ -108,6 +113,7 @@ if (argv._[0] === 'verify' || argv._[0] === 'run') {
             + '\nTry again, or run `stream-adventure run program.js`'
             + ' to see your solution\'s output.'
         );
+        exitCode = 1;
     }
 }
 else {
