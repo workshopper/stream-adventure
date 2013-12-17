@@ -16,6 +16,13 @@ With [npm](https://npmjs.org) do:
 npm install -g stream-adventure
 ```
 
+If you want to play offline, make a new directory then do:
+
+```
+npm install through concat-stream duplexer trumpet request split tar \
+    websocket-stream stream-combiner
+```
+
 # run
 
 Now just type `stream-adventure` to play!
