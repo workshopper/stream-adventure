@@ -26,10 +26,11 @@ module.exports = function (opts) {
         ps.stderr.pipe(process.stderr);
         close.push(function () { ps.kill() });
         
+        var stream = check(aPort);
         if (opts.run) {
             ps.stdout.pipe(process.stdout);
+            stream.on('end', function () { ps.kill() });
         }
-        var stream = check(aPort);
         return stream;
     }
     
