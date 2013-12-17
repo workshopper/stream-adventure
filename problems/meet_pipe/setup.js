@@ -1,10 +1,11 @@
 var fs = require('fs');
 var path = require('path');
 var os = require('os');
+var tmpdir = os.tmpdir || os.tmpDir;
 var aliens = require('./aliens.json');
 
 module.exports = function () {
-    var file = path.resolve(os.tmpdir(), 'meet-pipe-data.txt');
+    var file = path.resolve(tmpdir(), 'meet-pipe-data.txt');
     var data = '';
 
     for (var i = 0; i < 10; i++) {
