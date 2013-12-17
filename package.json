@@ -27,6 +27,9 @@
         "mkdirp": "~0.3.5",
         "stream-combiner": "~0.1.1"
     },
+    "devDependencies": {
+        "tape": "~2.3.0"
+    },
     "repository": {
         "type": "git",
         "url": "git://github.com/substack/stream-adventure.git"
