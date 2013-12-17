@@ -9,4 +9,4 @@ var server = http.createServer(function (req, res) {
     }
     else res.end();
 });
-server.listen(8000);
+server.listen(process.argv[2]);
