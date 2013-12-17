@@ -9,6 +9,7 @@
   "HTTP CLIENT",
   "WEBSOCKETS",
   "HTML STREAM",
+  "DUPLEXER",
   "CRYPT",
   "SECRETZ"
 ]

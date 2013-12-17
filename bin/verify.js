@@ -21,36 +21,53 @@ COLORS.RESET = '\x1b[00m';
 
 module.exports = function (acmd, bcmd, opts) {
     if (!opts) opts = {};
-    var a = /^[.\/]/.test(acmd[0]) && !/\.js$/.test(acmd[0])
-        ? spawn(acmd[0], acmd.slice(1))
-        : spawn(process.execPath, acmd)
-    ;
-    if (opts.a) opts.a.on('kill', function () { if (a.kill) a.kill() });
     
-    if (opts.run) {
-        (opts.a || a.stdout).pipe(process.stdout);
-        if (a.stderr) a.stderr.pipe(process.stderr);
-        return opts.a || a.stdin;
+    var a;
+    if (typeof opts.a === 'function') {
+        a = opts.a(acmd);
+    }
+    else {
+        a = /^[.\/]/.test(acmd[0]) && !/\.js$/.test(acmd[0])
+            ? spawn(acmd[0], acmd.slice(1))
+            : spawn(process.execPath, acmd)
+        ;
+    }
+    if (a && a.on) {
+        a.on('kill', function () { if (a.kill) a.kill() });
     }
     
-    var b = spawn(process.execPath, bcmd);
-    if (opts.b) b.on('kill', function () { if (b.kill) b.kill() });
+    if (opts.run) {
+        (a.stdout || a).pipe(process.stdout);
+        if (a.stderr) a.stderr.pipe(process.stderr);
+        return a.stdin || a;
+    }
     
-    var c = compare(opts.a || a.stdout, opts.b || b.stdout, opts);
+    var b;
+    if (typeof opts.b === 'function') {
+        b = opts.b(bcmd);
+    }
+    else {
+        b = spawn(process.execPath, bcmd);
+    }
+    if (opts.b && opts.b.on) {
+        b.on('kill', function () { if (b.kill) b.kill() });
+    }
+    
+    var c = compare(a.stdout || a, b.stdout || b, opts);
     
     if (opts.showStdout) {
-        a.stdout.pipe(process.stdout);
-        a.stderr.pipe(process.stderr);
-        b.stdout.pipe(process.stdout);
-        b.stderr.pipe(process.stderr);
+        (a.stdout || a).pipe(process.stdout);
+        if (a.stderr) a.stderr.pipe(process.stderr);
+        (b.stdout || b).pipe(process.stdout);
+        if (b.stderr) b.stderr.pipe(process.stderr);
     }
     
     c.on('pass', function () { kill(); tr.emit('pass') });
     c.on('fail', function () { kill(); tr.emit('fail') });
     
     var tr = through();
-    tr.pipe(opts.a || a.stdin);
-    tr.pipe(opts.b || b.stdin);
+    tr.pipe(a.stdin || a);
+    tr.pipe(b.stdin || b);
     
     return tr;
     
