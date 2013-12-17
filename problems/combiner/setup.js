@@ -27,7 +27,7 @@ var data = keys.reduce(function (acc, key) {
 }, []);
 
 module.exports = function (opts) {
-    return { a: runCmd, b: runCmd };
+    return { a: runCmd, b: runCmd, long: true };
     
     function runCmd (args) {
         var fn = require(path.resolve(args[0]));
