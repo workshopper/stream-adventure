@@ -1,17 +1,21 @@
 #!/usr/bin/env node
+
 var argv = require('optimist').argv;
 var fs = require('fs');
 var path = require('path');
 var mkdirp = require('mkdirp');
-var dataDir = path.resolve(process.env.HOME || process.env.USERPROFILE, '.config/stream-adventure');
+var dataDir = path.resolve(
+    process.env.HOME || process.env.USERPROFILE,
+    '.config/stream-adventure'
+);
+
 mkdirp.sync(dataDir);
 
 var exitCode = 0;
 process.on('exit', function (code) {
-    process.exit(code || exitCode);
+    if (code === 0 && exitCode) process.exit(exitCode);
 });
 
-var showMenu = require('./menu.js');
 var verify = require('./verify.js');
 var order = require('../data/order.json');
 
@@ -117,25 +121,26 @@ if (argv._[0] === 'verify' || argv._[0] === 'run') {
     }
 }
 else {
-  var opts = {
-    completed: getData('completed') || []
-  };
+    var opts = {
+        completed: getData('completed') || []
+    };
 
-  if (argv.b || argv.bg){
-    opts.bg = argv.b || argv.bg;
-  }
+    if (argv.b || argv.bg){
+        opts.bg = argv.b || argv.bg;
+    }
 
-  if (argv.f || argv.fg){
-    opts.fg = argv.f || argv.fg;
-  }
+    if (argv.f || argv.fg){
+        opts.fg = argv.f || argv.fg;
+    }
 
-  var menu = showMenu(opts);
+    var showMenu = require('./menu.js');
+    var menu = showMenu(opts);
 
-  menu.on('select', onselect);
-  menu.on('exit', function () {
-      console.log();
-      process.exit(0);
-  });
+    menu.on('select', onselect);
+    menu.on('exit', function () {
+        console.log();
+        process.exit(0);
+    });
 }
 
 function onselect (name) {
