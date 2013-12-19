@@ -4,7 +4,7 @@ var split = require('split');
 var zlib = require('zlib');
 
 module.exports = function () {
-    var grouper = through(write);
+    var grouper = through(write, end);
     var current;
     
     function write (line) {
