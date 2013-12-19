@@ -30,7 +30,7 @@ above would yield the output:
     {"name":"space opera","books":["A Deepness in the SKy","Void"]}
 
 Your stream should take this list of JSON lines and gzip it with
-`crypto.createGzip()`.
+`zlib.createGzip()`.
 
 * HINTS *
 
