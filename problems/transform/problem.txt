@@ -1,7 +1,7 @@
 Convert data from `process.stdin` to upper-case data on `process.stdout`
 using the `through` module.
 
-through(write, end) returns a readable/writable stream given `write` and `end`
+`through(write, end)` returns a readable/writable stream given `write` and `end`
 functions, both of which are optional.
 
 When you call `src.pipe(dst)` on some stream `dst` created with `through()`, the
