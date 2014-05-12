@@ -8,9 +8,9 @@ var path = require('path');
 var entry = path.resolve(process.argv[3]);
 
 module.exports = function () {
-    var actual = through()
-    var expected = through().pause()
-    expected.queue('hello\n')
+    var actual = through();
+    var expected = through().pause();
+    expected.queue('hello\n');
     expected.queue(null);
     
     var httpServer = http.createServer(function (req, res) {
@@ -22,8 +22,8 @@ module.exports = function () {
             });
         }
         else {
-            res.setHeader('content-type', 'text/html')
-            return res.end('<script src="/bundle.js"></script>')
+            res.setHeader('content-type', 'text/html');
+            return res.end('<script src="/bundle.js"></script>');
         }
     });
     
@@ -33,12 +33,12 @@ module.exports = function () {
             socket.destroy();
         });
         wsServer.handleUpgrade(req, socket, head, function(conn) {
-            var stream = websocket(conn)
+            var stream = websocket(conn);
             stream.pipe(actual);
         });
     });
     httpServer.listen(8000);
-    
+
     console.log('################################################');
     console.log('#                                              #');
     console.log('# Open http://localhost:8000 to run your code! #');
