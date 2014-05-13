@@ -53,7 +53,7 @@ module.exports = function (acmd, bcmd, opts) {
         b.on('kill', function () { if (b.kill) b.kill() });
     }
     
-    var c = compare(a.stdout || a, b.stdout || b, opts);
+    var c = compare(opts.a || a.stdout || a, opts.b || b.stdout || b, opts);
     
     if (opts.showStdout) {
         (a.stdout || a).pipe(process.stdout);
