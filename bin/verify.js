@@ -21,7 +21,6 @@ COLORS.RESET = '\x1b[00m';
 
 module.exports = function (acmd, bcmd, opts) {
     if (!opts) opts = {};
-    
     var a;
     if (typeof opts.a === 'function') {
         a = opts.a(acmd);
@@ -53,8 +52,13 @@ module.exports = function (acmd, bcmd, opts) {
         b.on('kill', function () { if (b.kill) b.kill() });
     }
     
-    var c = compare(opts.a || a.stdout || a, opts.b || b.stdout || b, opts);
-    
+    if (typeof opts.a === 'function' || typeof opts.b === 'function') {
+        var c = compare(a.stdout || a, b.stdout || b, opts);
+    }
+    else {
+        var c = compare(opts.a || a.stdout || a, opts.b || b.stdout || b, opts);
+    }
+
     if (opts.showStdout) {
         (a.stdout || a).pipe(process.stdout);
         if (a.stderr) a.stderr.pipe(process.stderr);
@@ -84,10 +88,9 @@ function compare (actual, expected, opts) {
     output.queue(COLORS.RESET);
     
     if (!opts.long) {
-        output.queue(wrap('ACTUAL', 30) + '     EXPECTED\n');
-        output.queue(wrap('------', 30) + '     --------\n');
-    }
-    
+        output.queue(wrap('ACTUAL', 30) + ' EXPECTED\n');
+        output.queue(wrap('------', 30) + ' --------\n');
+    }    
     tuple(actual.pipe(split()), expected.pipe(split()))
         .pipe(output)
         .pipe(process.stdout)
@@ -100,7 +103,7 @@ function compare (actual, expected, opts) {
         equal = equal && eq;
         
         if (opts.long) {
-            this.queue('ACTUAL:   '
+            this.queue('ACTUAL: '
                 + COLORS[eq ? 'PASS' : 'FAIL']
                 + JSON.stringify(pair[0])
                 + COLORS.RESET + '\n'
@@ -113,7 +116,7 @@ function compare (actual, expected, opts) {
             this.queue(
                 COLORS[eq ? 'PASS' : 'FAIL']
                 + wrap(JSON.stringify(pair[0]), 30)
-                + ' ' + (eq ? '   ' : '!==') + ' '
+                + ' ' + (eq ? ' ' : '!==') + ' '
                 + wrap(JSON.stringify(pair[1]), 30)
                 + '\n'
             );
