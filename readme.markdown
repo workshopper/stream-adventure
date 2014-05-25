@@ -2,7 +2,7 @@
 
 Go on an educational stream adventure!
 
-[![build status](https://secure.travis-ci.org/substack/stream-adventure.png)](http://travis-ci.org/substack/stream-adventure)
+[![build status](https://secure.travis-ci.org/substack/stream-adventure.svg)](http://travis-ci.org/substack/stream-adventure)
 
 # install
 
