@@ -40,14 +40,13 @@ if (argv._[0] === 'select') {
     return onselect(argv._.slice(1).join(' '));
 }
 
+if (argv._[0] === 'print') {
+    printProblem(getCurrentProblem());
+    return;
+}
+
 if (argv._[0] === 'verify' || argv._[0] === 'run') {
-    var current = getData('current');
-    if (!current) {
-        console.error('ERROR: No active problem. '
-            + 'Select a challenge from the menu.'
-        );
-        return process.exit(1);
-    }
+    var current = getCurrentProblem();
     var dir = dirFromName(current);
     var setup = require(dir + '/setup.js')({ run: argv._[0] === 'run' });
     setTimeout(function () {
@@ -143,22 +142,52 @@ else {
     });
 }
 
-function onselect (name) {
+function getCurrentProblem() {
+    var current = getData('current');
+    if (!current) {
+        console.error('ERROR: No active problem. '
+                + 'Select a challenge from the menu.'
+        );
+        return process.exit(1);
+    }
+    return current;
+}
+
+function printProblem(name) {
     console.log('\n  ' + Array(70).join('#'));
     console.log(center('~~  ' + name + '  ~~'));
     console.log('  ' + Array(70).join('#') + '\n');
-    
+
     var dir = dirFromName(name);
     var file = path.resolve(dir, 'problem.txt');
     updateData('current', function (c) { return name });
     var rs = fs.createReadStream(file);
     rs.on('close', function () {
         console.log(
-            '\nTo verify your program, run: '
-            + '`stream-adventure verify program.js`.\n'
+                '\nTo verify your program, run: '
+                + '`stream-adventure verify program.js`.\n'
         );
     });
     rs.pipe(process.stdout);
+}
+
+function onselect (name) {
+    printProblem(name);
+//    console.log('\n  ' + Array(70).join('#'));
+//    console.log(center('~~  ' + name + '  ~~'));
+//    console.log('  ' + Array(70).join('#') + '\n');
+//
+//    var dir = dirFromName(name);
+//    var file = path.resolve(dir, 'problem.txt');
+//    updateData('current', function (c) { return name });
+//    var rs = fs.createReadStream(file);
+//    rs.on('close', function () {
+//        console.log(
+//            '\nTo verify your program, run: '
+//            + '`stream-adventure verify program.js`.\n'
+//        );
+//    });
+//    rs.pipe(process.stdout);
 }
 
 function updateData (name, fn) {
