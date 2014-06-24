@@ -20,7 +20,8 @@ If you want to play offline, make a new directory then do:
 
 ```
 npm install through concat-stream duplexer trumpet request split tar \
-    websocket-stream stream-combiner
+    websocket-stream stream-combiner optimist tuple-stream x256 \
+    terminal-menu
 ```
 
 # run
