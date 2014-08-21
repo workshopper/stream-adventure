@@ -166,6 +166,8 @@ function printProblem(name) {
         console.log(
                 '\nTo verify your program, run: '
                 + '`stream-adventure verify program.js`.\n'
+                + 'To print these instructions again, hit: '
+                + '`stream-adventure print`.\n'
         );
     });
     rs.pipe(process.stdout);
