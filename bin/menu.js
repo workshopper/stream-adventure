@@ -15,8 +15,8 @@ module.exports = function (opts) {
 
     menu.reset();
     
-    menu.write('STREAMS ADVENTURE\n');
-    menu.write('-----------------\n');
+    menu.write('STREAM ADVENTURE\n');
+    menu.write('----------------\n');
     
     var order = require('../data/order.json');
     
