@@ -10,7 +10,7 @@
     "optimist": "~0.5.2",
     "through": "~2.3.4",
     "tuple-stream": "~0.0.2",
-    "terminal-menu": "~0.0.0",
+    "terminal-menu": "~0.3.2",
     "split": "~0.2.5",
     "duplexer": "~0.1.1",
     "concat-stream": "~1.0.0",
