@@ -7,7 +7,7 @@ var spawn = require('child_process').spawn;
 module.exports = function (opts) {
     var aPort = Math.floor(Math.random() * 40000 + 10000);
     var bPort = aPort + 1;
-    
+
     var offset = Math.floor(words.length*Math.random());
     var data = [];
     for (var i = 0; i < 20; i++) {
@@ -20,20 +20,20 @@ module.exports = function (opts) {
         b: function (args) { return run(args, bPort) },
         close: function () { close.forEach(function (f) { f() }) }
     };
-    
+
     function run (args, port) {
         var ps = spawn(process.execPath, args.concat(port));
         ps.stderr.pipe(process.stderr);
         close.push(function () { ps.kill() });
-        
-        var stream = check(aPort);
+
+        var stream = check(port);
         if (opts.run) {
             ps.stdout.pipe(process.stdout);
             stream.on('end', function () { ps.kill() });
         }
         return stream;
     }
-    
+
     function check (port, cb) {
         var input = through();
         var output = through();
@@ -43,7 +43,7 @@ module.exports = function (opts) {
                 console.error('ACTUAL SERVER ' + err.stack);
             });
             input.pipe(hqa).pipe(output);
-            
+
             var chunks = data.slice();
             var iv = setInterval(function () {
                 if (chunks.length === 0) {
