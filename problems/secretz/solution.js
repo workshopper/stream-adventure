@@ -8,9 +8,9 @@ parser.on('entry', function (e) {
     if (e.type !== 'File') return;
     
     var h = crypto.createHash('md5', { encoding: 'hex' });
-    e.pipe(h).pipe(through(null, end)).pipe(process.stdout);
+    e.pipe(h).pipe(through(write)).pipe(process.stdout);
     
-    function end () { this.queue(' ' + e.path + '\n') }
+    function write(buf) { this.queue(buf.toString() + ' ' + e.path + '\n') }
 });
 
 var cipher = process.argv[2];
