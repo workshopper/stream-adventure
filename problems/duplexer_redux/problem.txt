@@ -7,7 +7,7 @@ argument to your program:
     };
 
 Return a duplex stream with the `counter` as the readable side. You will be
-written objects with a 2-character `country` field as input, such as these:
+given objects with a 2-character `country` field as input, such as these:
  
     {"short":"OH","name":"Ohio","country":"US"}
     {"name":"West Lothian","country":"GB","region":"Scotland"}
