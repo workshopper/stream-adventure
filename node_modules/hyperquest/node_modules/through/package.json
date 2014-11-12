@@ -1,0 +1,63 @@
+{
+  "name": "through",
+  "version": "2.2.7",
+  "description": "simplified stream contruction",
+  "main": "index.js",
+  "scripts": {
+    "test": "set -e; for t in test/*.js; do node $t; done"
+  },
+  "devDependencies": {
+    "stream-spec": "~0.3.5",
+    "tape": "~0.2.2"
+  },
+  "keywords": [
+    "stream",
+    "streams",
+    "user-streams",
+    "pipe"
+  ],
+  "author": {
+    "name": "Dominic Tarr",
+    "email": "dominic.tarr@gmail.com",
+    "url": "dominictarr.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dominictarr/through.git"
+  },
+  "homepage": "http://github.com/dominictarr/through",
+  "testling": {
+    "browsers": [
+      "ie/8..latest",
+      "ff/15..latest",
+      "chrome/20..latest",
+      "safari/5.1..latest"
+    ],
+    "files": "test/*.js"
+  },
+  "_id": "through@2.2.7",
+  "dist": {
+    "shasum": "6e8e21200191d4eb6a99f6f010df46aa1c6eb2bd",
+    "tarball": "http://registry.npmjs.org/through/-/through-2.2.7.tgz"
+  },
+  "_from": "through@~2.2.0",
+  "_npmVersion": "1.2.3",
+  "_npmUser": {
+    "name": "dominictarr",
+    "email": "dominic.tarr@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "dominictarr",
+      "email": "dominic.tarr@gmail.com"
+    }
+  ],
+  "directories": {},
+  "_shasum": "6e8e21200191d4eb6a99f6f010df46aa1c6eb2bd",
+  "_resolved": "https://registry.npmjs.org/through/-/through-2.2.7.tgz",
+  "bugs": {
+    "url": "https://github.com/dominictarr/through/issues"
+  },
+  "readme": "ERROR: No README data found!"
+}

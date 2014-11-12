@@ -1,0 +1,1179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+  </head>
+<!--   © 2006-2014 Tony Asdourian, Arnaldo Cohen, Mimi Cukier, Angela Doyle, Rina Foygel, Tim Howell, Bill Tabrisky,
+Anand Thakker, members of the mathematics faculty of the Park School of Baltimore, Inc. 2006- 2014.
+
+THE WORK (AS DEFINED BELOW) IS PROVIDED UNDER THE TERMS OF THIS CREATIVE COMMONS PUBLIC LICENSE 
+("CCPL" OR "LICENSE"). THE WORK IS PROTECTED BY COPYRIGHT AND/OR OTHER APPLICABLE LAW. ANY USE OF 
+THE WORK OTHER THAN AS AUTHORIZED UNDER THIS LICENSE OR COPYRIGHT LAW IS PROHIBITED.
+
+BY EXERCISING ANY RIGHTS TO THE WORK PROVIDED HERE, YOU ACCEPT AND AGREE TO BE BOUND BY THE TERMS OF 
+THIS LICENSE. TO THE EXTENT THIS LICENSE MAY BE CONSIDERED TO BE A CONTRACT, THE LICENSOR GRANTS YOU 
+THE RIGHTS CONTAINED HERE IN CONSIDERATION OF YOUR ACCEPTANCE OF SUCH TERMS AND CONDITIONS.
+
+Continued: http://creativecommons.org/licenses/by-nc-sa/3.0/
+ -->
+  <body>
+    <div id="x01-3-arithmetic-sequences-and-series.html" xml:lang="en-US" lang="en-US">
+      <div class="story">
+        <p class="Lesson---Title">
+          lesson 3: Arithmetic Sequences and Series
+        </p>
+        <p class="Lesson---Section-title">
+          Introduction
+        </p>
+        <p class="problem">
+           Fill in the blanks to continue the pattern you see in this list: $2,\;7,\;6,\;11,\;10,\;15,\;\_\_\,,\;\_\_\,,\,\_\_\,,\;\_\_\,, \ldots $
+
+        </p>
+        <p>
+          In mathematics, a $sequence$ is a list of numbers, usually with an identifiable
+          pattern or a connection to real data — for example, the list of expected
+          temperatures for the next ten days, or a sequence listing the profits that a
+          business earned year by year.
+        </p>
+        <p>
+          The numbers in the sequence are called $terms$ — for example, in the sequence above, 2 is the first term. Sometimes this pattern is very simple: 2,4,6,8…. Other times it might be harder to spot, like the problem above. Or, it might be an
+          unusual type of pattern — 0,1,0,1,1,0,1,1,1,0,1,1,1,1….
+        </p>
+        <p class="problem">
+           Come up with the next two numbers in the sequence $1,3,6,10, \ldots $
+, and a reason for why they should be the two numbers.
+        </p>
+        <p class="problem">
+           How about the next two numbers in the sequence $2,5,10,13,26,29, \ldots $
+?
+        </p>
+        <p class="problem">
+           Make up a sequence that you think will challenge your neighbor — then see if they can find the pattern.
+        </p>
+        <p class="problem">
+           A sequence starts with the numbers 5, 15, 35.
+        </p>
+        <p class="problem-part">
+          . Describe a pattern that this sequence might be following, and give the next three terms according to the pattern.
+        </p>
+        <p class="problem-part">
+          . Now describe a different pattern that the sequence might be following, and give the next three terms according to the new pattern.
+        </p>
+        <p>
+          The patterns you’ve seen so far have often been related to the differences
+          between terms, such as the patterns in problems 1 and 2. When the pattern in a sequence is simply that the difference is always the same, the sequence is called an $arithmetic sequence$. For example, 7,9,11,13… is one of these.
+        </p>
+        <p class="problem">
+           Some of the sequences below are arithmetic, and some are not. For each sequence, only a few terms are given. Identify
+          whether or not the sequence appears to be arithmetic. Also for each sequence find a pattern and fill in the missing terms.
+        </p>
+        <p class="problem-part">
+          . 3, 6, 12, 24, ___, ___, …
+        </p>
+        <p class="problem-part">
+          . 4, 11, 18, ___, ___, ….
+        </p>
+        <p class="problem-part">
+          . 9, ___, 17, ___, 25, ….
+        </p>
+        <p class="problem-part">
+          . 12, 13, 15, 16, 18, ___, ___,….
+        </p>
+        <p class="problem-part">
+          . 47, 43, 39, ___, 31, ___, ___, ….
+        </p>
+        <p class="problem-part">
+          . 13, 16, 22, 24, 28, 36, ___, ___, ___....
+        </p>
+        
+        <p class="Lesson---Section-title">
+          Development
+        </p>
+        <p>
+          In a sequence, it’s not only the numbers that matter—the order of the numbers is important too. For instance, sequence “A” — 20,10,40,30,60,50… — follows quite a different pattern from sequence “B” — 10,20,30,40,50,60…. — even though they contain all the same numbers.
+        </p>
+        <p>
+          In the first sequence, 30 is the 4th term, while in the second sequence, 30 is
+          the 3rd term. To make this type of thing easier to write, we’ll introduce some notation.
+        </p>
+        <p>
+          In the first sequence, we write “${A_4} = 30$
+” (pronounced “A sub four” or simply “A four”) to mean that the sequence’s 4th term is 30. Then the first sequence is called $\{ {A_n}\} $
+ (because it is a set that consists of the terms ${A_1}$
+, ${A_2}$
+, ${A_3}$
+, etc) and the second sequence is called $\{ {B_n}\} $
+.
+        </p>
+        <p class="problem">
+           Fill in the blanks according to the sequences above.
+        </p>
+        <p class="problem-part">
+          . ${A_1}$
+=_____.
+        </p>
+        <p class="problem-part">
+          . ${B_4}$
+=_____.
+        </p>
+        <p class="problem-part">
+          . ${B_{\_\_\_\_}}$
+= 30.
+        </p>
+        <p class="problem-part">
+          . ${A_{\_\_\_\_}}$
+= 70.
+        </p>
+        <p>
+          One last piece of notation you’ll need to know is that, in an arithmetic sequence, the constant difference between terms is often called “d”. In the sequence below, $d = 2$
+.
+          7, 9, 11, 13, . . .
+        </p>
+        <p class="problem">
+           In an arithmetic sequence called $\{ {T_n}\} $
+, if ${T_1} = 13$
+, and $d = 3$
+, then what does ${T_{10}}$
+ equal? What does ${T_{100}}$
+ equal?
+        </p>
+        <p class="problem">
+           In an arithmetic sequence, ${T_4} = 8$
+ and ${T_5} = 11$
+. Find the first three terms of the sequence.
+        </p>
+        <p class="problem">
+           An arithmetic sequence starts with ${T_1} = 4$
+, ${T_2} = 9$
+, … Which term will equal 99?
+        </p>
+        <p class="problem">
+           What might the next two terms be in the sequence 4, 6, 9…? Find several different possible patterns.
+        </p>
+        <p class="problem">
+           Make up five sequences all beginning with 1, 2, but with a different third term. Look at what others in your class came up with, as seeing different patterns can give you ideas for making up some really interesting sequences.
+        </p>
+        <p class="problem">
+           Consider the sequence 5, 10, 6, 12, 8, 16, 12, 24, ...
+        </p>
+        <p class="problem-part">
+          . Find the repeating pattern, and write the next 3 terms.
+        </p>
+        <p class="problem-part">
+          . It looks like all of the numbers after the “5” are even —
+          will the sequence ever produce another odd number?
+          Why or why not?
+        </p>
+        <p class="problem">
+           Consider the three sequences below. Sequences $\{ {D_n}\} $
+ and $\{ {E_n}\} $
+ below have some missing information, but you can assume that they are arithmetic.
+        </p>
+        <table id="table-1" class="No-Table-Style table-style-override-1">
+          <tbody>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  n
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  1
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  2
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  3
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  4
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  ${A_n}$
+
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  12
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  19
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  26
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  33
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table id="table-2" class="No-Table-Style table-style-override-1">
+          <tbody>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  n
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  2
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  4
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  6
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  8
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  10
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  ${D_n}$
+
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  ?
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  41
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  ?
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  48
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  ?
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <table id="table-3" class="No-Table-Style table-style-override-1">
+          <tbody>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  n
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  9
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  11
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  13
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  15
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  17
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  ${E_n}$
+
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  ?
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  6
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  ?
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  34
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  ?
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="problem-part">
+          . Which sequence, $\{ {D_n}\} $
+ or $\{ {E_n}\} $
+, has the same value of d as sequence $\{ {A_n}\} $
+?
+        </p>
+        <p class="problem-part">
+          . Plot the information from the three sequences on a graph (put n on the horizontal axis). Put all three on the same graph. How does what you see fit with your answer to
+          part a?
+        </p>
+        <p class="problem">
+           In your thermometer, the mercury reaches a height of 46 mm when the temperature is 70 degrees Fahrenheit, and a height of 48 mm when the temperature is 73 degrees.
+        </p>
+        <p class="problem-part">
+          . Think about these data as an arithmetic sequence where n is the temperature, and ${H_n}$
+ is the height at that temperature. Note that “…” is used here to indicate that this table is not showing you values of n and ${H_n}$
+ where n is less than 70 or greater than 75, but such values still exist.
+        </p>
+        <p class="problem-part">
+          ill in the table below:
+        </p>
+        <table id="table-4" class="No-Table-Style table-style-override-1">
+          <tbody>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  n
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  70
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  71
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  72
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  73
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  74
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  75
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  ${H_n}$
+
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  46
+                </p>
+              </td>
+              <td class="Basic-cell"></td>
+              <td class="Basic-cell"></td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  48
+                </p>
+              </td>
+              <td class="Basic-cell"></td>
+              <td class="Basic-cell"></td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="problem-part">
+          . What is the value of d for this sequence?
+        </p>
+        <p class="problem-part">
+          . What would the height be if the temperature were at 106 degrees Fahrenheit?
+        </p>
+        <p class="problem-part">
+          . What would the height be if the temperature were at 65 degrees Fahrenheit?
+        </p>
+        <p class="problem">
+           In an arithmetic sequence, the constant difference is sometimes referred to as the rate of change of the sequence. Any idea why it might be so called?
+        </p>
+        <p class="problem">
+           If a sequence has ${T_5} = 40$
+ but it has a rate of change of -6, find ${T_4}$
+, ${T_6}$
+, and ${T_{20}}$
+.
+        </p>
+        <p class="problem">
+           How would you find the value of d for the arithmetic
+          sequence below? (Remember that “…” is used to indicate that there are other value(s) of n and ${T_n}$
+ that are not listed in this table but certainly exist!) Also write an equation for ${T_b}$
+ in terms of ${T_a}$
+, a, b and d.
+        </p>
+        <table id="table-5" class="No-Table-Style table-style-override-1">
+          <tbody>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  n
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  a
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  b
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  ${T_n}$
+
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  ${T_a}$
+
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  ${T_b}$
+
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="Lesson---Section-title">
+          Practice
+        </p>
+        <p class="problem">
+           Another thermometer has a different relationship between height and temperature. For this thermometer, the equation ${H_n} = 0.3n + 17.1$
+ expresses the height ${H_n}$
+ (in mm) of the mercury in terms of the temperature n, in degrees Fahrenheit.
+        </p>
+        <p class="problem-part">
+          . What’s the height when the temperature is 50 degrees?
+        </p>
+        <p class="problem-part">
+          . If you think of ${H_n}$
+ as the nth term of a sequence, what’s the first term?
+        </p>
+        <p class="problem-part">
+          . What’s the value of d for the sequence $\{ {H_n}\} $
+?
+        </p>
+        <p class="problem-part">
+          . What would be the temperature if the height of the mercury were 20.7 mm ?
+        </p>
+        <p class="problem-part">
+          . What would be the temperature if the height of the mercury were 3 mm?
+        </p>
+        <p class="problem">
+           An arithmetic sequence $\{ {T_n}\} $
+ has $d = 5.5$
+, and ${T_{12}}$
+ = 48.
+        </p>
+        <p class="problem-part">
+          . Find ${T_4}$
+.
+        </p>
+        <p class="problem-part">
+          . For what value of n would ${T_n}$
+ = 130.5?
+        </p>
+        <p class="problem">
+           Each part below gives information about a sequence $\{ {A_n}\} $
+.
+          In each part, find the value of the unknown in the table for $\{ {B_n}\} $
+so that the two sequences have the same rate of change.
+        </p>
+        <p class="Development---Problem-Flow">
+          (Remember that “…” is used to indicate that there are other value(s) of n , ${A_n}$
+, and ${B_n}$
+ that are not listed in a table but certainly exist. Thus in the first table of part a., n can be less than 6, can be 7 or 8, and can be greater than 9, even though those values of n aren’t listed explicitly in the table.)
+        </p>
+        <p class="problem-part">
+          .
+        </p>
+        <table id="table-6" class="No-Table-Style table-style-override-1">
+          <tbody>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  n
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  6
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  9
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  ${A_n}$
+
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  40
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  82
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table id="table-7" class="No-Table-Style table-style-override-1">
+          <tbody>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  n
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  4
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  5
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  ${B_n}$
+
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  a
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  48
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="problem-part">
+          .
+        </p>
+        <table id="table-8" class="No-Table-Style table-style-override-1">
+          <tbody>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  n
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  16
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  22
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  ${A_n}$
+
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  50
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  23
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table id="table-9" class="No-Table-Style table-style-override-1">
+          <tbody>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  n
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  1
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  19
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  ${B_n}$
+
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  b
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  40
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="problem-part">
+          .
+        </p>
+        <table id="table-10" class="No-Table-Style table-style-override-1">
+          <tbody>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  n
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  9
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  31
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  ${A_n}$
+
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  40.5
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  71.3
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table id="table-11" class="No-Table-Style table-style-override-1">
+          <tbody>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  n
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  4
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  14
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  ${B_n}$
+
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  4
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  c
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="problem-part">
+          .
+        </p>
+        <table id="table-12" class="No-Table-Style table-style-override-1">
+          <tbody>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  n
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  10
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  12
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  ${A_n}$
+
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  12
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  20
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table id="table-13" class="No-Table-Style table-style-override-1">
+          <tbody>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  n
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  30
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  q
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  ${B_n}$
+
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  9
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  29
+                </p>
+              </td>
+              <td class="Basic-cell">
+                <p class="Table---Cell-Text">
+                  …
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+  </body>
+</html>
