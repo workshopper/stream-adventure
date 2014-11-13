@@ -1,0 +1,64 @@
+{
+  "name": "parents",
+  "version": "0.0.3",
+  "description": "return all the parent directories for a directory",
+  "main": "index.js",
+  "bin": {},
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "dependencies": {
+    "path-platform": "^0.0.1"
+  },
+  "devDependencies": {
+    "tap": "~0.2.5"
+  },
+  "scripts": {
+    "test": "tap test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/substack/node-parents.git"
+  },
+  "homepage": "https://github.com/substack/node-parents",
+  "keywords": [
+    "directory",
+    "parent",
+    "path",
+    "tree"
+  ],
+  "author": {
+    "name": "James Halliday",
+    "email": "mail@substack.net",
+    "url": "http://substack.net"
+  },
+  "license": "MIT",
+  "engine": {
+    "node": ">=0.6"
+  },
+  "gitHead": "bb83a6850410084535643e89c2615accb7aff822",
+  "bugs": {
+    "url": "https://github.com/substack/node-parents/issues"
+  },
+  "_id": "parents@0.0.3",
+  "_shasum": "fa212f024d9fa6318dbb6b4ce676c8be493b9c43",
+  "_from": "parents@~0.0.1",
+  "_npmVersion": "1.4.15",
+  "_npmUser": {
+    "name": "substack",
+    "email": "mail@substack.net"
+  },
+  "maintainers": [
+    {
+      "name": "substack",
+      "email": "mail@substack.net"
+    }
+  ],
+  "dist": {
+    "shasum": "fa212f024d9fa6318dbb6b4ce676c8be493b9c43",
+    "tarball": "http://registry.npmjs.org/parents/-/parents-0.0.3.tgz"
+  },
+  "_resolved": "https://registry.npmjs.org/parents/-/parents-0.0.3.tgz",
+  "readme": "ERROR: No README data found!"
+}

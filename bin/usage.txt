@@ -1,26 +1,26 @@
-usage:
+Usos:
 
   stream-adventure
 
-    Show a menu to interactively select an adventure.
+    Mustra el menu interactivo para seleccionar la aventura que quieras hacer.
  
   stream-adventure list 
 
-    Show a newline-separated list of all the adventures.
+    Muestra una lista de todas las aventuras.
 
   stream-adventure select NAME 
 
-    Select an adventure.
+    Selecciona una aventura.
 
   stream-adventure current
 
-    Show the currently selected adventure.
+   Muestra la aventura actualemente seleccionada.
 
   stream-adventure run program.js
 
-    Run your program against the selected input.
+   Corre tu programa con el correspondiente input.
 
   stream-adventure verify program.js
 
-    Verify your program against the expected output.
+    Verifica tu programa ante la salida esperada.
     

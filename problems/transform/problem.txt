@@ -1,30 +1,30 @@
-Convert data from `process.stdin` to upper-case data on `process.stdout`
-using the `through` module.
+Debemos hacer un programa que convierta datos desde `process.stdin` y los canalize a `process.stdout`, 
+devolviendo todos los datos en mayuscula (UPPERCASE), usando el modulo `through`.
 
-through(write, end) returns a readable/writable stream and given `write` and
-`end` functions, both of which are optional.
+`through(write, end)` retorna un objeto `readable/writable Stream`
 
-When you call `src.pipe(dst)` on some stream `dst` created with `through()`, the
-`write(buf)` function will be called when data from `src` is available.
-When `src` is done sending data, the `end()` function is called.
+Cuando tu llamas `src.pipe(dst)`, sobre algun Objeto Stream `dst` creado apartir de `through()`,
+el metodo `write(buf)` va a ser llamado cuando los datos de `src` estan disponibles.
+Cuando `src` finalize de enviar los datos , la funcion `end()`. 
 
-Inside the `write` and `end` callbacks, `this` is set to the through stream
-returned by `through()` so you can just call `this.queue()` inside the callbacks
-to transform data.
+Dentro de los callbacks de `write` y `end`, `this` es fijado al Stream retornado 
+por `through()`,por ende puedes llamar a `this.queue()` dentro de los callbacks para transformar los datos.
 
-When you specify a falsy value for the `write` argument, this function is used
-to pass input data directly through to the output unmodified:
+//TODO: When you specify a falsy value for the `write` argument, this function is used
+// to pass input data directly through to the output unmodified:
 
-    function write (buf) { this.queue(buf) }
+Cuando tu especificas una falsedad en tu argumento del callback `write`, se utiliza esta función
+para pasar los datos de entrada directamente a través de la salida sin modificar.
+
+     function write (buf) { this.queue(buf) }
+
+`this.queue(null)` nos dice que del de stream que estamos consumiendo no se debe esperar mas datos.
+El default de la funcion `end` es:
+
+     function end () { this.queue(null) }
  
-The `this.queue(null)` tells the consuming stream to not expect any more data.
-
-The default `end` function is just:
-
-    function end () { this.queue(null) }
-
-For example, here is a program that fires the `write(buf)` and `end()` callbacks
-by calling `.write()` and `.end()` manually:
+Por ejemplo, aqui tenemos un programa que dispara los callbacks `write(buf)` y `end()`, 
+llamando `.write()` y `.end()` manualmente:
 
     var through = require('through');
     var tr = through(write, end);
@@ -35,17 +35,19 @@ by calling `.write()` and `.end()` manually:
     function write (buf) { console.dir(buf) }
     function end () { console.log('__END__') }
 
-Instead of calling `console.dir(buf)`, your code should use `this.queue()` in
-your `write()` function to output upper-cased data.
+En lugar de llamar `console.dir(buf)`, tu codigo deberua usar `this.queue()` en 
+tu funcion `write()`, para darle salida a los datos llevados a mayusculas.
 
-Don't forget to feed data into your stream from stdin and output data from
-stdout, which should look something like:
+No olvides de darle la entrada de datos a tu Stream desde stdin y su salida a
+stdout.
+Deberia verse algo parecido a esto: 
 
     process.stdin.pipe(tr).pipe(process.stdout);
 
-Note that the chunks you will get from `process.stdin` are Buffers, not strings.
-You can call `buf.toString()` on a Buffer to get a string and strings can do
-`.toUpperCase()`.
+Ten en cuenta que los datos que obtendras de `process.stdin` son Budders, y no Strings. 
+Puedes llamar a `buf.toString()` en el objeto Buffer para obtener un string, y sobre el, 
+hacer `.toUpperCase()`, para volverlo totalmente en mayusculas.
 
-Make sure to `npm install through` in the directory where your solution
-file lives.
+Asegurate de ejecutar `npm install through`, para instalar el modulo through en el directorio 
+donde tus soluciones existen.
+

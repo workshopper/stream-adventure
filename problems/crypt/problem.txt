@@ -1,10 +1,10 @@
-Your module will be given a passphrase on `process.argv[2]` and 'aes256'
-encrypted data will be written to stdin.
+Recibirás una contraseña mediante `process.argv[2]`, también recibirás
+datos encriptados con el algoritmo 'aes256' mediante el buffer de entrada `stdin`
 
-Simply decrypt the data and stream the result to process.stdout.
+Simplemente debes desencriptar los datos y enviar el resultado mediante un pipe a `process.stdout`.
 
-You can use the `crypto.createDecipher()` api from node core to solve this
-challenge. Here's an example:
+Puedes utilizar el metodo `crypto.createDecipher()` del núcleo de node 
+para resolver este problema. Ejemplo:
 
     var crypto = require('crypto');
     var stream = crypto.createDecipher('RC4', 'robots');
@@ -12,4 +12,5 @@ challenge. Here's an example:
     stream.write(Buffer([ 135, 197, 164, 92, 129, 90, 215, 63, 92 ]));
     stream.end();
 
-Instead of calling `.write()` yourself, just pipe stdin into your decrypter.
+En lugar de llamar el método `.write()` tu mismo, envía el buffer
+de stdin a `crypto.createDecipher()` mediante un pipe.

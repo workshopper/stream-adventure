@@ -1,18 +1,17 @@
-Write a program that exports a function that spawns a process from a `cmd`
-string and an `args` array and returns a single duplex stream joining together
-the stdin and stdout of the spawned process:
+Escribe un programa que exporte una función que cree un proceso (spawn) a partir
+de un string `cmd` y un array de argumentos `args` y devuelva un stream duplex
+(de lectura/escritura) que una el stdin y stdout del proceso creado:
 
     var spawn = require('child_process').spawn;
     
     module.exports = function (cmd, args) {
-        // spawn the process and return a single stream
-        // joining together the stdin and stdout here
+        // crea el proceso y devuelve un único stream
+        // que una stdin y stdout dentro de esta función
     };
 
-There is a very handy module you can use here: duplexer. The duplexer module
-exports a single function `duplexer(writable, readable)` that joins together a
-writable stream and readable stream into a single, readable/writable duplex
-stream.
+Hay un modulo muy útil que puedes usar aquí: duplexer. El modulo duplexer
+exporta la función `duplexer(escritura, lectura)` que une un stream de escritura
+y otro de lectura en un único stream duplex de lectura/escritura.
 
-If you use duplexer, make sure to `npm install duplexer` in the directory where
-your solution file is located.
+Si utilizas el modulo duplexer, asegúrate de ejecutar el comando `npm install duplexer` 
+en el directorio donde se encuentra tu archivo de solución.

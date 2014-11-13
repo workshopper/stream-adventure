@@ -1,0 +1,6 @@
+[[ "open", "<div>" ]
+,[ "text", "\n  " ]
+,[ "open", "<input type=\"misquoted value=\"value\">" ]
+,[ "text", "\n" ]
+,[ "close", "</div>" ]
+,[ "text", "\n" ]]

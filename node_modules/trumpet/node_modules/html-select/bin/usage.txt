@@ -1,0 +1,10 @@
+usage: html-select SELECTOR OPTIONS
+
+  Given a newline-separated json stream of html tokenize output on stdin,
+  print content below matching html tokens as json on stdout.
+
+OPTIONS are:
+
+  -r, --raw   Instead of printing html token data as json, print the html
+              directly.
+

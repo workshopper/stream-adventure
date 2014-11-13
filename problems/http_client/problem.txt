@@ -1,24 +1,24 @@
-Send an HTTP POST request to http://localhost:8000 and pipe process.stdin into
-it. Pipe the response stream to process.stdout.
+Envia un request HTTP POST a http://localhost:8000 y canalizalo a process.stdin. 
+Canaliza el reponse stream a process.stdout.
 
-Here's an example of how to use the `request` module to send a GET request,
-piping the result to stdout:
+Aqui un ejemplo de como usar el modulo `request` para enviar un request HTTP GET, canalizando 
+el resultado a stdout: 
 
     var request = require('request');
     request('http://beep.boop:80/').pipe(process.stdout);
 
-To make a POST request, just call `request.post()` instead of `request()`:
+Crea un POST request , simplemente llamando `request.post()` en lugar de  instead of `request()`:
 
     var request = require('request');
-    var r = request.post('http://beep.boop:80/');
-    
-The `r` object that you get back from `request.post()` is a readable+writable
-stream so you can pipe a readable stream into it (`src.pipe(r)`) and you can
-pipe it to a writable stream (`r.pipe(dst)`).
+    var r = request.post('http://beep.boop:80/'); 
 
-You can even chain both steps together: src.pipe(r).pipe(dst);
 
-Hint: for your code, src will be process.stdin and dst will be process.stdout.
+El objeto r que tu obtienes devuelta de `request.post()` es un stream readable/writable,
+que te permite canalizar un stream readable (de lectura) dentro de el (`src.pipe(r)`), y tambien puedes canalizarlo dentro de un stream writable(de escritura, `r.pipe(dst)`).
 
-Make sure to `npm install request` in the directory where your solution file
-lives.
+Puedes tambien encadenar ambos pasos juntos: src.pipe(r).pipe(dst);
+
+Consejo: para tu codigo, src va a ser process.stdin y dst sera process.stdout.
+
+Para estar seguros, ejecuta el comando `npm install request` en el directorio donde existe tu solucion.
+

@@ -1,21 +1,22 @@
-Instead of transforming every line as in the previous "INPUT OUTPUT" example,
-for this challenge, convert even-numbered lines to upper-case and odd-numbered
-lines to lower-case. Consider the first line to be odd-numbered. For example
-given this input:
 
-    One
-    Two
-    Three
-    Four
+En vez de transformar cada linea como en el ejemplo anterior ejemplo "INPUT OUTPUT",
+para este desafio, convertiremos cada linea par a mayuscula, y cada linea impar en minuscula. 
+Considera que la primer lines va a ser impar, por ejemplo: 
 
-Your program should output:
+Uno
+Dos
+Tres
+Cuatro
 
-    one
-    TWO
-    three
-    FOUR
+Tu programa deberia dar una salida asi: 
 
-You can use the `split` module to split input by newlines. For example:
+one
+DOS
+tres
+CUATRO
+
+
+Puedes usar el modulo `split` para dividir la entrada en nuevas lineas.Por ejemplo: 
 
     var split = require('split');
     process.stdin
@@ -25,17 +26,16 @@ You can use the `split` module to split input by newlines. For example:
         }))
     ;
 
-Will buffer and split chunks on newlines before you get them. For example, for
-the `split.js` we just wrote we will get separate events for each line even
-though the data probably all arrives on the same chunk:
+El Buffer y Split nos devuelven en trozos las nuevas lineas para que despues las obtengamos. 
+Por ejemplo, `split.js` que escribimos va a obtener eventos serados por cada linea , a pesar que 
+los datos llegen juntos en el mismo monton de datos.
 
     $ echo -e 'one\ntwo\nthree' | node split.js
     'one'
     'two'
     'three'
 
-Your own program should use `split` in this way, but you should transform the
-input and pipe the output through to `process.stdout`.
+Tu programa debe usar `split`  de esta forma, pero deberias transformar el input y luego 
+canalizarlo a `process.stdout`.    
 
-Make sure to `npm install split through` in the directory where your solution
-file lives.
+Asegurate de ejectuar `npm install split through`  en el directorio donde tu solucion existe.

@@ -1,23 +1,21 @@
-An encrypted, gzipped tar file will be piped in on process.stdin. To beat this
-challenge, for each file in the tar input, print a hex-encoded md5 hash of the
-file contents followed by a single space followed by the filename, then a
-newline.
+Se proveerá un archivo comprimido y encriptado mediante un pipe en process.stdin, para resolver este 
+desafío deberás, por cada elemento dentro del archivo, imprimir un hash md5 hexadecimal de
+su contenido, seguido de un espacio y su nombre, y luego un salto de linea.
 
-You will receive the cipher name as process.argv[2] and the cipher passphrase as
-process.argv[3]. You can pass these arguments directly through to
-`crypto.createDecipher()`.
+Recibirás el tipo de cifrado mediante provess.argv[2] y su contraseña mediante process.argv[3].
+Puedes pasar estos parámetros directamente a `crypto.createDecipher()`.
 
-The built-in zlib library you get when you `require('zlib')` has a
-`zlib.createGunzip()` that returns a stream for gunzipping.
+La librería zlib que obtienes mediante `require('zlib')` contiene el método
+`zlib.createGunzip()` que devuelve un stream para descomprimir.
 
-The `tar` module from npm has a `tar.Parse()` function that emits `'entry'`
-events for each file in the tar input. Each `entry` object is a readable stream
-of the file contents from the archive and:
+El modulo `tar` de npm contiene el método `tar.Parse()` que emite un evento `'entry'`
+por cada elemento dentro del archivo. Cada objeto `entry` es un stream de lectura
+del contenido de los archivos, ademas:
 
-`entry.type` is the kind of file ('File', 'Directory', etc)
-`entry.path` is the file path
+`entry.type` contiene el tipo de archivo (si es 'Archivo', 'Carpeta', etc)
+`entry.path` contiene la ruta al archivo dentro de su contenedor
 
-Using the tar module looks like:
+Ejemplo de uso del modulo 'tar':
 
     var tar = require('tar');
     var parser = tar.Parse();
@@ -27,8 +25,7 @@ Using the tar module looks like:
     var fs = require('fs');
     fs.createReadStream('file.tar').pipe(parser);
 
-Use `crypto.createHash('md5', { encoding: 'hex' })` to generate a stream that
-outputs a hex md5 hash for the content written to it.
+Utiliza `crypto.createHash('md5', { encoding: 'hex' }) para generar un stream que
+imprima un hash md5 hexadecimal del contenido que le proporciones.
 
-Make sure to `npm install tar through` in the directory where your solution
-file lives.
+Asegurate de ejecutar el comando `npm install tar through` en el directorio donde se encuentra tu archivo de solución.

@@ -1,19 +1,19 @@
-Write a module that returns a readable/writable stream using the
-`stream-combiner` module. You can use this code to start with:
+Escribe un modulo que devuelva un stream de lectura/escritura utilizado
+el modulo `stream-combiner`. Puedes utilizar este código como ejemplo inicial:
 
     var combine = require('stream-combiner')
     
     module.exports = function () {
         return combine(
-            // read newline-separated json,
-            // group books into genres,
-            // then gzip the output
+            // lee cada linea del json,
+            // agrupa los libros por genero,
+            // luego comprime el resultado
         )
     }
  
-Your stream will be written a newline-separated JSON list of science fiction
-genres and books. All the books after a `"type":"genre"` row belong in that
-genre until the next `"type":"genre"` comes along in the output.
+Tu stream de entrada recibirá una lista JSON separada por saltos de linea con géneros 
+de ciencia ficción y libros. Todos los libros (`"type":"book"`) que continúen luego de 
+un nuevo genero (`"type":"genre"`) pertenecen a el hasta que se suministre uno nuevo:
 
     {"type":"genre","name":"cyberpunk"}
     {"type":"book","name":"Neuromancer"}
@@ -22,36 +22,34 @@ genre until the next `"type":"genre"` comes along in the output.
     {"type":"book","name":"A Deepness in the Sky"}
     {"type":"book","name":"Void"}
     
-Your program should generate a newline-separated list of JSON lines of genres,
-each with a `"books"` array containing all the books in that genre. The input
-above would yield the output:
+Tu programa debe generar una lista de los géneros en formato JSON separados por saltos
+de linea, cada genero con un array que contenga los títulos de los libros que pertenecen
+al mismo. el ejemplo anterior daría como resultado:
 
     {"name":"cyberpunk","books":["Neuromancer","Snow Crash"]}
     {"name":"space opera","books":["A Deepness in the SKy","Void"]}
 
-Your stream should take this list of JSON lines and gzip it with
-`zlib.createGzip()`.
+Tu stream deberá tomar esta lista de objetos JSON y comprimirla 
+con el comando `zlib.createGzip()`.
 
-* HINTS *
+* PISTAS *
 
-The `stream-combiner` module creates a pipeline from a list of streams,
-returning a single stream that exposes the first stream as the writable side and
-the last stream as the readable side like the `duplexer` module, but with an
-arbitrary number of streams in between. Unlike the `duplexer` module, each
-stream is piped to the next. For example:
+El modulo `stream-combiner` crea un flujo de datos mediante una lista de streams,
+devolviendo un único stream que contiene el primer stream suministrado como el de escritura
+y el ultimo como el de lectura, del mismo modo que el modulo `duplexer` pero con un numero
+de streams arbitrario en el medio. A diferencia del modulo `duplexer`, cada stream
+es transmitido al siguiente mediante un pipe. Por ejemplo:
 
     var combine = require('stream-combiner');
     var stream = combine(a, b, c, d);
     
-will internally do `a.pipe(b).pipe(c).pipe(d)` but the `stream` returned by
-`combine()` has its writable side hooked into `a` and its readable side hooked
-into `d`.
+internamente hará `a.pipe(b).pipe(c).pipe(d)`, pero el `stream` devuelto por
+`combine()` tiene su lado de escritura enganchado a `a` y su lado de lectura a `d`.
 
-As in the previous LINES adventure, the `split` module is very handy here. You
-can put a split stream directly into the stream-combiner pipeline.
+Como en el desafío LINES, el modulo `split` sera de mucha ayuda. Puedes enviar
+un stream devuelto por  `split` directamente a `stream-combiner`.
 
-If you end up using `split` and `stream-combiner`, make sure to install them
-into the directory where your solution file resides by doing:
+Si decides utilizar `split` junto con `stream-combiner`, asegurate de instalarlos
+dentro del directorio donde se encuentra tu archivo de solución mediante:
 
     npm install stream-combiner split
-
