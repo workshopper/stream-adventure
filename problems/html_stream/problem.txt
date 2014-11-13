@@ -1,9 +1,10 @@
-Your program will get some html written to stdin. Convert all the inner html to
-upper-case for elements with a class name of "loud".
+TU programa debe obtener un html dado por stdin. 
+Convierte todo los elementos con clase de nombre "loud".
 
-You can use `trumpet` and `through` to solve this adventure.
+Puedes usar `trumpet` y `through` para resolver esta aventura. 
 
-With `trumpet` you can create a transform stream from a css selector:
+Con `trumpet` puedes crear un stream de transformacion desde un selector css. 
+
 
     var trumpet = require('trumpet');
     var fs = require('fs');
@@ -12,8 +13,8 @@ With `trumpet` you can create a transform stream from a css selector:
     
     var stream = tr.select('.beep').createStream();
 
-Now `stream` outputs all the inner html content at `'.beep'` and the data you
-write to `stream` will appear as the new inner html content.
+Ahora `stream` obtiene el output del html con el contenido de `'.beep'` y ahora todos
+los datos que escribas en `stream` aparecera como un nuevo contenido dentro del html.
 
-Make sure to `npm install trumpet through` in the directory where your solution
-file lives.
+Para asegurarnos, usa el comando `npm install trumpet through` en el directorio donde tu solucion esta creada.
+
