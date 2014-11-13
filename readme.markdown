@@ -1,28 +1,28 @@
 # stream adventure
 
-Go on an educational stream adventure!
+Ve a una aventura educativa con los Streams!
 
 [![build status](https://secure.travis-ci.org/substack/stream-adventure.png)](http://travis-ci.org/substack/stream-adventure)
 
-# install
+# Instalacion
 
-First install [node](http://nodejs.org) version 0.10 or later.
+Primera instalacion [node](http://nodejs.org) version 0.10 or o mayor.
 
-Once you've installed `node`, you will have an `npm` command.
+Una vez que instales `node`, tendras disponible el comando `npm`.
 
-With [npm](https://npmjs.org) do:
+Con [npm](https://npmjs.org) puedes instalar stream-adventure:
 
 ```
 npm install -g stream-adventure
 ```
 
-If you want to play offline, make a new directory then do:
+Si tu quieres juegar offline, haz un nuevo directorio y ejecuta dentro de el:
 
 ```
 npm install through concat-stream duplexer trumpet request split tar \
     websocket-stream stream-combiner
 ```
 
-# run
+# Corre
 
-Now just type `stream-adventure` to play!
+Ahora solo tipea `stream-adventure`, y a jugar!
