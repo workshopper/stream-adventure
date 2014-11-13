@@ -1,22 +1,22 @@
-In this example, you will be given a readable stream, `counter`, as the first
-argument to your program:
+En este ejemplo, recibirás un stream de lectura, `counter`, como primer
+argumento en tu programa:
 
     module.exports = function (counter) {
-        // return a duplex stream to capture countries on the writable side
-        // and pass through `counter` on the readable side
+        // devuelve un stream duplex (lectura/escritura) para capturar países del lado de escritura
+        // y pásalo a través de `counter` del lado de lectura
     };
 
-Return a duplex stream with the `counter` as the readable side. You will be
-written objects with a 2-character `country` field as input, such as these:
+Necesitas devolver un stream duplex (de lectura/escritura) utilizando `counter` como el lado
+de lectura. Como entrada recibirás objetos con el campo `country` de 2 caracteres, como los siguientes:
  
     {"short":"OH","name":"Ohio","country":"US"}
     {"name":"West Lothian","country":"GB","region":"Scotland"}
     {"short":"NSW","name":"New South Wales","country":"AU"}
 
-Create an object to keep a count of all the countries in the input. Once the
-input ends, call `counter.setCounts()` with your country counts.
+Crea un objeto para contar todos los países. Una vez que termines de recibirlos
+llama a `counter.setCounts()` con el resultado de la suma.
 
-The `duplexer` module will again be very handy in this example.
+El modulo `duplexer` sera, nuevamente, de mucha ayuda en este ejemplo.
 
-If you use duplexer, make sure to `npm install duplexer` in the directory where
-your solution file is located.
+Si utilizas `duplexer`, asegurate de ejecutar el comando `npm install duplexer` 
+en el directorio donde se encuentra tu archivo de solución.
