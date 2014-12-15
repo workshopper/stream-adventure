@@ -27,7 +27,7 @@ each with a `"books"` array containing all the books in that genre. The input
 above would yield the output:
 
     {"name":"cyberpunk","books":["Neuromancer","Snow Crash"]}
-    {"name":"space opera","books":["A Deepness in the SKy","Void"]}
+    {"name":"space opera","books":["A Deepness in the Sky","Void"]}
 
 Your stream should take this list of JSON lines and gzip it with
 `zlib.createGzip()`.
