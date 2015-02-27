@@ -1,7 +1,7 @@
 var http = require('http')
 var ws = require('ws')
 var websocket = require('websocket-stream')
-var through = require('through')
+var through = require('through2')
 var browserify = require('browserify')
 
 var path = require('path');
@@ -9,9 +9,9 @@ var entry = path.resolve(process.argv[3]);
 
 module.exports = function () {
     var actual = through()
-    var expected = through().pause()
-    expected.queue('hello\n')
-    expected.queue(null);
+    var expected = through()
+    expected.push('hello\n')
+    expected.end();
     
     var httpServer = http.createServer(function (req, res) {
         if (req.url === '/bundle.js') {

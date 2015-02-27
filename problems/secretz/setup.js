@@ -1,4 +1,3 @@
-var through = require('through');
 var fs = require('fs');
 var crypto = require('crypto');
 var ciphers = [ 'AES-192-CBC', 'RC4', 'BF-CBC' ];
@@ -8,7 +7,7 @@ module.exports = function () {
     var pw = phrase();
     var input = crypto.createCipher(cipher, pw);
     if (!input.pipe) return tooOld();
-    input.pause();
+    input;
     
     fs.createReadStream(__dirname + '/secretz.tar.gz').pipe(input);
     return { args: [ cipher, pw ], stdin: input, long: true };

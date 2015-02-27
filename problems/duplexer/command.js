@@ -1,4 +1,4 @@
-var through = require('through');
+var through2 = require('through2');
 var split = require('split');
 var combine = require('stream-combiner');
 var offset = Number(process.argv[2]);
@@ -6,8 +6,8 @@ var offset = Number(process.argv[2]);
 var tr = combine(split(), through(write));
 process.stdin.pipe(tr).pipe(process.stdout);
 
-function write (line) {
-    this.queue(line.replace(/[A-Za-z]/g, function (s) {
+function write (line, _, next) {
+    this.push(line.replace(/[A-Za-z]/g, function (s) {
         var c = s.charCodeAt(0);
         return String.fromCharCode(
             c < 97
@@ -15,4 +15,5 @@ function write (line) {
             : (c - 65 + offset) % 26 + 97
         );
     }) + '\n');
+    next();
 }

@@ -1,18 +1,18 @@
-var through = require('through');
+var through = require('through2');
 var http = require('http');
 var words = require('./words.json');
 
 module.exports = function () {
-    var tr = through().pause();
+    var tr = through();
     
     var count = 0;
     var iv = setInterval(function () {
         if (++count === 10) {
             clearInterval(iv);
-            return tr.queue(null);
+            return tr.end();
         }
         var word = words[Math.floor(Math.random() * words.length)];
-        tr.queue(word.toLowerCase() + '\n');
+        tr.write(word.toLowerCase() + '\n');
     }, 50);
     
     var server = http.createServer(function (req, res) {
@@ -20,8 +20,8 @@ module.exports = function () {
             res.end('not a POST request');
         }
         else {
-            req.pipe(through(function (buf) {
-                this.queue(buf.toString().replace(/\S/g, function (c) {
+            req.pipe(through(function (buf, _, next) {
+                this.push(buf.toString().replace(/\S/g, function (c) {
                     var x = c.charCodeAt(0);
                     if (/[a-z]/.test(c)) {
                         return String.fromCharCode(137 * (x - 97) % 26 + 97);
@@ -31,6 +31,7 @@ module.exports = function () {
                     }
                     else return c;
                 }));
+                next();
             })).pipe(res);
         }
     });

@@ -1,6 +1,6 @@
-var through = require('through');
 var path = require('path');
 var cmd = __dirname + '/command.js';
+var through = require('through2');
 var words = [
     'beetle',
     'biscuit',
@@ -40,14 +40,15 @@ module.exports = function () {
         var run = require(path.resolve(args[0]));
         var ps = run(process.execPath, [ cmd, n ]);
         var queue = writes.slice();
-        
-        var iv = setInterval(function () {
-            if (queue.length === 0) {
-                clearInterval(iv);
-                ps.end();
-            }
-            else ps.write(queue.shift() + '\n');
-        }, 50);
-        return ps;
+        var stream = through(function (chunk, _, next){
+            setTimeout(function (){
+                next(null, chunk);
+            }, 50);
+        })
+        var i = -1;
+        while (++i < queue.length) {
+            stream.write(queue[i]);
+        }
+        return stream.pipe(ps);
     }
 };

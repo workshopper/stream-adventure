@@ -1,12 +1,13 @@
 var split = require('split');
-var through = require('through');
+var through = require('through2');
 
 var count = 0;
-process.stdin.pipe(split()).pipe(through(function (line) {
+process.stdin.pipe(split()).pipe(through(function (line, _, next) {
     if (count++ % 2) {
-        this.queue(line.toString().toUpperCase() + '\n');
+        this.push(line.toString().toUpperCase() + '\n');
     }
     else {
-        this.queue(line.toString().toLowerCase() + '\n');
+        this.push(line.toString().toLowerCase() + '\n');
     }
+    next();
 })).pipe(process.stdout);

@@ -19,7 +19,7 @@ npm install -g stream-adventure
 If you want to play offline, make a new directory then do:
 
 ```
-npm install through concat-stream duplexer trumpet request split tar \
+npm install through2 concat-stream duplexer trumpet request split tar \
     websocket-stream stream-combiner
 ```
 

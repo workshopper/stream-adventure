@@ -1,4 +1,4 @@
-var through = require('through');
+var through = require('through2');
 var clone = require('clone');
 var chunky = require('chunky');
 var wrap = require('wordwrap')(30);
@@ -12,9 +12,9 @@ module.exports = function () {
         var buf = bufs.pop();
         if (buf === undefined) {
             clearInterval(iv);
-            tr.queue(null);
+            tr.end();
         }
-        else tr.queue(buf.toString().split('').reverse().join(''));
+        else tr.write(buf.toString().split('').reverse().join(''));
     }, 50);
     
     return { args: [], stdin: tr };

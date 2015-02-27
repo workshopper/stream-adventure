@@ -1,4 +1,3 @@
-var through = require('through');
 var cmd = __dirname + '/command.js';
 var path = require('path');
 var provinces = require('provinces');
@@ -16,7 +15,7 @@ module.exports = function () {
     
     function runCmd (args) {
         var fn = require(path.resolve(args[0]));
-        var counter = new Readable;
+        var counter = new Readable({objectMode: true});
         counter._read = function () {};
         counter.setCounts = function (counts) {
             var self = this;

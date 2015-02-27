@@ -68,7 +68,6 @@ if (argv._[0] === 'verify' || argv._[0] === 'run') {
         
         if (setup.stdin) {
             setup.stdin.pipe(v);
-            setup.stdin.resume();
         }
         
         if (setup.a && setup.a.resume) setup.a.resume();

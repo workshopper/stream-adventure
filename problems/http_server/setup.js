@@ -1,5 +1,5 @@
-var through = require('through');
-var duplexer = require('duplexer');
+var through = require('through2');
+var duplexer = require('duplexer2');
 var hyperquest = require('hyperquest');
 var words = require('./words.json');
 var spawn = require('child_process').spawn;

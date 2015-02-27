@@ -1,6 +1,6 @@
 var spawn = require('child_process').spawn;
 var tuple = require('tuple-stream');
-var through = require('through');
+var through = require('through2');
 var split = require('split');
 var path = require('path');
 
@@ -79,28 +79,28 @@ module.exports = function (acmd, bcmd, opts) {
 
 function compare (actual, expected, opts) {
     var equal = true;
-    var output = through(write, end).pause();
+    var output = through.obj(write, end);
     
-    output.queue(COLORS.RESET);
+    output.push(COLORS.RESET);
     
     if (!opts.long) {
-        output.queue(wrap('ACTUAL', 30) + '     EXPECTED\n');
-        output.queue(wrap('------', 30) + '     --------\n');
+        output.push(wrap('ACTUAL', 30) + '     EXPECTED\n');
+        output.push(wrap('------', 30) + '     --------\n');
     }
     
     tuple(actual.pipe(split()), expected.pipe(split()))
         .pipe(output)
         .pipe(process.stdout)
     ;
-    output.resume();
+    output;
     return output;
     
-    function write (pair) {
+    function write (pair, _, next) {
         var eq = pair[0] === pair[1];
         equal = equal && eq;
         
         if (opts.long) {
-            this.queue('ACTUAL:   '
+            this.push('ACTUAL:   '
                 + COLORS[eq ? 'PASS' : 'FAIL']
                 + JSON.stringify(pair[0])
                 + COLORS.RESET + '\n'
@@ -110,7 +110,7 @@ function compare (actual, expected, opts) {
             );
         }
         else {
-            this.queue(
+            this.push(
                 COLORS[eq ? 'PASS' : 'FAIL']
                 + wrap(JSON.stringify(pair[0]), 30)
                 + ' ' + (eq ? '   ' : '!==') + ' '
@@ -118,11 +118,12 @@ function compare (actual, expected, opts) {
                 + '\n'
             );
         }
+        next();
     }
     
-    function end () {
-        output.queue(COLORS.RESET);
-        this.queue(null);
+    function end (done) {
+        this.push(COLORS.RESET);
+        done();
         this.emit(equal ? 'pass' : 'fail');
     }
 }

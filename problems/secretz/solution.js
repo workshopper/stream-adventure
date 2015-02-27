@@ -1,7 +1,7 @@
 var crypto = require('crypto');
 var tar = require('tar');
 var zlib = require('zlib');
-var through = require('through');
+var through = require('through2');
 
 var parser = tar.Parse();
 parser.on('entry', function (e) {
@@ -10,7 +10,7 @@ parser.on('entry', function (e) {
     var h = crypto.createHash('md5', { encoding: 'hex' });
     e.pipe(h).pipe(through(null, end)).pipe(process.stdout);
     
-    function end () { this.queue(' ' + e.path + '\n') }
+    function end (done) { this.push(' ' + e.path + '\n'); done();}
 });
 
 var cipher = process.argv[2];

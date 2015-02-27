@@ -16,7 +16,7 @@ written objects with a 2-character `country` field as input, such as these:
 Create an object to keep a count of all the countries in the input. Once the
 input ends, call `counter.setCounts()` with your country counts.
 
-The `duplexer` module will again be very handy in this example.
+The `duplexer2` module will again be very handy in this example.
 
-If you use duplexer, make sure to `npm install duplexer` in the directory where
+If you use duplexer, make sure to `npm install duplexer2` in the directory where
 your solution file is located.

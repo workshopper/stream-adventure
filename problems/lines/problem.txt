@@ -20,8 +20,9 @@ You can use the `split` module to split input by newlines. For example:
     var split = require('split');
     process.stdin
         .pipe(split())
-        .pipe(through(function (line) {
+        .pipe(through2(function (line, _, next) {
             console.dir(line.toString());
+            next();
         }))
     ;
 
@@ -37,5 +38,5 @@ though the data probably all arrives on the same chunk:
 Your own program should use `split` in this way, but you should transform the
 input and pipe the output through to `process.stdout`.
 
-Make sure to `npm install split through` in the directory where your solution
+Make sure to `npm install split through2` in the directory where your solution
 file lives.

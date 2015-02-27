@@ -1,4 +1,4 @@
-var through = require('through');
+var through = require('through2');
 var aliens = require('./aliens.json');
 
 module.exports = function () {
@@ -8,10 +8,10 @@ module.exports = function () {
     var iv = setInterval(function () {
         if (++count === 10) {
             clearInterval(iv);
-            return tr.queue(null);
+            return tr.end();
         }
         var alien = aliens[Math.floor(Math.random() * aliens.length)];
-        tr.queue(alien + '\n');
+        tr.write(alien + '\n');
     }, 50);
     
     return { args: [], stdin: tr };
