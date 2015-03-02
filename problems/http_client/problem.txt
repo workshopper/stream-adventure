@@ -1,4 +1,4 @@
-Send an HTTP POST request to http://localhost:8000 and pipe process.stdin into
+Send an HTTP POST request to http://localhost:8099 and pipe process.stdin into
 it. Pipe the response stream to process.stdout.
 
 Here's an example of how to use the `request` module to send a GET request,
