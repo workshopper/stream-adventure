@@ -2,7 +2,7 @@ var spawn = require('child_process').spawn;
 var path = require('path');
 var test = require('tape');
 
-var adventures = require('../data/order.json');
+var adventures = require('../menu.json');
 adventures.forEach(function (name) {
     if (name === 'WEBSOCKETS') return;
     

@@ -11,7 +11,7 @@
       
       var h = crypto.createHash('md5', { encoding: 'hex' });
       e.pipe(h).pipe(concat(function (hash) {
-          console.log(hash, e.path);
+          console.log(hash + ' ' + e.path);
       }));
   });
 
