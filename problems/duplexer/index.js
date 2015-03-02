@@ -33,9 +33,10 @@ exports.problem = fs.createReadStream(path.join(__dirname, 'problem.txt'));
 exports.solution = fs.createReadStream(path.join(__dirname, 'solution.js'));
 
 exports.verify = verify({ modeReset: true }, function (args, t) {
-    t.plan(2);
+    t.plan(3);
     t.equal(args.length, 1, 'stream-adventure verify YOURFILE.js');
     var fn = require(path.resolve(args[0]));
+    t.equal(typeof fn, 'function', 'solution exports a function');
     
     var n = 1 + Math.floor(Math.random() * 25);
     var input = [], expected = '';
