@@ -22,3 +22,10 @@ exports.verify = verify({ modeReset: true }, function (args, t) {
         t.equal(code, 0, 'successful exit code');
     });
 });
+
+exports.run = function (args) {
+    var ps = spawn(process.execPath, args);
+    ps.stderr.pipe(process.stderr);
+    ps.stdout.pipe(process.stdout);
+    ps.on('exit', function (code) { process.exit(code) });
+};

@@ -26,12 +26,13 @@ module.exports = function () {
 exports.problem = fs.createReadStream(path.join(__dirname, 'problem.txt'));
 exports.solution = fs.createReadStream(path.join(__dirname, 'solution.js'));
 
+var input = data.split('\n');
+
 exports.verify = verify({ modeReset: true }, function (args, t) {
     t.plan(3);
     
     t.equal(args.length, 1, 'stream-adventure verify YOURFILE.js');
     
-    var input = data.split('\n');
     var expected = data.split('\n').map(function (line, ix) {
         return (ix % 2 ? line.toUpperCase() : line.toLowerCase()) + '\n';
     }).join('');
@@ -57,3 +58,20 @@ exports.verify = verify({ modeReset: true }, function (args, t) {
         }
     }, 50);
 });
+
+exports.run = function (args) {
+    var ps = spawn(process.execPath, args);
+    ps.stderr.pipe(process.stderr);
+    ps.stdout.pipe(process.stdout);
+    ps.on('exit', function (code) { process.exit(code) });
+    
+    var iv = setInterval(function () {
+        if (input.length) {
+            ps.stdin.write(input.shift());
+        }
+        else {
+            clearInterval(iv);
+            ps.stdin.end();
+        }
+    }, 50);
+};

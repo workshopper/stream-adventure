@@ -73,3 +73,21 @@ exports.verify = verify({ modeReset: true }, function (args, t) {
         }
     }, 50);
 });
+
+exports.run = function (args) {
+    var input = chunky(createSentence());
+    var ps = spawn(process.execPath, args);
+    ps.stderr.pipe(process.stderr);
+    ps.stdout.pipe(process.stdout);
+    ps.on('exit', function (code) { process.exit(code) });
+    
+    var iv = setInterval(function () {
+        if (input.length) {
+            ps.stdin.write(input.shift());
+        }
+        else {
+            clearInterval(iv);
+            ps.stdin.end();
+        }
+    }, 50);
+};
