@@ -17,9 +17,15 @@ exports.verify = verify({ modeReset: true }, function (args, t) {
     var ps = spawn(process.execPath, args);
     ps.stderr.pipe(process.stderr);
     
-    var wrote = '';
+    var expected = '', input = [];
+    for (var i = 0; i < 10; i++) {
+        var alien = aliens[Math.floor(Math.random() * aliens.length)];
+        expected += alien + '\n';
+        input.push(alien + '\n');
+    }
+    
     ps.stdout.pipe(concat(function (body) {
-        t.equal(body.toString(), wrote);
+        t.equal(body.toString(), expected);
     }));
     
     ps.on('exit', function (code) {
@@ -28,12 +34,12 @@ exports.verify = verify({ modeReset: true }, function (args, t) {
     
     var count = 0;
     var iv = setInterval(function () {
-        if (++count === 10) {
-            clearInterval(iv);
-            return ps.stdin.end();
+        if (input.length) {
+            ps.stdin.write(input.shift());
         }
-        var alien = aliens[Math.floor(Math.random() * aliens.length)];
-        wrote += alien + '\n';
-        ps.stdin.write(alien + '\n');
+        else {
+            clearInterval(iv);
+            ps.stdin.end();
+        }
     }, 50);
 });
