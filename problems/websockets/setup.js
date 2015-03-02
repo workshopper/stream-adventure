@@ -1,6 +1,5 @@
 var http = require('http')
-var ws = require('ws')
-var websocket = require('websocket-stream')
+var wsock = require('websocket-stream')
 var through = require('through2')
 var browserify = require('browserify')
 
@@ -13,13 +12,11 @@ module.exports = function () {
     expected.push('hello\n')
     expected.end();
     
-    var httpServer = http.createServer(function (req, res) {
+    var server = http.createServer(function (req, res) {
         if (req.url === '/bundle.js') {
             res.setHeader('content-type', 'text/javascript');
-            browserify(entry).bundle({ debug: true }, function (err, src) {
-                if (err) console.error(err);
-                res.end(src);
-            });
+            var b = browserify(entry, { debug: true });
+            b.bundle().pipe(res);
         }
         else {
             res.setHeader('content-type', 'text/html')
@@ -27,17 +24,11 @@ module.exports = function () {
         }
     });
     
-    var wsServer = new ws.Server({ noServer: true, clientTracking: false })
-    httpServer.on('upgrade', function (req, socket, head) {
-        httpServer.on('_close', function () {
-            socket.destroy();
-        });
-        wsServer.handleUpgrade(req, socket, head, function(conn) {
-            var stream = websocket(conn)
-            stream.pipe(actual);
-        });
-    });
-    httpServer.listen(8000);
+    var wss = wsock.createServer({ server: server }, handle);
+    function handle (stream) {
+        stream.pipe(actual);
+    }
+    server.listen(8000);
     
     console.log('################################################');
     console.log('#                                              #');
@@ -51,9 +42,7 @@ module.exports = function () {
         a: actual,
         b: expected,
         close: function () {
-            httpServer.close();
-            httpServer.emit('_close');
-            wsServer.close();
+            server.close();
             setTimeout(process.exit, 50);
         }
     };

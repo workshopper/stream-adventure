@@ -25,7 +25,6 @@
     "tuple-stream": "~0.0.2",
     "websocket-stream": "^1.3.2",
     "wordwrap": "~0.0.2",
-    "ws": "~0.4.25",
     "x256": "~0.0.1"
   },
   "devDependencies": {
