@@ -1,0 +1,50 @@
+[
+  {
+    "name": "cyberpunk",
+    "books": [
+      "Accelerando",
+      "Snow Crash",
+      "Neuromancer",
+      "The Diamond Age",
+      "Heavy Weather"
+    ]
+  },
+  {
+    "name": "new wave",
+    "books": [
+      "Bug Jack Barron",
+      "The Heat Death of the Universe",
+      "Dangerous Visions"
+    ]
+  },
+  {
+    "name": "apocalypse",
+    "books": [
+      "Earth Abides",
+      "Alas, Babylon",
+      "Riddley Walker"
+    ]
+  },
+  {
+    "name": "time travel",
+    "books": [
+      "A Connecticut Yankee in King Arthur's Court",
+      "The Time Machine"
+    ]
+  },
+  {
+    "name": "space opera",
+    "books": [
+      "A Deepness in the Sky",
+      "Skylark",
+      "Void"
+    ]
+  },
+  {
+    "name": "alternate history",
+    "books": [
+      "The Man in the High Castle",
+      "Bring the Jubilee"
+    ]
+  }
+]
