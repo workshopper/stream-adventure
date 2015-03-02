@@ -51,7 +51,7 @@ defined:
       this.push(buf);
       next();
     }
-    function end () { this.push(null) }
+    function end (done) { done(); }
 
 Do that, but send upper-case data in your http server in response to POST data.
 

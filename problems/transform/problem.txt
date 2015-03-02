@@ -33,10 +33,10 @@ Inside the write function, call `this.push()` to produce output data and call
         next();
     }
 
-and call `this.push(null)` to finish the output:
+and call `done()` to finish the output:
 
-    function end () {
-        this.push(null);
+    function end (done) {
+        done();
     }
 
 `write` and `end` are both optional.
