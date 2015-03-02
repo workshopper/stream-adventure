@@ -41,16 +41,19 @@ Your http server should listen on the port given at process.argv[2] and convert
 the POST request written to it to upper-case using the same approach as the
 TRANSFORM example.
 
-As a refresher, here's an example with the default through callbacks explicitly
+As a refresher, here's an example with the default through2 callbacks explicitly
 defined:
 
-    var through = require('through')
+    var through = require('through2');
     process.stdin.pipe(through(write, end)).pipe(process.stdout);
-    
-    function write (buf) { this.queue(buf) }
-    function end () { this.queue(null)
+
+    function write (buf, _, next) {
+      this.push(buf);
+      next();
+    }
+    function end () { this.push(null) }
 
 Do that, but send upper-case data in your http server in response to POST data.
 
-Make sure to `npm install through` in the directory where your solution file
+Make sure to `npm install through2` in the directory where your solution file
 lives.
