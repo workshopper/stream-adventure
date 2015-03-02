@@ -1,24 +1,12 @@
-var through = require('through2');
+var fs = require('fs');
+var path = require('path');
+var spawn = require('child_process').spawn;
+var verify = require('adventure-verify');
+
+var concat = require('concat-stream');
 var clone = require('clone');
 var chunky = require('chunky');
 var wrap = require('wordwrap')(30);
-
-module.exports = function () {
-    var tr = through();
-    var bufs = chunky(createSentence());
-    
-    var count = 0;
-    var iv = setInterval(function () {
-        var buf = bufs.pop();
-        if (buf === undefined) {
-            clearInterval(iv);
-            tr.end();
-        }
-        else tr.write(buf.toString().split('').reverse().join(''));
-    }, 50);
-    
-    return { args: [], stdin: tr };
-};
 
 var format = [
     'Every $noun in the village heard the $adj clamor from the town square.'
@@ -53,3 +41,35 @@ function createSentence () {
         return xs.splice(ix, 1)[0];
     }
 }
+
+exports.problem = fs.createReadStream(path.join(__dirname, 'problem.txt'));
+exports.solution = fs.createReadStream(path.join(__dirname, 'solution.js'));
+
+exports.verify = verify({ modeReset: true }, function (args, t) {
+    t.plan(3);
+    t.equal(args.length, 1, 'stream-adventure verify YOURFILE.js');
+    
+    var input = chunky(createSentence());
+    var expected = input.join('').split('').reverse().join('');
+    
+    var ps = spawn(process.execPath, args);
+    ps.stderr.pipe(process.stderr);
+    
+    ps.stdout.pipe(concat(function (body) {
+        t.equal(body.toString().trim(), expected.trim());
+    }));
+    
+    ps.on('exit', function (code) {
+        t.equal(code, 0, 'successful exit code');
+    });
+    
+    var iv = setInterval(function () {
+        if (input.length) {
+            ps.stdin.write(input.shift());
+        }
+        else {
+            ps.stdin.end();
+            clearInterval(iv);
+        }
+    }, 50);
+});
