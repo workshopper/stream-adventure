@@ -58,3 +58,45 @@ exports.verify = verify({ modeReset: true }, function (args, t) {
         }, 50);
     })(0);
 });
+
+exports.run = function (args) {
+    var port = Math.floor(Math.random() * 40000 + 10000);
+    var ps = spawn(process.execPath, [ args[0], port ]);
+    
+    var input = [];
+    var offset = Math.floor(words.length*Math.random());
+    for (var i = 0; i < 10; i++) {
+        var word = words[(offset+i)%words.length];
+        input.push(word + '\n');
+    }
+    
+    ps.stderr.pipe(process.stderr);
+    ps.stdout.pipe(process.stdout);
+    ps.once('exit', function (code) { process.exit(code) });
+    
+    (function retry (n) {
+        if (n > 6) return t.fail('server not running');
+        
+        var hq = hyperquest.post('http://localhost:' + port);
+        hq.on('error', function (err) {
+            clearInterval(iv);
+            if (err.code === 'ECONNREFUSED') {
+                setTimeout(function () { retry(n + 1) }, 200);
+            }
+            else t.ifError(err);
+        });
+        
+        hq.on('end', function () { ps.kill() });
+        hq.pipe(process.stdout);
+        
+        var iv = setInterval(function () {
+            if (input.length) {
+                hq.write(input.shift());
+            }
+            else {
+                clearInterval(iv);
+                hq.end();
+            }
+        }, 50);
+    })(0);
+};

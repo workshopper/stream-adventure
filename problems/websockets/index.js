@@ -22,19 +22,7 @@ exports.solution = function () {
 
 exports.verify = verify({ modeReset: true }, function (args, t) {
     t.plan(1);
-    var main = path.resolve(args[0]);
-    
-    var server = http.createServer(function (req, res) {
-        if (req.url === '/bundle.js') {
-            res.setHeader('content-type', 'text/javascript');
-            var b = browserify(main, { debug: true });
-            b.bundle().pipe(res);
-        }
-        else {
-            res.setHeader('content-type', 'text/html')
-            return res.end('<script src="/bundle.js"></script>')
-        }
-    });
+    var server = createServer(path.resolve(args[0]));
     t.once('end', function () {
         server.close();
         wss.close();
@@ -47,6 +35,28 @@ exports.verify = verify({ modeReset: true }, function (args, t) {
             stream.end();
         }));
     }
+});
+
+exports.run = function (args) {
+    var server = createServer(path.resolve(args[0]));
+    var wss = wsock.createServer({ server: server }, handle);
+    function handle (stream) {
+        stream.pipe(process.stdout);
+    }
+};
+
+function createServer (main) {
+    var server = http.createServer(function (req, res) {
+        if (req.url === '/bundle.js') {
+            res.setHeader('content-type', 'text/javascript');
+            var b = browserify(main, { debug: true });
+            b.bundle().pipe(res);
+        }
+        else {
+            res.setHeader('content-type', 'text/html')
+            return res.end('<script src="/bundle.js"></script>')
+        }
+    });
     server.listen(8099, function () {
         console.log('################################################');
         console.log('#                                              #');
@@ -55,4 +65,5 @@ exports.verify = verify({ modeReset: true }, function (args, t) {
         console.log('################################################');
         console.log();
     });
-});
+    return server;
+}
