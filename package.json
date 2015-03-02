@@ -20,7 +20,7 @@
     "provinces": "~0.2.0",
     "request": "~2.21.0",
     "split": "~0.2.5",
-    "stream-combiner": "~0.0.4",
+    "stream-combiner2": "^1.0.2",
     "tar": "~0.1.17",
     "terminal-menu": "~0.0.0",
     "through2": "^0.6.3",

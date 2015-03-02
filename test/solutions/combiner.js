@@ -1,4 +1,4 @@
-var combine = require('stream-combiner');
+var combine = require('stream-combiner2');
 var through = require('through2');
 var split = require('split');
 var zlib = require('zlib');
