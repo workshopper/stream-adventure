@@ -11,4 +11,8 @@ var tr = through(function (buf, _, next) {
     lineCount ++;
     next();
 });
-process.stdin.pipe(split()).pipe(tr).pipe(process.stdout);
+process.stdin
+    .pipe(split())
+    .pipe(tr)
+    .pipe(process.stdout)
+;
