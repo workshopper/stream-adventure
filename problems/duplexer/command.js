@@ -1,6 +1,6 @@
 var through = require('through2');
 var split = require('split');
-var combine = require('stream-combiner');
+var combine = require('stream-combiner2');
 var offset = Number(process.argv[2]);
 
 var tr = combine(split(), through(write));
