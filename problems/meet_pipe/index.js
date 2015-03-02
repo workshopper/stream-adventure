@@ -43,5 +43,7 @@ exports.run = function (args) {
     var ps = spawn(process.execPath, [ args[0], file ]);
     ps.stderr.pipe(process.stderr);
     ps.stdout.pipe(process.stdout);
-    ps.on('exit', function (code) { process.exit(code) });
+    ps.once('exit', function (code) {
+        if (code) process.exit(code)
+    });
 };

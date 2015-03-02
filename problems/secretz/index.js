@@ -40,6 +40,19 @@ exports.verify = verify({ modeReset: true }, function (args, t) {
     }));
 });
 
+exports.run = function (args) {
+    var cipher = ciphers[Math.floor(Math.random() * ciphers.length)];
+    var pw = phrase();
+    var ps = spawn(process.execPath, [ args[0], cipher, pw ]);
+    ps.stderr.pipe(process.stderr);
+    
+    var input = crypto.createCipher(cipher, pw);
+    fs.createReadStream(__dirname + '/secretz.tar.gz')
+        .pipe(input).pipe(ps.stdin)
+    ;
+    ps.stdout.pipe(process.stdout);
+};
+
 function phrase () {
     var s = '';
     for (var i = 0; i < 16; i++) {

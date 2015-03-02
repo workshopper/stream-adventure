@@ -63,7 +63,9 @@ exports.run = function (args) {
     var ps = spawn(process.execPath, args);
     ps.stderr.pipe(process.stderr);
     ps.stdout.pipe(process.stdout);
-    ps.on('exit', function (code) { process.exit(code) });
+    ps.once('exit', function (code) {
+        if (code) process.exit(code)
+    });
     
     var iv = setInterval(function () {
         if (input.length) {

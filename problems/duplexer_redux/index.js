@@ -54,3 +54,39 @@ exports.verify = verify({ modeReset: true }, function (args, t) {
         }
     }, 10);
 });
+
+exports.run = function (args) {
+    var fn = require(path.resolve(args[0]));
+    
+    var n = 1 + Math.floor(Math.random() * 25);
+    var input = [], counts = {};
+    var len = 50 + Math.floor(Math.random() * 25);
+    for (var i = 0; i < len; i++) {
+        var p = provinces[Math.floor(Math.random() * provinces.length)];
+        counts[p.country] = (counts[p.country] || 0) + 1;
+        input.push(p);
+    }
+    
+    var counter = new Readable({objectMode: true});
+    counter._read = function () {};
+    counter.setCounts = function (counts) {
+        var self = this;
+        Object.keys(counts).sort().forEach(function (key) {
+            self.push(key + ' => ' + counts[key] + '\n');
+        });
+        this.push(null);
+    };
+    
+    var stream = fn(counter);
+    stream.pipe(process.stdout);
+    
+    var iv = setInterval(function () {
+        if (input.length) {
+            stream.write(input.shift());
+        }
+        else {
+            clearInterval(iv);
+            stream.end();
+        }
+    }, 10);
+};

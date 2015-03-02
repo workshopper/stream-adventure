@@ -37,3 +37,12 @@ exports.verify = verify({ modeReset: true }, function (args, t) {
     
     fs.createReadStream(file).pipe(enc).pipe(ps.stdin);
 });
+
+exports.run = function (args) {
+    var pw = words[Math.floor(Math.random() * words.length)];
+    var ps = spawn(process.execPath, [ args[0], pw ]);
+    ps.stderr.pipe(process.stderr);
+    ps.stdout.pipe(process.stdout);
+    var enc = crypto.createCipher('aes256', pw);
+    fs.createReadStream(file).pipe(enc).pipe(ps.stdin);
+};

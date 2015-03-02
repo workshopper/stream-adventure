@@ -26,3 +26,13 @@ exports.verify = verify({ modeReset: true }, function (args, t) {
         }));
     });
 });
+
+exports.run = function (args) {
+    var ps = spawn(process.execPath, args);
+    fs.createReadStream(__dirname + '/input.html').pipe(ps.stdin);
+    ps.stderr.pipe(process.stderr);
+    ps.stdout.pipe(process.stdout);
+    ps.once('exit', function (code) {
+        if (code) process.exit(code);
+    });
+};

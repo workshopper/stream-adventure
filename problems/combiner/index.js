@@ -57,6 +57,23 @@ exports.verify = verify({ modeReset: true }, function (args, t) {
     }));
 });
 
+exports.run = function (args) {
+    var fn = require(path.resolve(args[0]));
+    var stream = fn();
+    
+    var rows = data.slice();
+    
+    var iv = setInterval(function () {
+        if (rows.length === 0) {
+            clearInterval(iv);
+            stream.end();
+        }
+        else stream.write(rows.shift() + '\n')
+    }, 10);
+    
+    stream.pipe(zlib.createGunzip()).pipe(process.stdout);
+};
+
 function shuffle (xs) {
     return xs.sort(cmp);
     function cmp () { return Math.random() > 0.5 ? 1 : -1 }

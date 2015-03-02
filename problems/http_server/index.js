@@ -72,7 +72,9 @@ exports.run = function (args) {
     
     ps.stderr.pipe(process.stderr);
     ps.stdout.pipe(process.stdout);
-    ps.once('exit', function (code) { process.exit(code) });
+    ps.once('exit', function (code) {
+        if (code) process.exit(code)
+    });
     
     (function retry (n) {
         if (n > 6) return t.fail('server not running');
