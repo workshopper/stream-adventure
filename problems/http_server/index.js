@@ -11,7 +11,7 @@ exports.problem = fs.createReadStream(path.join(__dirname, 'problem.txt'));
 exports.solution = fs.createReadStream(path.join(__dirname, 'solution.js'));
 
 exports.verify = verify({ modeReset: true }, function (args, t) {
-    t.plan(3);
+    t.plan(2);
     t.equal(args.length, 1, 'stream-adventure verify YOURFILE.js');
     
     var port = Math.floor(Math.random() * 40000 + 10000);
@@ -27,9 +27,6 @@ exports.verify = verify({ modeReset: true }, function (args, t) {
     
     ps.stderr.pipe(process.stderr);
     ps.stdout.pipe(process.stdout);
-    ps.once('exit', function (code) {
-        t.equal(Number(code), 0, 'successful exit code');
-    });
     
     (function retry (n) {
         if (n > 6) return t.fail('server not running');
