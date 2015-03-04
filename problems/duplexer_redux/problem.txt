@@ -6,15 +6,22 @@ argument to your program:
         // and pass through `counter` on the readable side
     };
 
-Return a duplex stream with the `counter` as the readable side. You will be
-written objects with a 2-character `country` field as input, such as these:
- 
+Return a duplex stream with the `counter` as the readable side. On the writeable
+side you will be sent location objects, each with a 2-character `country` field,
+such as these:
+
     {"short":"OH","name":"Ohio","country":"US"}
     {"name":"West Lothian","country":"GB","region":"Scotland"}
     {"short":"NSW","name":"New South Wales","country":"AU"}
+    {"country":"US","name":"Texas","short":"TX"}
 
-Create an object to keep a count of all the countries in the input. Once the
-input ends, call `counter.setCounts()` with your country counts.
+Create an object to keep a count of the number of location objects that are
+written for each country, like this:
+
+    { US: 2, GB: 1, AU: 1 }
+
+Once the input ends, call `counter.setCounts()` passing in your country count
+object.
 
 The `duplexer2` module will again be very handy in this example.
 
