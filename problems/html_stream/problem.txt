@@ -1,5 +1,6 @@
 Your program will get some html written to stdin. Convert all the inner html to
-upper-case for elements with a class name of "loud".
+upper-case for elements with a class name of "loud",
+and pipe all the html to stdout.
 
 You can use `trumpet` and `through` to solve this adventure.
 
