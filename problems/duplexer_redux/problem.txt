@@ -2,20 +2,20 @@ In this example, you will be given a readable stream, `counter`, as the first
 argument to your exported function:
 
     module.exports = function (counter) {
-        // return a duplex stream to count countries on the writable side
-        // and pass through `counter` on the readable side
     };
 
-Return a duplex stream with the `counter` as the readable side. You will be
-written objects with a 2-character `country` field as input, such as these:
+Return a duplex stream that captures country objects on its writable side
+and that has the `counter` stream as its readable side.
+
+You will be written objects with a 2-character `country` field as input,
+such as these:
  
     {"short":"OH","name":"Ohio","country":"US"}
     {"name":"West Lothian","country":"GB","region":"Scotland"}
     {"short":"NSW","name":"New South Wales","country":"AU"}
 
-Create an object to track the number of occurrences of each unique country code.
-
-For example:
+Create an object to track the number of occurrences of each unique country code,
+for example:
 
     {"US": 2, "GB": 3, "CN": 1}
 
