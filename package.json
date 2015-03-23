@@ -1,6 +1,6 @@
 {
   "name": "stream-adventure",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "an educational stream adventure",
   "bin": {
     "stream-adventure": "bin/cmd.js"
@@ -35,7 +35,7 @@
     "tape": "~2.3.0"
   },
   "scripts": {
-    "test": "tape test/*.js"
+    "test": "tape test/check.js"
   },
   "repository": {
     "type": "git",
