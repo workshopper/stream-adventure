@@ -49,6 +49,7 @@ into `d`.
 
 As in the previous LINES adventure, the `split` module is very handy here. You
 can put a split stream directly into the stream-combiner pipeline.
+Note that split can send empty lines too.
 
 If you end up using `split` and `stream-combiner`, make sure to install them
 into the directory where your solution file resides by doing:
