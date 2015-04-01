@@ -27,10 +27,7 @@ exports.verify = verify({ modeReset: true }, function (args, t) {
     
     ps.stderr.pipe(process.stderr);
     ps.stdout.pipe(process.stdout);
-    ps.once('exit', function (code) {
-        t.equal(Number(code), 0, 'successful exit code');
-    });
-    
+        
     (function retry (n) {
         if (n > 6) return t.fail('server not running');
         
