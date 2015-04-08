@@ -2,7 +2,7 @@ Your program will get some html written to stdin. Convert all the inner html to
 upper-case for elements with a class name of "loud",
 and pipe all the html to stdout.
 
-You can use `trumpet` and `through` to solve this adventure.
+You can use `trumpet` and `through2` to solve this adventure.
 
 With `trumpet` you can create a transform stream from a css selector:
 
@@ -16,5 +16,5 @@ With `trumpet` you can create a transform stream from a css selector:
 Now `stream` outputs all the inner html content at `'.beep'` and the data you
 write to `stream` will appear as the new inner html content.
 
-Make sure to `npm install trumpet through` in the directory where your solution
+Make sure to `npm install trumpet through2` in the directory where your solution
 file lives.
