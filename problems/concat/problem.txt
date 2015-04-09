@@ -1,5 +1,5 @@
 You will be given text on process.stdin. Buffer the text and reverse it using
-the `concat-stream` module before writing it to stdout.
+the `concat-stream` module before writing it to stdout (using console.log).
 
 `concat-stream` is a write stream that you can pass a callback to get the
 complete contents of a stream as a single buffer. Here's an example that uses
@@ -24,3 +24,8 @@ process.stdin.
 
 Make sure to `npm install concat-stream` in the directory where your solution
 file is located.
+
+Console.log is specified explicitly above simply to match the output of the
+solution script. The solution uses console.log, which appends a final newline
+character to the output. If process.stdout.write is used a trailing newline
+character will be missing & the output won't `verify`.
