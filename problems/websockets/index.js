@@ -57,10 +57,13 @@ function createServer (main) {
             return res.end('<script src="/bundle.js"></script>')
         }
     });
-    server.listen(8099, function () {
+    server.listen(process.env.PORT || 8099, function () {
         console.log('################################################');
         console.log('#                                              #');
-        console.log('# Open http://localhost:8099 to run your code! #');
+        console.log('# Open http://localhost:' + process.env.PORT || 8099 + ' to run your code! #');
+        console.log('# if you are doing this exercise in c9.io,     #');
+        console.log('# Open http://<domain name of your workspace>  #');
+        console.log('# e.g. http://<workspacename>-<c9usernam>.c9.io#');
         console.log('#                                              #');
         console.log('################################################');
         console.log();
