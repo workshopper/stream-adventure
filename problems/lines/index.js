@@ -69,7 +69,7 @@ exports.run = function (args) {
     
     var iv = setInterval(function () {
         if (input.length) {
-            ps.stdin.write(input.shift());
+            ps.stdin.write(input.shift() + '\n');
         }
         else {
             clearInterval(iv);
