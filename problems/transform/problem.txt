@@ -11,7 +11,7 @@ produce the output data.
 Create a through stream with a `write` and `end` function:
 
     var through = require('through2');
-    var stream = through(write, end);
+    var tr = through(write, end);
 
 The `write` function is called for every buffer of available input:
 
