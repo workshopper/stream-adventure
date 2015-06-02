@@ -9,10 +9,10 @@ the stdin and stdout of the spawned process:
         // joining together the stdin and stdout here
     };
 
-There is a very handy module you can use here: duplexer. The duplexer module
-exports a single function `duplexer(readable, writable)` that joins together a
+There is a very handy module you can use here: duplexer2. The duplexer2 module
+exports a single function `duplexer(writable, readable)` that joins together a
 writable stream and readable stream into a single, readable/writable duplex
 stream.
 
-If you use duplexer, make sure to `npm install duplexer` in the directory where
+If you use duplexer, make sure to `npm install duplexer2` in the directory where
 your solution file is located.
