@@ -7,7 +7,7 @@ concat to buffer POST content in order to JSON.parse() the submitted data:
 
     var concat = require('concat-stream');
     var http = require('http');
-    
+
     var server = http.createServer(function (req, res) {
         if (req.method === 'POST') {
             req.pipe(concat(function (body) {
@@ -24,3 +24,13 @@ process.stdin.
 
 Make sure to `npm install concat-stream` in the directory where your solution
 file is located.
+
+Hints:
+
+Both process.stdout and concat() are writeable streams, which means they
+can't be piped together. Outlined in the documentation is an alternative
+way to write to process.stdout.
+
+concat() waits for the stream to end before concatenating all the buffers
+together. The process.stdin stream in the node REPL can be manually closed
+by pressing Ctrl + D.
