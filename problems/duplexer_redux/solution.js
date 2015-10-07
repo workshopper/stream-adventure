@@ -1,6 +1,6 @@
 // Here's the reference solution:
 
-  var duplexer = require('duplexer2');
+  var duplexer = require('duplexer');
   var through = require('through2').obj;
   
   module.exports = function (counter) {
