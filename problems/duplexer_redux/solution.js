@@ -6,7 +6,7 @@
   module.exports = function (counter) {
       var counts = {};
       var input = through(write, end);
-      return duplexer(input, counter);
+      return duplexer({objectMode: true}, input, counter);
       
       function write (row, _, next) {
           counts[row.country] = (counts[row.country] || 0) + 1;
