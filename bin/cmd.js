@@ -16,3 +16,6 @@ require('../menu.json').forEach(function (name) {
     });
 });
 shop.execute(process.argv.slice(2));
+shop.on('fail', function () {
+  process.exit(1);
+});
