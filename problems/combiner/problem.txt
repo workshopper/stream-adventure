@@ -1,10 +1,10 @@
 Write a module that returns a readable/writable stream using the
-`stream-combiner` module. You can use this code to start with:
+`pumpify` module. You can use this code to start with:
 
-    var combine = require('stream-combiner')
+    var pipeline = require('pumpify')
     
     module.exports = function () {
-        return combine(
+        return pipeline(
             // read newline-separated json,
             // group books into genres,
             // then gzip the output
@@ -34,25 +34,25 @@ Your stream should take this list of JSON lines and gzip it with
 
 * HINTS *
 
-The `stream-combiner` module creates a pipeline from a list of streams,
+The `pumpify` module creates a pipeline from a list of streams,
 returning a single stream that exposes the first stream as the writable side and
 the last stream as the readable side like the `duplexer` module, but with an
 arbitrary number of streams in between. Unlike the `duplexer` module, each
 stream is piped to the next. For example:
 
-    var combine = require('stream-combiner');
-    var stream = combine(a, b, c, d);
+    var pipeline = require('pumpify');
+    var stream = pipeline(a, b, c, d);
     
 will internally do `a.pipe(b).pipe(c).pipe(d)` but the `stream` returned by
-`combine()` has its writable side hooked into `a` and its readable side hooked
+`pipeline()` has its writable side hooked into `a` and its readable side hooked
 into `d`.
 
 As in the previous LINES adventure, the `split` module is very handy here. You
-can put a split stream directly into the stream-combiner pipeline.
+can put a split stream directly into the pumpify pipeline.
 Note that split can send empty lines too.
 
-If you end up using `split` and `stream-combiner`, make sure to install them
+If you end up using `split` and `pumpify`, make sure to install them
 into the directory where your solution file resides by doing:
 
-    npm install stream-combiner split
+    npm install pumpify split
 
