@@ -8,31 +8,31 @@
   "dependencies": {
     "adventure": "^2.10.0",
     "adventure-verify": "^2.2.0",
-    "browserify": "^9.0.3",
+    "browserify": "^13.0.0",
     "chunky": "~0.0.0",
-    "clone": "~0.1.9",
+    "clone": "~1.0.2",
     "concat-stream": "^1.4.7",
-    "duplexer2": "~0.0.2",
+    "duplexer2": "~0.1.4",
     "hyperquest": "^1.0.1",
     "mkdirp": "~0.5.0",
-    "optimist": "~0.5.2",
+    "optimist": "~0.6.1",
     "osenv": "^0.1.0",
-    "provinces": "~0.2.0",
-    "request": "~2.21.0",
-    "split": "~0.2.5",
+    "provinces": "~1.8.0",
+    "request": "~2.67.0",
+    "split": "~1.0.0",
     "stream-combiner": "^0.2.1",
     "stream-combiner2": "^1.0.2",
-    "tar": "~0.1.17",
+    "tar": "~2.2.1",
     "terminal-menu": "~2.1.1",
-    "through2": "^0.6.3",
+    "through2": "^2.0.0",
     "trumpet": "^1.7.0",
     "tuple-stream": "~0.0.2",
-    "websocket-stream": "~2.0.2",
-    "wordwrap": "~0.0.2",
+    "websocket-stream": "~3.0.1",
+    "wordwrap": "~1.0.0",
     "x256": "~0.0.1"
   },
   "devDependencies": {
-    "tape": "~2.3.0"
+    "tape": "~4.4.0"
   },
   "scripts": {
     "test": "tape test/*.js"
