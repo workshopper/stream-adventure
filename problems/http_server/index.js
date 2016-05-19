@@ -44,9 +44,10 @@ exports.verify = verify({ modeReset: true }, function (args, t) {
             t.equal(body.toString(), expected.join(''));
             ps.kill();
         }));
+        var input_i = 0;
         var iv = setInterval(function () {
-            if (input.length) {
-                hq.write(input.shift());
+            if (input_i < input.length) {
+                hq.write(input[input_i++]);
             }
             else {
                 clearInterval(iv);
