@@ -1,3 +1,5 @@
+Create a new file called concat.js.
+
 You will be given text on process.stdin. Buffer the text and reverse it using
 the `concat-stream` module before writing it to stdout.
 
@@ -24,3 +26,6 @@ process.stdin.
 
 Make sure to `npm install concat-stream` in the directory where your solution
 file is located.
+
+To verify your solution run:
+stream-adventure verify concat.js
