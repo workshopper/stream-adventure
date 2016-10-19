@@ -1,8 +1,8 @@
-Just to make sure everything is working, just write a `program.js` that outputs
-the string "beep boop" with a `console.log()`.
+Make a new directory for your stream-adventure solutions (mkdir stream-adventure and enter it cd ./stream-adventure)
+Create a new file called beep_boop.js that uses console.log to output "beep boop".
 
-To verify your `program.js` against the expected output, do:
+To verify your programagainst the expected output, do:
 
-  stream-adventure verify program.js
+  stream-adventure verify beep_boop.js
 
 for more options, run `stream-adventure help`.
