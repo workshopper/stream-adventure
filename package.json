@@ -18,7 +18,7 @@
     "optimist": "~0.6.1",
     "osenv": "^0.1.0",
     "provinces": "~1.8.0",
-    "request": "~2.67.0",
+    "request": "~2.74.0",
     "split": "~1.0.0",
     "stream-combiner": "^0.2.1",
     "tar": "~2.2.1",
