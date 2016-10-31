@@ -1,4 +1,4 @@
-Create a new file named combiner.js, it should return a readable/writable stream using the
+Create a module in a new file named combiner.js, it should return a readable/writable stream using the
 `stream-combiner` module. 
 
 You can use this code to start with:
