@@ -1,5 +1,3 @@
-Create a new file called duplexer.js which will hold your solution.
-
 Write a program that exports a function that spawns a process from a `cmd`
 string and an `args` array and returns a single duplex stream joining together
 the stdin and stdout of the spawned process:
@@ -33,6 +31,8 @@ For child process you're outside so that process's stdin is writable to you.
 Also, have a look at the duplexer2 documentation and notice that singnature
 of the exported function is `duplexer2([options], writable, readable)`
 which means that you might need to pass an options argument.
+
+Create a new file called duplexer.js which will hold your solution.
 
 To verify your solution run:
 `stream-adventure verify duplexer.js`
