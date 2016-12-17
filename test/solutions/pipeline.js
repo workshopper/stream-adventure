@@ -1,4 +1,4 @@
-var combine = require('stream-combiner');
+var pipeline = require('pumpify');
 var through = require('through2');
 var split = require('split');
 var zlib = require('zlib');
@@ -29,5 +29,5 @@ module.exports = function () {
         next();
     }
     
-    return combine(split(), grouper, zlib.createGzip());
+    return pipeline(split(), grouper, zlib.createGzip());
 };

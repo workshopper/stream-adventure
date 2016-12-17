@@ -1,6 +1,6 @@
 // Here's the reference solution:
 
-  var combine = require('stream-combiner');
+  var pipeline = require('pumpify');
   var through = require('through2');
   var split = require('split');
   var zlib = require('zlib');
@@ -31,5 +31,5 @@
           next();
       }
       
-      return combine(split(), grouper, zlib.createGzip());
+      return pipeline(split(), grouper, zlib.createGzip());
   };

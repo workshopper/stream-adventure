@@ -11,7 +11,7 @@
   "HTML STREAM",
   "DUPLEXER",
   "DUPLEXER REDUX",
-  "COMBINER",
+  "PIPELINE",
   "CRYPT",
   "SECRETZ"
 ]
