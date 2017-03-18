@@ -1,9 +1,9 @@
 {
   "name": "stream-adventure",
   "version": "5.0.0",
-  "description": "an educational stream adventure",
+  "description": "An educational stream adventure",
   "bin": {
-    "stream-adventure": "bin/cmd.js"
+    "stream-adventure": "./bin/stream-adventure"
   },
   "dependencies": {
     "adventure-verify": "^2.2.0",
@@ -28,13 +28,18 @@
     "websocket-stream": "~3.0.1",
     "wordwrap": "~1.0.0",
     "workshopper-adventure": "^6.0.1",
+    "workshopper-exercise": "^3.0.1",
     "x256": "~0.0.1"
   },
   "devDependencies": {
-    "tape": "~4.4.0"
+    "standard": "^9.0.2",
+    "standard-version": "^4.0.0",
+    "workshopper-adventure-test": "^1.1.1"
   },
   "scripts": {
-    "test": "tape test/*.js"
+    "lint": "standard",
+    "release": "standard-version",
+    "test": "npm run lint && workshopper-adventure-test"
   },
   "repository": {
     "type": "git",
@@ -54,5 +59,8 @@
     "email": "mail@substack.net",
     "url": "http://substack.net"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.12"
+  }
 }

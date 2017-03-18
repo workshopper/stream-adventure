@@ -1,12 +1,12 @@
-# stream adventure
+# Stream adventure
 
 Go on an educational stream adventure!
 
 [![build status](https://secure.travis-ci.org/substack/stream-adventure.png)](http://travis-ci.org/substack/stream-adventure)
 
-# install
+## Install
 
-First install [node](http://nodejs.org) version 0.10 or later.
+First install [node](http://nodejs.org) version 0.12 or later.
 
 Once you've installed `node`, you will have an `npm` command.
 
@@ -23,6 +23,8 @@ npm install through2 concat-stream duplexer trumpet request split tar \
     websocket-stream stream-combiner
 ```
 
-# run
+## Run
 
 Now just type `stream-adventure` to play!
+
+##
