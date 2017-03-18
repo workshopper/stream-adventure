@@ -1,12 +1,11 @@
 {
   "name": "stream-adventure",
-  "version": "4.0.5",
+  "version": "5.0.0",
   "description": "an educational stream adventure",
   "bin": {
     "stream-adventure": "bin/cmd.js"
   },
   "dependencies": {
-    "adventure": "^2.10.0",
     "adventure-verify": "^2.2.0",
     "browserify": "^13.0.0",
     "chunky": "~0.0.0",
@@ -28,6 +27,7 @@
     "tuple-stream": "~0.0.2",
     "websocket-stream": "~3.0.1",
     "wordwrap": "~1.0.0",
+    "workshopper-adventure": "^6.0.1",
     "x256": "~0.0.1"
   },
   "devDependencies": {
@@ -38,15 +38,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/substack/stream-adventure.git"
+    "url": "https://github.com/workshopper/stream-adventure.git"
   },
-  "homepage": "https://github.com/substack/stream-adventure",
+  "homepage": "https://github.com/workshopper/stream-adventure",
   "keywords": [
     "stream",
     "educational",
     "guide",
     "tutorial",
-    "learn"
+    "learn",
+    "node.js"
   ],
   "author": {
     "name": "James Halliday",
