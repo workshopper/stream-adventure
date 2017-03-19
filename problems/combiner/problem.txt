@@ -1,5 +1,7 @@
-Write a module that returns a readable/writable stream using the
-`stream-combiner` module. You can use this code to start with:
+Create a module in a new file named combiner.js, it should return a readable/writable stream using the
+`stream-combiner` module. 
+
+You can use this code to start with:
 
     var combine = require('stream-combiner')
     
@@ -56,3 +58,5 @@ into the directory where your solution file resides by doing:
 
     npm install stream-combiner split
 
+To verify your solution run:
+stream-adventure verify combiner.js
