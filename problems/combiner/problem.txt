@@ -47,7 +47,12 @@ stream is piped to the next. For example:
     
 will internally do `a.pipe(b).pipe(c).pipe(d)` but the `stream` returned by
 `combine()` has its writable side hooked into `a` and its readable side hooked
-into `d`.
+into `d`. 
+
+Your module should return the combined stream that will be fed input into the 
+front 'end' of the stream, reads the associated JSON, processes the input book
+data by grouping it by genre and produces a gzipped result stream from which 
+the result may be read.
 
 As in the previous LINES adventure, the `split` module is very handy here. You
 can put a split stream directly into the stream-combiner pipeline.
