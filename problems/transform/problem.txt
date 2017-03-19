@@ -50,6 +50,6 @@ to close the output side when the input side ends.
 Make sure to pipe `process.stdin` into your transform stream
 and pipe your transform stream into `process.stdout`, like this:
 
-    process.stdin.pipe(tr).pipe(process.stdout);
+    process.stdin.pipe(stream).pipe(process.stdout);
 
 To convert a buffer to a string, call `buffer.toString()`.
