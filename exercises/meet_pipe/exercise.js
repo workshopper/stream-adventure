@@ -48,19 +48,16 @@ exercise.addSetup(function (mode, callback) {
 
 // add a processor only for 'verify' calls
 exercise.addVerifyProcessor(function (callback) {
-  var createReadStreamUsed = false
-
   // Go through the function calls of fs module wrapped by `wrappedexec`.
-  Object.keys(exercise.wrapData.fsCalls).forEach(function (m) {
-    if (/createReadStream$/.test(m)) {
-      createReadStreamUsed = true
-      this.emit('pass', this.__('pass.createReadStream', {method: 'fs.' + m + '()'}))
+  Object.keys(exercise.wrapData.fsCalls).forEach(function (method) {
+    if (/createReadStream$/.test(method)) {
+      this.emit('pass', `Method fs.${method}() used correctly.`)
     } else {
-      this.emit('fail', this.__('fail.createReadStream', {method: 'fs.' + m + '()'}))
+      this.emit('fail', `Method fs.${method}() was not used correctly.`)
     }
   }.bind(this))
 
-  callback(null, createReadStreamUsed)
+  callback(null)
 })
 
 // cleanup for both run and verify
