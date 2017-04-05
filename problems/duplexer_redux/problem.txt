@@ -8,7 +8,7 @@ argument to your exported function:
 
 Return a duplex stream with the `counter` as the readable side. You will be
 written objects with a 2-character `country` field as input, such as these:
- 
+
     {"short":"OH","name":"Ohio","country":"US"}
     {"name":"West Lothian","country":"GB","region":"Scotland"}
     {"short":"NSW","name":"New South Wales","country":"AU"}
@@ -25,3 +25,14 @@ The `duplexer2` module will again be very handy in this example.
 
 If you use duplexer, make sure to `npm install duplexer2` in the directory where
 your solution file is located.
+
+Keep in mind that you will have to work with objects, not buffers.
+Consult the documentation for further details:
+https://nodejs.org/api/stream.html#stream_object_mode
+When you switch on the object mode, remember to do the same for all 
+additional dependencies that you work with (i.e. through2)
+
+Create a new file called duplexer-redux.js which will hold your solution.
+
+To verify your solution run:
+`stream-adventure verify duplexer-redux.js`
