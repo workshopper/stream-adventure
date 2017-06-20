@@ -5,14 +5,15 @@
   var zlib = require('zlib');
   var concat = require('concat-stream');
 
-  var parser = tar.Parse();
+  var parser = new tar.Parse();
   parser.on('entry', function (e) {
-      if (e.type !== 'File') return;
-      
-      var h = crypto.createHash('md5', { encoding: 'hex' });
-      e.pipe(h).pipe(concat(function (hash) {
-          console.log(hash + ' ' + e.path);
-      }));
+      if (e.type === 'File') {
+          var h = crypto.createHash('md5', { encoding: 'hex' });
+          e.pipe(h).pipe(concat(function (hash) {
+              console.log(hash + ' ' + e.path);
+          }));
+      }
+      e.resume();
   });
 
   var cipher = process.argv[2];
