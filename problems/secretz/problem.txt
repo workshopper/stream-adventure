@@ -1,6 +1,6 @@
 An encrypted, gzipped tar file will be piped in on process.stdin. To beat this
 challenge, for each file in the tar input, print a hex-encoded md5 hash of the
-file contents followed by a single space followed by the filename, then a
+file contents followed by a single space followed by the full file path, then a
 newline.
 
 You will receive the cipher name as process.argv[2] and the cipher passphrase as
@@ -30,5 +30,5 @@ Using the tar module looks like:
 Use `crypto.createHash('md5', { encoding: 'hex' })` to generate a stream that
 outputs a hex md5 hash for the content written to it.
 
-Make sure to `npm install tar through` in the directory where your solution
+Make sure to `npm install tar concat-stream` in the directory where your solution
 file lives.
