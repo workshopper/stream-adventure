@@ -5,7 +5,7 @@ var concat = require('concat-stream');
 
 var parser = new tar.Parse();
 parser.on('entry', function (e) {
-    if (e.type !== 'File') resume();
+    if (e.type !== 'File') e.resume();
     
     var h = crypto.createHash('md5', { encoding: 'hex' });
     e.pipe(h).pipe(concat(function (hash) {
