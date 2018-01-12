@@ -5,5 +5,5 @@
 
   module.exports = function (cmd, args) {
       var ps = spawn(cmd, args);
-      return duplexer({objectMode: true}, ps.stdin, ps.stdout);
+      return duplexer(ps.stdin, ps.stdout);
   };
