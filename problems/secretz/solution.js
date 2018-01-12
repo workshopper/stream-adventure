@@ -5,10 +5,10 @@
   var zlib = require('zlib');
   var concat = require('concat-stream');
 
-  var parser = tar.Parse();
+  var parser = new tar.Parse();
   parser.on('entry', function (e) {
-      if (e.type !== 'File') return;
-      
+      if (e.type !== 'File') return e.resume()
+
       var h = crypto.createHash('md5', { encoding: 'hex' });
       e.pipe(h).pipe(concat(function (hash) {
           console.log(hash + ' ' + e.path);
