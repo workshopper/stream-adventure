@@ -21,7 +21,7 @@
     "request": "~2.67.0",
     "split": "~1.0.0",
     "stream-combiner": "^0.2.1",
-    "tar": "^4.2.0",
+    "tar": "^2.2.1",
     "terminal-menu": "~2.1.1",
     "through2": "^2.0.0",
     "trumpet": "^1.7.0",
