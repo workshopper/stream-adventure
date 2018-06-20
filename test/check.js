@@ -1,34 +1,35 @@
-var spawn = require('child_process').spawn;
-var path = require('path');
-var test = require('tape');
+'use strict'
 
-var adventures = require('../menu.json');
-adventures.forEach(function (name) {
+let spawn = require('child_process').spawn;
+let path = require('path');
+let test = require('tape');
+
+let adventures = require('../menu.json');
+adventures.forEach((name) => {
     if (name === 'WEBSOCKETS') return;
-    
-    test(name, function (t) {
+
+    test(name, (t) => {
         t.plan(2);
-        var file = name.toLowerCase().replace(/\s+/g, '_') + '.js';
-        var solution = path.join(__dirname, 'solutions', file);
-        
-        var ps = run([ 'select', name ]);
+        let file = name.toLowerCase().replace(/\s+/g, '_') + '.js';
+        let solution = path.join(__dirname, 'solutions', file);
+
+        let ps = run(['select', name]);
         ps.on('exit', selected);
         ps.stderr.pipe(process.stderr);
-        
-        function selected (code) {
+
+        const selected = (code) => {
             t.equal(code, 0);
-            var ps = run([ 'verify', solution ]);
+            let ps = run(['verify', solution]);
             ps.on('exit', verified);
             ps.stderr.pipe(process.stderr);
         }
-        
-        function verified (code) {
-            t.equal(code, 0);
-        }
+
+        const verified = (code) => t.equal(code, 0);
+
     });
 });
 
-function run (args) {
+const run = (args) => {
     args.unshift(path.join(__dirname, '../bin/cmd.js'));
     return spawn(process.execPath, args);
 }

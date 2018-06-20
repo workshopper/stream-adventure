@@ -1,21 +1,19 @@
 #!/usr/bin/env node
 
-var path = require('path');
-var adventure = require('adventure');
-var shop = adventure({
+'use strict'
+
+let path = require('path');
+let adventure = require('adventure');
+let shop = adventure({
     name: 'stream-adventure',
     title: 'STREAM ADVENTURE'
 });
 
-require('../menu.json').forEach(function (name) {
+require('../menu.json').forEach((name) => {
     if (/^!/.test(name)) return;
-    var d = name.toLowerCase().replace(/\W+/g, '_');
-    var dir = path.join(__dirname, '../problems', d);
-    shop.add(name, function () {
-        return require(dir);
-    });
+    let d = name.toLowerCase().replace(/\W+/g, '_');
+    let dir = path.join(__dirname, '../problems', d);
+    shop.add(name, () => require(dir));
 });
 shop.execute(process.argv.slice(2));
-shop.on('fail', function () {
-  process.exit(1);
-});
+shop.on('fail', () => process.exit(1));
