@@ -20,7 +20,7 @@ of the file contents from the archive and:
 Using the tar module looks like:
 
     var tar = require('tar');
-    var parser = tar.Parse();
+    var parser = new tar.Parse();
     parser.on('entry', function (e) {
         console.dir(e);
     });
