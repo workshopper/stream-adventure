@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var path = require('path');
-var adventure = require('adventure');
+var adventure = require('workshopper-adventure/adventure');
 var shop = adventure({
     name: 'stream-adventure',
     title: 'STREAM ADVENTURE'

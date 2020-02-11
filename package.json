@@ -6,7 +6,6 @@
     "stream-adventure": "bin/cmd.js"
   },
   "dependencies": {
-    "adventure": "^2.10.0",
     "adventure-verify": "^2.2.0",
     "browserify": "^13.0.0",
     "chunky": "~0.0.0",
@@ -28,6 +27,7 @@
     "tuple-stream": "~0.0.2",
     "websocket-stream": "~3.0.1",
     "wordwrap": "~1.0.0",
+    "workshopper-adventure": "^6.1.0",
     "x256": "~0.0.1"
   },
   "devDependencies": {
