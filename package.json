@@ -31,7 +31,7 @@
     "x256": "~0.0.1"
   },
   "devDependencies": {
-    "tape": "~4.4.0"
+    "tape": "^4.13.2"
   },
   "scripts": {
     "test": "tape test/*.js"
