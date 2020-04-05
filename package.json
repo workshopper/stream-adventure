@@ -16,7 +16,7 @@
     "mkdirp": "^1.0.4",
     "optimist": "~0.6.1",
     "osenv": "^0.1.0",
-    "provinces": "~1.8.0",
+    "provinces": "^1.11.0",
     "request": "^2.88.2",
     "split": "~1.0.0",
     "stream-combiner": "^0.2.1",
