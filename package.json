@@ -25,7 +25,7 @@
     "through2": "^3.0.1",
     "trumpet": "^1.7.0",
     "tuple-stream": "~0.0.2",
-    "websocket-stream": "~3.0.1",
+    "websocket-stream": "^5.5.2",
     "wordwrap": "~1.0.0",
     "workshopper-adventure": "^6.1.0",
     "x256": "~0.0.1"
