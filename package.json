@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "adventure-verify": "^2.2.0",
-    "browserify": "^13.0.0",
+    "browserify": "^16.5.1",
     "chunky": "~0.0.0",
     "clone": "~1.0.2",
     "concat-stream": "^1.4.7",
