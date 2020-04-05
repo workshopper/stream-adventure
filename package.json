@@ -10,7 +10,7 @@
     "browserify": "^16.5.1",
     "chunky": "~0.0.0",
     "clone": "^2.1.2",
-    "concat-stream": "^1.4.7",
+    "concat-stream": "^2.0.0",
     "duplexer2": "~0.1.4",
     "hyperquest": "^1.0.1",
     "mkdirp": "^1.0.4",
