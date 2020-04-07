@@ -1,3 +1,3 @@
 // Here's the reference solution:
 
-  console.log('beep boop');
+console.log('beep boop')

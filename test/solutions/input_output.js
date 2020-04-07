@@ -1,1 +1,1 @@
-process.stdin.pipe(process.stdout);
+process.stdin.pipe(process.stdout)
