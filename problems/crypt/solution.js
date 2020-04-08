@@ -2,5 +2,5 @@
 
 var crypto = require('crypto')
 process.stdin
-  .pipe(crypto.createDecipher('aes256', process.argv[2]))
+  .pipe(crypto.createDecipheriv('aes256', process.argv[2], process.argv[3]))
   .pipe(process.stdout)

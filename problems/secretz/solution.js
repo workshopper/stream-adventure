@@ -16,8 +16,9 @@ parser.on('entry', function (e) {
 })
 
 var cipher = process.argv[2]
-var pw = process.argv[3]
+var key = process.argv[3]
+var iv = process.argv[4]
 process.stdin
-  .pipe(crypto.createDecipher(cipher, pw))
+  .pipe(crypto.createDecipheriv(cipher, key, iv))
   .pipe(zlib.createGunzip())
   .pipe(parser)

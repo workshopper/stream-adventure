@@ -3,9 +3,10 @@ challenge, for each file in the tar input, print a hex-encoded md5 hash of the
 file contents followed by a single space followed by the filename, then a
 newline.
 
-You will receive the cipher name as process.argv[2] and the cipher passphrase as
-process.argv[3]. You can pass these arguments directly through to
-`crypto.createDecipher()`.
+You will receive the cipher algorithm name as process.argv[2], the cipher key as
+process.argv[3] and the cipher initialization vector as process.argv[4].
+You can pass these arguments directly through to
+`crypto.createDecipheriv()`.
 
 The built-in zlib library you get when you `require('zlib')` has a
 `zlib.createGunzip()` that returns a stream for gunzipping.

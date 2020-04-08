@@ -4,7 +4,11 @@ var crypto = require('crypto')
 var spawn = require('child_process').spawn
 var verify = require('adventure-verify')
 var concat = require('concat-stream')
-var ciphers = ['AES-192-CBC', 'RC4', 'BF-CBC']
+var ciphers = [{
+  algorithm: 'aes-192-cbc',
+  key: crypto.createHash('md5').update(phrase()).digest('base64'),
+  iv: crypto.randomBytes(8).toString('hex')
+}]
 
 exports.problem = fs.createReadStream(path.join(__dirname, 'problem.txt'))
 exports.solution = fs.createReadStream(path.join(__dirname, 'solution.js'))
@@ -16,15 +20,14 @@ exports.verify = verify({ modeReset: true }, function (args, t) {
   t.plan(3)
   t.equal(args.length, 1, 'stream-adventure verify YOURFILE.js')
 
-  var cipher = ciphers[Math.floor(Math.random() * ciphers.length)]
-  var pw = phrase()
-  var ps = spawn(process.execPath, [args[0], cipher, pw])
+  const { algorithm, key, iv } = ciphers[Math.floor(Math.random() * ciphers.length)]
+  var ps = spawn(process.execPath, [args[0], algorithm, key, iv])
   ps.stderr.pipe(process.stderr)
   ps.once('exit', function (code) {
     t.equal(code, 0, 'successful exit code')
   })
 
-  var input = crypto.createCipher(cipher, pw)
+  var input = crypto.createCipheriv(algorithm, key, iv)
   if (!input.pipe) {
     t.fail('Your version of node is too old to play this level.' +
             ' Please upgrade to node >= 0.10.'
@@ -40,12 +43,11 @@ exports.verify = verify({ modeReset: true }, function (args, t) {
 })
 
 exports.run = function (args) {
-  var cipher = ciphers[Math.floor(Math.random() * ciphers.length)]
-  var pw = phrase()
-  var ps = spawn(process.execPath, [args[0], cipher, pw])
+  const { algorithm, key, iv } = ciphers[Math.floor(Math.random() * ciphers.length)]
+  var ps = spawn(process.execPath, [args[0], algorithm, key, iv])
   ps.stderr.pipe(process.stderr)
 
-  var input = crypto.createCipher(cipher, pw)
+  var input = crypto.createCipheriv(algorithm, key, iv)
   fs.createReadStream(path.join(__dirname, '/secretz.tar.gz'))
     .pipe(input).pipe(ps.stdin)
 

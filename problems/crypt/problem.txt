@@ -1,9 +1,9 @@
-Your program will be given a passphrase on `process.argv[2]` and 'aes256'
+Your program will be given a passphrase on `process.argv[2]`, an initialization value on `process.argv[3]` and 'aes256'
 encrypted data will be written to stdin.
 
 Simply decrypt the data and stream the result to process.stdout.
 
-You can use the `crypto.createDecipher()` api from node core to solve this
+You can use the `crypto.createDecipheriv()` api from node core to solve this
 challenge. Here's an example:
 
     var crypto = require('crypto');
