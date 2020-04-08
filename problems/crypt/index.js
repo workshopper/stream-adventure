@@ -16,7 +16,9 @@ exports.verify = verify({ modeReset: true }, function (args, t) {
   t.equal(args.length, 1, 'stream-adventure verify YOURFILE.js')
 
   var pw = words[Math.floor(Math.random() * words.length)]
-  var ps = spawn(process.execPath, [args[0], pw])
+  var key = crypto.createHash('md5').update(pw).digest('hex')
+  var iv = crypto.randomBytes(8).toString('hex')
+  var ps = spawn(process.execPath, [args[0], key, iv])
   ps.once('exit', function (code) {
     t.equal(code, 0, 'successful exit code')
   })
@@ -28,7 +30,7 @@ exports.verify = verify({ modeReset: true }, function (args, t) {
     })
   }))
 
-  var enc = crypto.createCipher('aes256', pw)
+  var enc = crypto.createCipheriv('aes256', key, iv)
   if (!enc.pipe) {
     t.fail('Your version of node is too old to play this level. ' +
             'Please upgrade to node >= 0.10.'
@@ -40,9 +42,11 @@ exports.verify = verify({ modeReset: true }, function (args, t) {
 
 exports.run = function (args) {
   var pw = words[Math.floor(Math.random() * words.length)]
-  var ps = spawn(process.execPath, [args[0], pw])
+  var key = crypto.createHash('md5').update(pw).digest('hex')
+  var iv = crypto.randomBytes(8).toString('hex')
+  var ps = spawn(process.execPath, [args[0], key, iv])
   ps.stderr.pipe(process.stderr)
   ps.stdout.pipe(process.stdout)
-  var enc = crypto.createCipher('aes256', pw)
+  var enc = crypto.createCipheriv('aes256', key, iv)
   fs.createReadStream(file).pipe(enc).pipe(ps.stdin)
 }
