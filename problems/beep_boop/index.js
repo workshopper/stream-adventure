@@ -1,33 +1,19 @@
-var fs = require('fs')
-var path = require('path')
-var verify = require('adventure-verify')
-var concat = require('concat-stream')
-var spawn = require('child_process').spawn
+const path = require('path')
 
-exports.problem = fs.createReadStream(path.join(__dirname, 'problem.txt'))
-exports.solution = fs.createReadStream(path.join(__dirname, 'solution.js'))
+let exercise = require('workshopper-exercise')()
+const filecheck = require('workshopper-exercise/filecheck')
+const execute = require('workshopper-exercise/execute')
+const comparestdout = require('workshopper-exercise/comparestdout')
+const wrappedexec = require('workshopper-wrappedexec')
 
-exports.verify = verify({ modeReset: true }, function (args, t) {
-  t.plan(3)
+exercise = filecheck(exercise)
 
-  t.equal(args.length, 1, 'stream-adventure verify YOURFILE.js')
+exercise = execute(exercise)
 
-  var ps = spawn(process.execPath, args)
-  ps.stderr.pipe(process.stderr)
+exercise.solution = path.join(__dirname, 'solution.js')
 
-  ps.stdout.pipe(concat(function (body) {
-    t.equal(body.toString(), 'beep boop\n')
-  }))
-  ps.on('exit', function (code) {
-    t.equal(code, 0, 'successful exit code')
-  })
-})
+exercise = comparestdout(exercise)
 
-exports.run = function (args) {
-  var ps = spawn(process.execPath, args)
-  ps.stderr.pipe(process.stderr)
-  ps.stdout.pipe(process.stdout)
-  ps.once('exit', function (code) {
-    if (code) process.exit(code)
-  })
-}
+exercise = wrappedexec(exercise)
+
+module.exports = exercise

@@ -23,7 +23,9 @@
     "trumpet": "^1.7.0",
     "websocket-stream": "^5.5.2",
     "wordwrap": "~1.0.0",
-    "workshopper-adventure": "^6.1.0"
+    "workshopper-adventure": "^6.1.0",
+    "workshopper-exercise": "^3.0.1",
+    "workshopper-wrappedexec": "^0.1.3"
   },
   "devDependencies": {
     "standard": "^14.3.3",
