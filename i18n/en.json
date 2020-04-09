@@ -1,0 +1,20 @@
+{
+  "common": {
+    "exercise": {
+      "fail": {
+        "connection": "Error connecting to {{{address}}}: {{{message}}}",
+        "invalid_export": "Your solution is not exporting a function"
+      }
+    }
+  },
+  "exercises": {
+    "WEBSOCKETS": {
+      "pass": {
+        "message": "Message received correctly from ws client"
+      },
+      "fail": {
+        "message": "Message received from ws client is not correct"
+      }
+    }
+  }
+}

@@ -1,20 +1,16 @@
-var fs = require('fs')
-var path = require('path')
-var spawn = require('child_process').spawn
-var verify = require('adventure-verify')
+const path = require('path')
+const chunky = require('chunky')
+const wrap = require('wordwrap')(30)
+const exercise = require('../../lib/stdinExercise')
 
-var concat = require('concat-stream')
-var chunky = require('chunky')
-var wrap = require('wordwrap')(30)
-
-var format = [
-  'Every $noun in the village heard the $adj clamor from the town square.' +
-    ' Looking $adv into the distance, Constable Franklin $verb his $adj ' +
-    'periscope to locate the $adj source. Unwittingly, a nearby $noun ' +
-    '$adv $verb high-velocity $adj particles.\n'
+const format = [
+  `Every $noun in the village heard the $adj clamor from the town square.
+   Looking $adv into the distance, Constable Franklin $verb his $adj
+   periscope to locate the $adj source. Unwittingly, a nearby $noun
+   $adv $verb high-velocity $adj particles.\n`
 ]
 
-var words = {
+const words = {
   noun: [
     'cat', 'pebble', 'conifer', 'dingo', 'toaster oven', 'x-ray',
     'microwave', 'isotope'
@@ -28,63 +24,20 @@ var words = {
 }
 
 function createSentence () {
-  var fmt = format[Math.floor(Math.random() * format.length)]
+  const fmt = format[Math.floor(Math.random() * format.length)]
   return wrap(fmt.replace(/\$(\w+)/g, function (_, x) {
     return take(words[x])
   }))
 
   function take (xs) {
-    var ix = Math.floor(Math.random() * xs.length)
+    const ix = Math.floor(Math.random() * xs.length)
     return xs.splice(ix, 1)[0]
   }
 }
 
-exports.problem = fs.createReadStream(path.join(__dirname, 'problem.txt'))
-exports.solution = fs.createReadStream(path.join(__dirname, 'solution.js'))
+const input = chunky(createSentence())
 
-exports.verify = verify({ modeReset: true }, function (args, t) {
-  t.plan(3)
-  t.equal(args.length, 1, 'stream-adventure verify YOURFILE.js')
+exercise.solution = path.join(__dirname, 'solution.js')
+exercise.inputStdin = input
 
-  var input = chunky(createSentence())
-  var expected = input.join('').split('').reverse().join('')
-
-  var ps = spawn(process.execPath, args)
-  ps.stderr.pipe(process.stderr)
-
-  ps.stdout.pipe(concat(function (body) {
-    t.equal(body.toString().trim(), expected.trim())
-  }))
-
-  ps.on('exit', function (code) {
-    t.equal(code, 0, 'successful exit code')
-  })
-
-  var iv = setInterval(function () {
-    if (input.length) {
-      ps.stdin.write(input.shift())
-    } else {
-      ps.stdin.end()
-      clearInterval(iv)
-    }
-  }, 50)
-})
-
-exports.run = function (args) {
-  var input = chunky(createSentence())
-  var ps = spawn(process.execPath, args)
-  ps.stderr.pipe(process.stderr)
-  ps.stdout.pipe(process.stdout)
-  ps.once('exit', function (code) {
-    if (code) process.exit(code)
-  })
-
-  var iv = setInterval(function () {
-    if (input.length) {
-      ps.stdin.write(input.shift())
-    } else {
-      clearInterval(iv)
-      ps.stdin.end()
-    }
-  }, 50)
-}
+module.exports = exercise

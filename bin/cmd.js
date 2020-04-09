@@ -4,7 +4,8 @@ var path = require('path')
 var adventure = require('workshopper-adventure/adventure')
 var shop = adventure({
   name: 'stream-adventure',
-  title: 'STREAM ADVENTURE'
+  title: 'STREAM ADVENTURE',
+  exerciseDir: path.join(__dirname, '../problems')
 })
 
 require('../menu.json').forEach(function (name) {
