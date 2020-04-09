@@ -1,48 +1,37 @@
-var fs = require('fs')
-var path = require('path')
-var verify = require('adventure-verify')
-var concat = require('concat-stream')
+const fs = require('fs')
+const path = require('path')
+const os = require('os')
 
-var spawn = require('child_process').spawn
-var tmpdir = require('osenv').tmpdir()
-var aliens = require('./aliens.json')
+let exercise = require('workshopper-exercise')()
+const filecheck = require('workshopper-exercise/filecheck')
+const execute = require('workshopper-exercise/execute')
+const comparestdout = require('workshopper-exercise/comparestdout')
+const aliens = require('./aliens.json')
+const testFile = path.resolve(os.tmpdir(), 'meet-pipe-data.txt')
 
-exports.problem = fs.createReadStream(path.join(__dirname, 'problem.txt'))
-exports.solution = fs.createReadStream(path.join(__dirname, 'solution.js'))
+exercise = filecheck(exercise)
 
-var lines = []
-for (var i = 0; i < 10; i++) {
-  lines.push(aliens[Math.floor(Math.random() * aliens.length)])
-}
-var data = lines.join('\n') + '\n'
+exercise = execute(exercise)
 
-exports.verify = verify({ modeReset: true }, function (args, t) {
-  t.plan(3)
+exercise = comparestdout(exercise)
 
-  t.equal(args.length, 1, 'stream-adventure verify YOURFILE.js')
+exercise.solution = path.join(__dirname, 'solution.js')
 
-  var file = path.resolve(tmpdir, 'meet-pipe-data.txt')
-  fs.writeFileSync(file, data)
+exercise.addSetup(function (mode, callback) {
+  const lines = []
+  for (let i = 0; i < 10; i++) {
+    lines.push(aliens[Math.floor(Math.random() * aliens.length)])
+  }
+  const data = lines.join('\n') + '\n'
 
-  var ps = spawn(process.execPath, [args[0], file])
-  ps.stderr.pipe(process.stderr)
+  this.submissionArgs.unshift(testFile)
+  this.solutionArgs.unshift(testFile)
 
-  ps.stdout.pipe(concat(function (body) {
-    t.deepEqual(body.toString(), data)
-  }))
-  ps.on('exit', function (code) {
-    t.equal(code, 0, 'successful exit code')
-  })
+  fs.writeFile(testFile, data, callback)
 })
 
-exports.run = function (args) {
-  var file = path.resolve(tmpdir, 'meet-pipe-data.txt')
-  fs.writeFileSync(file, data)
+exercise.addCleanup(function (mode, passed, callback) {
+  fs.unlink(testFile, callback)
+})
 
-  var ps = spawn(process.execPath, [args[0], file])
-  ps.stderr.pipe(process.stderr)
-  ps.stdout.pipe(process.stdout)
-  ps.once('exit', function (code) {
-    if (code) process.exit(code)
-  })
-}
+module.exports = exercise
