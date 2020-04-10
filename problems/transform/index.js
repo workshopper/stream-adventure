@@ -1,13 +1,9 @@
 const path = require('path')
-const comparestdout = require('workshopper-exercise/comparestdout')
 
-let exercise = require('../../lib/exercise')
-const stdinProcessor = require('../../lib/stdinProcessor')
+const exercise = require('../../lib/stdinExercise')
+const { inputFromAliens } = require('../../lib/utils')
 
 exercise.solution = path.join(__dirname, 'solution.js')
-
-exercise = stdinProcessor(exercise)
-
-exercise = comparestdout(exercise)
+exercise.inputStdin = inputFromAliens()
 
 module.exports = exercise
