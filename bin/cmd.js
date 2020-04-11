@@ -10,7 +10,8 @@ var shop = adventure({
   footer: require('workshopper-adventure/default/footer'),
   fail: require('workshopper-adventure/default/fail'),
   pass: require('workshopper-adventure/default/pass'),
-  defaultOutputType: 'md'
+  defaultOutputType: 'md',
+  appDir: path.join(__dirname, '../')
 })
 
 require('../menu.json').forEach(function (name) {
