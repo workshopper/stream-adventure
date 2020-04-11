@@ -1,22 +1,17 @@
 const path = require('path')
 const through2 = require('through2')
+const hyperquest = require('hyperquest')
 const comparestdout = require('workshopper-exercise/comparestdout')
 
 let exercise = require('../../lib/exercise')
+const { inputFromWords, rndPort, writeStream } = require('../../lib/utils')
 
 exercise.solution = path.join(__dirname, 'solution.js')
 
-const hyperquest = require('hyperquest')
-const words = require('./words.json')
-const input = []
-const offset = Math.floor(words.length * Math.random())
-for (let i = 0; i < 10; i++) {
-  const word = words[(offset + i) % words.length]
-  input.push(`${word}\n`)
-}
+const input = inputFromWords()
 
 exercise.addSetup(function (mode, callback) {
-  this.submissionPort = Math.floor(Math.random() * 40000 + 10000)
+  this.submissionPort = rndPort()
   this.solutionPort = this.submissionPort + 1
 
   this.submissionArgs.push(this.submissionPort)
@@ -41,7 +36,6 @@ exercise.addProcessor(function (mode, callback) {
 })
 
 function request (port, stream, exercise) {
-  let count = 0
   const url = `http://localhost:${port}`
   const hq = hyperquest.post(url)
     .on('error', function (err) {
@@ -57,14 +51,7 @@ function request (port, stream, exercise) {
     stream.end()
   }, 5000)
 
-  const iv = setInterval(function () {
-    hq.write(input[count].trim() + '\n')
-
-    if (++count === input.length) {
-      clearInterval(iv)
-      hq.end()
-    }
-  }, 50)
+  writeStream(hq, input, 50)
 }
 
 function query (mode) {
