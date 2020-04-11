@@ -3,9 +3,7 @@ const http = require('http')
 const websocket = require('websocket-stream')
 const split = require('split')
 const through = require('through2')
-const comparestdout = require('workshopper-exercise/comparestdout')
-
-let exercise = require('../../lib/exercise')
+const exercise = require('workshopper-exercise/basic')
 
 exercise.solution = path.join(__dirname, 'solution.js')
 
@@ -23,8 +21,6 @@ exercise.addSetup(function (mode, callback) {
     }))
   }
 })
-
-exercise = comparestdout(exercise)
 
 exercise.addVerifyProcessor(function (callback) {
   const passed = this.wsMsg === 'hello'
