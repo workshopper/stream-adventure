@@ -1,64 +1,49 @@
-var fs = require('fs')
-var path = require('path')
-var verify = require('adventure-verify')
-var http = require('http')
-var wsock = require('websocket-stream')
-var browserify = require('browserify')
-var split = require('split')
-var through = require('through2')
+const path = require('path')
+const http = require('http')
+const websocket = require('websocket-stream')
+const split = require('split')
+const through = require('through2')
+const comparestdout = require('workshopper-exercise/comparestdout')
 
-exports.problem = fs.createReadStream(path.join(__dirname, 'problem.txt'))
-exports.solution = function () {
-  var r = fs.createReadStream(path.join(__dirname, 'solution.js'))
-  r.once('end', function () {
-    setTimeout(function () { process.exit(0) }, 500)
-  })
-  return r
-}
+let exercise = require('../../lib/exercise')
 
-exports.verify = verify({ modeReset: true }, function (args, t) {
-  t.plan(1)
-  var server = createServer(path.resolve(args[0]))
-  t.once('end', function () {
-    server.close()
-    wss.close()
+exercise.solution = path.join(__dirname, 'solution.js')
+
+exercise.addSetup(function (mode, callback) {
+  this.server = http.createServer()
+  this.server.listen(8099, function () {
+    callback()
   })
 
-  var wss = wsock.createServer({ server: server }, handle)
+  this.wss = websocket.createServer({ server: this.server }, handle)
   function handle (stream) {
     stream.pipe(split()).pipe(through(function (buf, enc, next) {
-      t.equal(buf.toString(), 'hello')
+      exercise.wsMsg = buf.toString()
       stream.end()
     }))
   }
 })
 
-exports.run = function (args) {
-  var server = createServer(path.resolve(args[0]))
-  wsock.createServer({ server: server }, handle)
-  function handle (stream) {
-    stream.pipe(process.stdout)
-  }
-}
+exercise = comparestdout(exercise)
 
-function createServer (main) {
-  var server = http.createServer(function (req, res) {
-    if (req.url === '/bundle.js') {
-      res.setHeader('content-type', 'text/javascript')
-      var b = browserify(main, { debug: true })
-      b.bundle().pipe(res)
-    } else {
-      res.setHeader('content-type', 'text/html')
-      return res.end('<script src="/bundle.js"></script>')
-    }
-  })
-  server.listen(8099, function () {
-    console.log('################################################')
-    console.log('#                                              #')
-    console.log('# Open http://localhost:8099 to run your code! #')
-    console.log('#                                              #')
-    console.log('################################################')
-    console.log()
-  })
-  return server
-}
+exercise.addVerifyProcessor(function (callback) {
+  const passed = this.wsMsg === 'hello'
+
+  if (passed) {
+    this.emit('pass', this.__('pass.message'))
+  } else {
+    this.emit('fail', this.__('fail.message'))
+  }
+
+  callback(null, passed)
+})
+
+exercise.addCleanup(function (mode, passed, callback) {
+  if (!this.server) {
+    return process.nextTick(callback)
+  }
+
+  this.wss.close()
+  this.server.close(callback)
+})
+module.exports = exercise

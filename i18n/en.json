@@ -5,5 +5,15 @@
         "connection": "Error connecting to {{{address}}}: {{{message}}}"
       }
     }
+  },
+  "exercises": {
+    "WEBSOCKETS": {
+      "pass": {
+        "message": "Message received correctly from ws client"
+      },
+      "fail": {
+        "message": "Message received from ws client is not correct"
+      }
+    }
   }
 }
