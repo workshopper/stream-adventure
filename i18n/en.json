@@ -1,0 +1,9 @@
+{
+  "common": {
+    "exercise": {
+      "fail": {
+        "connection": "Error connecting to {{{address}}}: {{{message}}}"
+      }
+    }
+  }
+}
