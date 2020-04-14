@@ -14,6 +14,11 @@
       "fail": {
         "message": "Message received from ws client is not correct"
       }
+    },
+    "DUPLEXER": {
+      "fail": {
+        "invalid_export": "Your solution is not exporting a function"
+      }
     }
   }
 }

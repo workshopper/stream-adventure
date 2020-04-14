@@ -1,9 +1,12 @@
-var fs = require('fs')
-var path = require('path')
-var verify = require('adventure-verify')
+const path = require('path')
+const stream = require('stream')
 
-var concat = require('concat-stream')
-var words = [
+let exercise = require('workshopper-exercise')()
+const filecheck = require('workshopper-exercise/filecheck')
+const stdinProcessor = require('../../lib/stdinProcessor')
+const comparestdout = require('workshopper-exercise/comparestdout')
+
+const words = [
   'beetle',
   'biscuit',
   'bat',
@@ -28,64 +31,61 @@ var words = [
   'burrow'
 ]
 
-exports.problem = fs.createReadStream(path.join(__dirname, 'problem.txt'))
-exports.solution = fs.createReadStream(path.join(__dirname, 'solution.js'))
-
-var n = 1 + Math.floor(Math.random() * 25)
-var input = []; var expected = ''
-var len = 10 + Math.floor(Math.random() * 5)
-for (var i = 0; i < len; i++) {
-  var word = words[Math.floor(Math.random() * words.length)]
-  input.push(word + '\n')
-  expected += convert(n, word + '\n')
+const getInput = () => {
+  const input = []
+  const len = 10 + Math.floor(Math.random() * 5)
+  for (let i = 0; i < len; i++) {
+    const word = words[Math.floor(Math.random() * words.length)]
+    input.push(`${word}\n`)
+  }
+  return input
 }
 
-exports.verify = verify({ modeReset: true }, function (args, t) {
-  t.plan(3)
-  t.equal(args.length, 1, 'stream-adventure verify YOURFILE.js')
-  var fn = require(path.resolve(args[0]))
-  t.equal(typeof fn, 'function', 'solution exports a function')
-  var stream = fn(process.execPath,
-    [path.resolve(__dirname, 'command.js'), n]
-  )
-  stream.pipe(concat(function (body) {
-    t.equal(body.toString('utf8').trim(), expected.trim())
-  }))
+exercise = filecheck(exercise)
 
-  var iv = setInterval(function () {
-    if (input.length) {
-      stream.write(input.shift())
-    } else {
-      clearInterval(iv)
-      stream.end()
-    }
-  }, 50)
+exercise.solution = path.join(__dirname, 'solution.js')
+exercise.inputStdin = getInput()
+
+exercise.addSetup(function (mode, callback) {
+  this.submissionFn = require(path.resolve(this.args[0]))
+
+  if (typeof this.submissionFn !== 'function') {
+    this.emit('fail', this.__('fail.invalid_export'))
+  }
+  this.solutionFn = require(this.solution)
+
+  process.nextTick(callback)
 })
 
-exports.run = function (args) {
-  var fn = require(path.resolve(args[0]))
-  var stream = fn(process.execPath,
-    [path.resolve(__dirname, 'command.js'), n]
-  )
-  stream.pipe(process.stdout)
+exercise.addProcessor(function (mode, callback) {
+  const n = 1 + Math.floor(Math.random() * 25)
+  const cmd = path.resolve(__dirname, 'command.js')
 
-  var iv = setInterval(function () {
-    if (input.length) {
-      stream.write(input.shift())
-    } else {
-      clearInterval(iv)
-      stream.end()
-    }
-  }, 50)
-}
+  this.submissionChild = this.submissionFn(process.execPath, [cmd, n])
+  this.submissionStdout = this.submissionChild
+  this.submissionChild.stdin = this.submissionChild
 
-function convert (offset, s) {
-  return s.replace(/[A-Za-z]/g, function (s) {
-    var c = s.charCodeAt(0)
-    return String.fromCharCode(
-      c < 97
-        ? (c - 97 + offset) % 26 + 97
-        : (c - 65 + offset) % 26 + 97
-    )
+  // We need a readable stream for `submissionChild.stderr`, since is piped to
+  // `process.stderr` later by comparestdout
+  // https://github.com/workshopper/workshopper-exercise/blob/master/comparestdout.js#L37
+  const stderr = new stream.Readable({ objectMode: true })
+  stderr._read = function _read (n) { }
+
+  this.submissionChild.stderr = stderr
+
+  if (mode === 'verify') {
+    this.solutionChild = this.solutionFn(process.execPath, [cmd, n])
+    this.solutionStdout = this.solutionChild
+    this.solutionChild.stdin = this.solutionChild
+  }
+
+  process.nextTick(function () {
+    callback(null, true)
   })
-}
+})
+
+exercise = stdinProcessor(exercise)
+
+exercise = comparestdout(exercise)
+
+module.exports = exercise
