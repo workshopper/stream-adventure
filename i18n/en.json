@@ -2,7 +2,8 @@
   "common": {
     "exercise": {
       "fail": {
-        "connection": "Error connecting to {{{address}}}: {{{message}}}"
+        "connection": "Error connecting to {{{address}}}: {{{message}}}",
+        "invalid_export": "Your solution is not exporting a function"
       }
     }
   },
@@ -13,11 +14,6 @@
       },
       "fail": {
         "message": "Message received from ws client is not correct"
-      }
-    },
-    "DUPLEXER": {
-      "fail": {
-        "invalid_export": "Your solution is not exporting a function"
       }
     }
   }
