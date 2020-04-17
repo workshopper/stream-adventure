@@ -1,39 +1,17 @@
-const fs = require('fs')
 const path = require('path')
 const crypto = require('crypto')
 
-const comparestdout = require('workshopper-exercise/comparestdout')
-
-let exercise = require('../../lib/exercise')
+const exercise = require('../../lib/cipherExercise')
 const words = require('./words.json')
 
 exercise.solution = path.join(__dirname, 'solution.js')
+exercise.inputFilePath = path.join(__dirname, 'finnegans_wake.txt')
 
-const file = path.join(__dirname, 'finnegans_wake.txt')
+const pw = words[Math.floor(Math.random() * words.length)]
+const key = crypto.createHash('md5').update(pw).digest('hex')
+const iv = crypto.randomBytes(8).toString('hex')
 
-exercise.addSetup(function (mode, callback) {
-  const pw = words[Math.floor(Math.random() * words.length)]
-  const key = crypto.createHash('md5').update(pw).digest('hex')
-  const iv = crypto.randomBytes(8).toString('hex')
-  this.submissionCipher = crypto.createCipheriv('aes256', key, iv)
-  this.solutionCipher = crypto.createCipheriv('aes256', key, iv)
-
-  this.submissionArgs.push(key, iv)
-  this.solutionArgs.push(key, iv)
-
-  process.nextTick(callback)
-})
-
-exercise.addProcessor(function (mode, callback) {
-  fs.createReadStream(file).pipe(this.submissionCipher).pipe(this.submissionChild.stdin)
-
-  if (mode === 'verify') {
-    fs.createReadStream(file).pipe(this.solutionCipher).pipe(this.solutionChild.stdin)
-  }
-
-  process.nextTick(callback)
-})
-
-exercise = comparestdout(exercise)
+exercise.cipherArgs = { algorithm: 'aes256', key, iv }
+exercise.execArgs = [key, iv]
 
 module.exports = exercise
