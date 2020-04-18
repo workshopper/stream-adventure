@@ -6,8 +6,6 @@
     "stream-adventure": "bin/cmd.js"
   },
   "dependencies": {
-    "adventure-verify": "^2.2.0",
-    "browserify": "^16.5.1",
     "chunky": "~0.0.0",
     "clone": "^2.1.2",
     "concat-stream": "^2.0.0",
@@ -24,8 +22,7 @@
     "websocket-stream": "^5.5.2",
     "wordwrap": "~1.0.0",
     "workshopper-adventure": "^6.1.0",
-    "workshopper-exercise": "^3.0.1",
-    "workshopper-wrappedexec": "^0.1.3"
+    "workshopper-exercise": "^3.0.1"
   },
   "devDependencies": {
     "standard": "^14.3.3",
