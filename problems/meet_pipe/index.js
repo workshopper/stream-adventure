@@ -2,18 +2,9 @@ const fs = require('fs')
 const path = require('path')
 const os = require('os')
 
-let exercise = require('workshopper-exercise')()
-const filecheck = require('workshopper-exercise/filecheck')
-const execute = require('workshopper-exercise/execute')
-const comparestdout = require('workshopper-exercise/comparestdout')
+const exercise = require('workshopper-exercise/basic')
 const aliens = require('./aliens.json')
 const testFile = path.resolve(os.tmpdir(), 'meet-pipe-data.txt')
-
-exercise = filecheck(exercise)
-
-exercise = execute(exercise)
-
-exercise = comparestdout(exercise)
 
 exercise.solution = path.join(__dirname, 'solution.js')
 
