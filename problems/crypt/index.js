@@ -2,10 +2,10 @@ const path = require('path')
 const crypto = require('crypto')
 
 const exercise = require('../../lib/cipherExercise')
-const words = require('./words.json')
+const words = require('../../lib/words.json')
 
 exercise.solution = path.join(__dirname, 'solution.js')
-exercise.inputFilePath = path.join(__dirname, 'finnegans_wake.txt')
+exercise.inputFilePath = path.join(__dirname, '../../lib/finnegans_wake.txt')
 
 const pw = words[Math.floor(Math.random() * words.length)]
 const key = crypto.createHash('md5').update(pw).digest('hex')
