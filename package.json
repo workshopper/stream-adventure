@@ -5,6 +5,7 @@
   "bin": {
     "stream-adventure": "bin/cmd.js"
   },
+  "main": "index.js",
   "dependencies": {
     "chunky": "~0.0.0",
     "clone": "^2.1.2",
