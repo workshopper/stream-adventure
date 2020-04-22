@@ -1,5 +1,5 @@
-In this adventure, write some browser code that uses the websocket-stream module
-to print the string "hello\n".
+In this adventure, write a websocket client that uses the websocket-stream
+module, send a message and pipe the stream to `process.stdout`.
 
 To open a stream with websocket-stream on localhost:8099, just write:
 

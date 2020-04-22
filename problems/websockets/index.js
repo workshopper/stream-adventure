@@ -7,6 +7,9 @@ const exercise = require('workshopper-exercise/basic')
 
 exercise.solution = path.join(__dirname, 'solution.js')
 
+const initMsg = 'hello\n'
+const responseMsg = 'beep bop boop\n'
+
 exercise.addSetup(function (mode, callback) {
   this.server = http.createServer()
   this.server.listen(8099, function () {
@@ -16,22 +19,14 @@ exercise.addSetup(function (mode, callback) {
   this.wss = websocket.createServer({ server: this.server }, handle)
   function handle (stream) {
     stream.pipe(split()).pipe(through(function (buf, enc, next) {
-      exercise.wsMsg = buf.toString()
+      const received = buf.toString()
+      stream.write(`${received}\n`)
+      if (received === initMsg.trim()) {
+        stream.write(responseMsg)
+      }
       stream.end()
     }))
   }
-})
-
-exercise.addVerifyProcessor(function (callback) {
-  const passed = this.wsMsg === 'hello'
-
-  if (passed) {
-    this.emit('pass', this.__('pass.message'))
-  } else {
-    this.emit('fail', this.__('fail.message'))
-  }
-
-  callback(null, passed)
 })
 
 exercise.addCleanup(function (mode, passed, callback) {

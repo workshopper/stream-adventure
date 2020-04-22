@@ -4,8 +4,6 @@ var test = require('tape')
 
 var adventures = require('../menu.json')
 adventures.forEach(function (name) {
-  if (name === 'WEBSOCKETS') return
-
   test(name, function (t) {
     t.plan(2)
     var file = name.toLowerCase().replace(/\s+/g, '_') + '.js'
