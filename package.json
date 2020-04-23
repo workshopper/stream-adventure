@@ -27,11 +27,13 @@
   },
   "devDependencies": {
     "standard": "^14.3.3",
+    "standard-version": "^7.1.0",
     "tape": "^4.13.2"
   },
   "scripts": {
     "lint": "standard",
-    "test": "npm run lint && tape test/*.js"
+    "test": "npm run lint && tape test/*.js",
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
@@ -50,5 +52,8 @@
     "email": "mail@substack.net",
     "url": "http://substack.net"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "standard-version": {
+    "bumpFiles": ["package.json"]
+  }
 }
