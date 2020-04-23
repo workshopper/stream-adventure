@@ -4,25 +4,23 @@ Go on an educational stream adventure!
 
 [![build status](https://secure.travis-ci.org/workshopper/stream-adventure.png)](https://travis-ci.org/workshopper/stream-adventure)
 
-# install
+## Install
 
-First install [node](http://nodejs.org) version 0.10 or later.
+First install [node](http://nodejs.org).
 
 Once you've installed `node`, you will have an `npm` command.
 
-With [npm](https://npmjs.org) do:
+With [npm](https://docs.npmjs.com/cli-documentation/) do:
 
 ```
 npm install -g stream-adventure
 ```
 
-If you want to play offline, make a new directory then do:
-
-```
-npm install through2 concat-stream duplexer trumpet request split tar \
-    websocket-stream stream-combiner
-```
-
-# run
+## Run
 
 Now just type `stream-adventure` to play!
+
+## Test
+```
+npm test
+```
