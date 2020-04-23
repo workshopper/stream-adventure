@@ -1,4 +1,3 @@
-const path = require('path')
 const zlib = require('zlib')
 
 const comparestdout = require('workshopper-exercise/comparestdout')
@@ -38,7 +37,6 @@ const getInput = () => {
   return data
 }
 
-exercise.solution = path.join(__dirname, 'solution.js')
 exercise.inputStdin = getInput()
 exercise.stdinMessageSeparator = '\n'
 

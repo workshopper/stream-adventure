@@ -1,4 +1,3 @@
-const path = require('path')
 const http = require('http')
 
 const through = require('through2')
@@ -6,7 +5,6 @@ const through = require('through2')
 const exercise = require('../../lib/stdinExercise')
 const { inputFromWords } = require('../../lib/utils')
 
-exercise.solution = path.join(__dirname, 'solution.js')
 exercise.inputStdin = inputFromWords()
 
 function convert (buf) {

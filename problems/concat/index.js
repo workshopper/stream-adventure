@@ -1,4 +1,3 @@
-const path = require('path')
 const chunky = require('chunky')
 const wrap = require('wordwrap')(30)
 const exercise = require('../../lib/stdinExercise')
@@ -37,7 +36,6 @@ function createSentence () {
 
 const input = chunky(createSentence())
 
-exercise.solution = path.join(__dirname, 'solution.js')
 exercise.inputStdin = input
 
 module.exports = exercise

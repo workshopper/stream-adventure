@@ -2,11 +2,9 @@ const fs = require('fs')
 const path = require('path')
 const os = require('os')
 
-const exercise = require('workshopper-exercise/basic')
+const exercise = require('../../lib/basicExercise')
 const { inputFromAliens } = require('../../lib/utils')
 const testFile = path.resolve(os.tmpdir(), 'meet-pipe-data.txt')
-
-exercise.solution = path.join(__dirname, 'solution.js')
 
 exercise.addSetup(function (mode, callback) {
   const data = inputFromAliens().join('')

@@ -4,7 +4,6 @@ const crypto = require('crypto')
 const exercise = require('../../lib/cipherExercise')
 const words = require('../../lib/words.json')
 
-exercise.solution = path.join(__dirname, 'solution.js')
 exercise.inputFilePath = path.join(__dirname, '../../lib/finnegans_wake.txt')
 
 const pw = words[Math.floor(Math.random() * words.length)]

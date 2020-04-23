@@ -1,7 +1,3 @@
-const path = require('path')
-
-const exercise = require('workshopper-exercise/basic')
-
-exercise.solution = path.join(__dirname, 'solution.js')
+const exercise = require('../../lib/basicExercise')
 
 module.exports = exercise

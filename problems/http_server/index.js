@@ -1,12 +1,9 @@
-const path = require('path')
 const through2 = require('through2')
 const hyperquest = require('hyperquest')
 const comparestdout = require('workshopper-exercise/comparestdout')
 
 let exercise = require('../../lib/exercise')
 const { inputFromWords, rndPort, writeStream } = require('../../lib/utils')
-
-exercise.solution = path.join(__dirname, 'solution.js')
 
 const input = inputFromWords()
 

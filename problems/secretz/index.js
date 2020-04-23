@@ -19,8 +19,6 @@ const ciphers = [{
 
 const { algorithm, key, iv } = ciphers[Math.floor(Math.random() * ciphers.length)]
 
-exercise.solution = path.join(__dirname, 'solution.js')
-
 exercise.inputFilePath = path.join(__dirname, '/secretz.tar.gz')
 
 exercise.cipherArgs = { algorithm, key, iv }

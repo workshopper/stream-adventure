@@ -1,11 +1,8 @@
-const path = require('path')
 const http = require('http')
 const websocket = require('websocket-stream')
 const split = require('split')
 const through = require('through2')
-const exercise = require('workshopper-exercise/basic')
-
-exercise.solution = path.join(__dirname, 'solution.js')
+const exercise = require('../../lib/basicExercise')
 
 const initMsg = 'hello\n'
 const responseMsg = 'beep bop boop\n'

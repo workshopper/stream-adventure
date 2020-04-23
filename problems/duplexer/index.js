@@ -37,7 +37,6 @@ const getInput = () => {
   return input
 }
 
-exercise.solution = path.join(__dirname, 'solution.js')
 exercise.inputStdin = getInput()
 
 const n = 1 + Math.floor(Math.random() * 25)
