@@ -1,6 +1,22 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### 4.1.2 (2020-04-23)
+
+### Updates
+
+* use workshopper-adventure/adventure instead adventure ([5bcf696](https://github.com/workshopper/stream-adventure/commit/5bcf696b7d77d363c584ee1c52577c4c402cf5e0))
+* update problems to use workshopper-exercise ([35db979](https://github.com/workshopper/stream-adventure/commit/35db979e60172b4573c4a12104e10bd48fcc5b1b))
+* use workshopper-adventure core ([29c9e85](https://github.com/workshopper/stream-adventure/commit/29c9e85a1a7f71e8145a7e5cb7cc42ec5f50764b))
+* update websockets problem  ([74160ac](https://github.com/workshopper/stream-adventure/commit/74160ac46dcb1b669d9a17a6d76f48debcb53bc6))
+
+### Bug Fixes
+
+* add default messages ([ba718c9](https://github.com/substack/stream-adventure/commit/ba718c96e2e1c1b8d317ee8a9df31023113e8cc0))
+* output message ([76200f2](https://github.com/substack/stream-adventure/commit/76200f29303622838d8517608ad8b298aa8e93c8))
+* set appDir to fix i18n lookup ([0c4b04c](https://github.com/substack/stream-adventure/commit/0c4b04cc64c832f0af02ebb71fc956b993e87644))
+* use `crypto.createCipheriv` instead `crypto.createCipher` ([d0342fb](https://github.com/substack/stream-adventure/commit/d0342fbb5925176b348b63fe9ad14a07a1d100b4))
 
 <a name="4.1.1"></a>
 ## [4.1.1](https://github.com/substack/stream-adventure/compare/4.1.0...4.1.1) (2018-01-22)
