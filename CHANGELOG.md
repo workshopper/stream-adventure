@@ -1,6 +1,16 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### 4.1.2 (2020-04-23)
+
+
+### Bug Fixes
+
+* add default messages ([ba718c9](https://github.com/substack/stream-adventure/commit/ba718c96e2e1c1b8d317ee8a9df31023113e8cc0))
+* output message ([76200f2](https://github.com/substack/stream-adventure/commit/76200f29303622838d8517608ad8b298aa8e93c8))
+* set appDir to fix i18n lookup ([0c4b04c](https://github.com/substack/stream-adventure/commit/0c4b04cc64c832f0af02ebb71fc956b993e87644))
+* use `crypto.createCipheriv` instead `crypto.createCipher` ([d0342fb](https://github.com/substack/stream-adventure/commit/d0342fbb5925176b348b63fe9ad14a07a1d100b4))
 
 <a name="4.1.1"></a>
 ## [4.1.1](https://github.com/substack/stream-adventure/compare/4.1.0...4.1.1) (2018-01-22)
