@@ -18,24 +18,28 @@ Your program should output:
 Even though it's not obligatory, you can use the `split` module 
 to split input by newlines. For example:
 
-    var split = require('split');
-    var through2 = require('through2');
-    process.stdin
-        .pipe(split())
-        .pipe(through2(function (line, _, next) {
-            console.dir(line.toString());
-            next();
-        }))
-    ;
+```js
+var split = require('split');
+var through2 = require('through2');
+process.stdin
+    .pipe(split())
+    .pipe(through2(function (line, _, next) {
+        console.dir(line.toString());
+        next();
+    }))
+;
+```
 
 `split` will buffer chunks on newlines before you get them. With example
 above, we will get separate events for each line even though all the data
 probably arrives on the same chunk:
 
-    $ echo -e 'one\ntwo\nthree' | node split.js
-    'one'
-    'two'
-    'three'
+```sh
+$ echo -e 'one\ntwo\nthree' | node split.js
+'one'
+'two'
+'three'
+```
 
 Your own program could use `split` in this way, and you should transform the
 input and pipe the output through to `process.stdout`. Keep in mind that,
