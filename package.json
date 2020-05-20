@@ -20,10 +20,10 @@
     "tar": "^6.0.1",
     "through2": "^3.0.1",
     "trumpet": "^1.7.0",
-    "websocket-stream": "^5.5.2",
     "wordwrap": "~1.0.0",
     "workshopper-adventure": "^6.1.0",
-    "workshopper-exercise": "^3.0.1"
+    "workshopper-exercise": "^3.0.1",
+    "ws": "^7.3.0"
   },
   "devDependencies": {
     "standard": "^14.3.3",

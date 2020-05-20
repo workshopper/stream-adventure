@@ -1,17 +1,17 @@
-In this adventure, write a websocket client that uses the websocket-stream
-module, send a message and pipe the stream to `process.stdout`.
+In this adventure, write a websocket client that uses the `ws`
+module, generate a stream on top of the websocket client, write 
+the string "hello\n" to the stream and pipe it to `process.stdout`.
 
-To open a stream with websocket-stream on localhost:8099, just write:
+To open a stream with `ws` on localhost:8099, just write:
 
 ```js
-var ws = require('websocket-stream');
-var stream = ws('ws://localhost:8099');
+const WebSocket = require('ws')
+const ws = new WebSocket('ws://localhost:8099')
+const stream = WebSocket.createWebSocketStream(ws)
 ```
 
-Then write the string "hello\n" to the stream.
+The readme for `ws` has more info if you're curious about how to
+write the server side code: https://github.com/websockets/ws
 
-The readme for websocket-stream has more info if you're curious about how to
-write the server side code: https://github.com/maxogden/websocket-stream
-
-Make sure to `npm install websocket-stream` in the directory where your solution
+Make sure to `npm install ws` in the directory where your solution
 file lives.
