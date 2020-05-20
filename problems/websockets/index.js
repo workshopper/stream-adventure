@@ -1,7 +1,5 @@
 const http = require('http')
-const websocket = require('websocket-stream')
-const split = require('split')
-const through = require('through2')
+const WebSocket = require('ws')
 const exercise = require('../../lib/basicExercise')
 
 const initMsg = 'hello\n'
@@ -13,17 +11,17 @@ exercise.addSetup(function (mode, callback) {
     callback()
   })
 
-  this.wss = websocket.createServer({ server: this.server }, handle)
-  function handle (stream) {
-    stream.pipe(split()).pipe(through(function (buf, enc, next) {
-      const received = buf.toString()
-      stream.write(`${received}\n`)
-      if (received === initMsg.trim()) {
-        stream.write(responseMsg)
+  this.wss = new WebSocket.Server({ server: this.server })
+  this.wss.on('connection', (ws) => {
+    ws.on('message', (data) => {
+      const received = data.toString()
+      ws.send(received)
+      if (received === initMsg) {
+        ws.send(responseMsg)
       }
-      stream.end()
-    }))
-  }
+      ws.close()
+    })
+  })
 })
 
 exercise.addCleanup(function (mode, passed, callback) {
