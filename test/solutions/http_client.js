@@ -1,3 +1,7 @@
-var request = require('request')
-var r = request.post('http://localhost:8099')
-process.stdin.pipe(r).pipe(process.stdout)
+const { request } = require('http')
+
+const options = { method: 'POST' }
+const req = request('http://localhost:8099', options, (res) => {
+  res.pipe(process.stdout)
+})
+process.stdin.pipe(req)
