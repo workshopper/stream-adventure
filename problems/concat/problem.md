@@ -1,11 +1,13 @@
 Create a new file called concat.js.
 
-You will be given text on process.stdin. Buffer the text and reverse it using
-the `concat-stream` module before writing it to stdout.
+You will be given text on `process.stdin`, convert buffer to string and reverse it
+using the `concat-stream` module before writing it to `process.stdout`.
 
-`concat-stream` is a write stream that you can pass a callback to get the
-complete contents of a stream as a single buffer. Here's an example that uses
-concat to buffer POST content in order to JSON.parse() the submitted data:
+`concat-stream` is a writable stream that concatenate all buffers from a stream
+and give you the result in the callback you pass like parameter.
+
+Here's an example that uses `concat-stream` to buffer POST content in order to
+JSON.parse() the submitted data:
 
 ```js
 var concat = require('concat-stream');
@@ -28,6 +30,11 @@ process.stdin.
 
 Make sure to `npm install concat-stream` in the directory where your solution
 file is located.
+
+## Hint:
+
+Both `process.stdout` and `concat-stream` are writeable streams, so they can't
+be piped together.
 
 To verify your solution run:
 
