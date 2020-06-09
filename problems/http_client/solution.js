@@ -1,5 +1,3 @@
-// Here's the reference solution:
-
 const { request } = require('http')
 
 const options = { method: 'POST' }

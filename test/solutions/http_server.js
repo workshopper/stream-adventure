@@ -1,7 +1,7 @@
-var http = require('http')
-var through = require('through2')
+const http = require('http')
+const through = require('through2')
 
-var server = http.createServer(function (req, res) {
+const server = http.createServer(function (req, res) {
   if (req.method === 'POST') {
     req.pipe(through(function (buf, _, next) {
       this.push(buf.toString().toUpperCase())

@@ -1,8 +1,8 @@
-var trumpet = require('trumpet')
-var through = require('through2')
-var tr = trumpet()
+const trumpet = require('trumpet')
+const through = require('through2')
+const tr = trumpet()
 
-var loud = tr.select('.loud').createStream()
+const loud = tr.select('.loud').createStream()
 loud.pipe(through(function (buf, _, next) {
   this.push(buf.toString().toUpperCase())
   next()

@@ -3,25 +3,25 @@ argument to your exported function:
 
 ```js
 module.exports = function (counter) {
-    // return a duplex stream to count countries on the writable side
-    // and pass through `counter` on the readable side
-};
+  // return a duplex stream to count countries on the writable side
+  // and pass through `counter` on the readable side
+}
 ```
 
 Return a duplex stream with the `counter` as the readable side. You will be
 written objects with a 2-character `country` field as input, such as these:
 
 ```json
-    {"short":"OH","name":"Ohio","country":"US"}
-    {"name":"West Lothian","country":"GB","region":"Scotland"}
-    {"short":"NSW","name":"New South Wales","country":"AU"}
+  {"short":"OH","name":"Ohio","country":"US"}
+  {"name":"West Lothian","country":"GB","region":"Scotland"}
+  {"short":"NSW","name":"New South Wales","country":"AU"}
 ```
 
 Create an object to track the number of occurrences of each unique country code.
 
 For example:
 ```json
-    {"US": 2, "GB": 3, "CN": 1}
+  {"US": 2, "GB": 3, "CN": 1}
 ```
 
 Once the input ends, call `counter.setCounts()` with your counts object.

@@ -11,15 +11,15 @@ produce the output data.
 Create a through stream with a `write` and `end` function:
 
 ```js
-var through = require('through2');
-var stream = through(write, end);
+const through = require('through2')
+const stream = through(write, end)
 ```
 
 The `write` function is called for every buffer of available input:
 
 ```js
 function write (buffer, encoding, next) {
-    // ...
+  // ...
 }
 ```
 
@@ -36,8 +36,8 @@ Inside the write function, call `this.push()` to produce output data and call
 
 ```js
 function write (buffer, encoding, next) {
-    this.push('I got some data: ' + buffer + '\n');
-    next();
+  this.push('I got some data: ' + buffer + '\n')
+  next()
 }
 ```
 
@@ -45,7 +45,7 @@ and call `done()` to finish the output:
 
 ```js
 function end (done) {
-    done();
+  done()
 }
 ```
 
@@ -61,7 +61,7 @@ Make sure to pipe `process.stdin` into your transform stream
 and pipe your transform stream into `process.stdout`, like this:
 
 ```js
-process.stdin.pipe(stream).pipe(process.stdout);
+process.stdin.pipe(stream).pipe(process.stdout)
 ```
 
 To convert a buffer to a string, call `buffer.toString()`.

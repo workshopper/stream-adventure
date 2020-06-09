@@ -8,12 +8,12 @@ also streams?
 For example, we can stream a file to the response object:
 
 ```js
-var http = require('http');
-var fs = require('fs');
-var server = http.createServer(function (req, res) {
-    fs.createReadStream('file.txt').pipe(res);
+const http = require('http')
+const fs = require('fs')
+const server = http.createServer(function (req, res) {
+  fs.createReadStream('file.txt').pipe(res)
 });
-server.listen(process.argv[2]);
+server.listen(process.argv[2])
 ```
 
 This is great because our server can respond immediately without buffering
@@ -22,15 +22,15 @@ everything in memory first.
 We can also stream a request to populate a file with data:
 
 ```js
-var http = require('http');
-var fs = require('fs');
-var server = http.createServer(function (req, res) {
-    if (req.method === 'POST') {
-        req.pipe(fs.createWriteStream('post.txt'));
-    }
-    res.end('beep boop\n');
+const http = require('http')
+const fs = require('fs')
+const server = http.createServer(function (req, res) {
+  if (req.method === 'POST') {
+    req.pipe(fs.createWriteStream('post.txt'))
+  }
+  res.end('beep boop\n')
 });
-server.listen(process.argv[2]);
+server.listen(process.argv[2])
 ```
 
 You can test this post server with curl:
@@ -51,12 +51,12 @@ As a refresher, here's an example with the default through2 callbacks explicitly
 defined:
 
 ```js
-var through = require('through2');
+const through = require('through2');
 process.stdin.pipe(through(write, end)).pipe(process.stdout);
 
 function write (buf, _, next) {
-    this.push(buf);
-    next();
+  this.push(buf);
+  next();
 }
 function end (done) { done(); }
 ```

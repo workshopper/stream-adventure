@@ -1,15 +1,15 @@
-var combine = require('stream-combiner')
-var through = require('through2')
-var split = require('split')
-var zlib = require('zlib')
+const combine = require('stream-combiner')
+const through = require('through2')
+const split = require('split')
+const zlib = require('zlib')
 
 module.exports = function () {
-  var grouper = through(write, end)
-  var current
+  const grouper = through(write, end)
+  let current
 
   function write (line, _, next) {
     if (line.length === 0) return next()
-    var row = JSON.parse(line)
+    const row = JSON.parse(line)
 
     if (row.type === 'genre') {
       if (current) {

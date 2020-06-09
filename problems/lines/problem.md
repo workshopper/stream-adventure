@@ -19,15 +19,14 @@ Even though it's not obligatory, you can use the `split` module
 to split input by newlines. For example:
 
 ```js
-var split = require('split');
-var through2 = require('through2');
+const split = require('split')
+const through2 = require('through2')
 process.stdin
-    .pipe(split())
-    .pipe(through2(function (line, _, next) {
-        console.dir(line.toString());
-        next();
-    }))
-;
+  .pipe(split())
+  .pipe(through2(function (line, _, next) {
+      console.dir(line.toString())
+      next();
+  }))
 ```
 
 `split` will buffer chunks on newlines before you get them. With example

@@ -25,13 +25,13 @@ The `pipe` method allow you to connect the output of the readable stream as the
 input of the writable stream
 
 ```js
-readable.pipe(writable);
+readable.pipe(writable)
 ```
 
 If you pipe into a duplex stream you can chain to other stream.
 
 ```js
-readable.pipe(duplex).pipe(writable);
+readable.pipe(duplex).pipe(writable)
 ```
 
 ## Challenge
@@ -45,8 +45,8 @@ stream that you can call `.pipe()` on. Here's a readable stream that pipes its
 data to `process.stderr`:
 
 ```js
-var fs = require('fs');
-fs.createReadStream('data.txt').pipe(process.stderr);
+const fs = require('fs')
+fs.createReadStream('data.txt').pipe(process.stderr)
 ```
 
 Your program is basically the same idea, but instead of `'data.txt'`, the

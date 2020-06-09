@@ -3,12 +3,12 @@ string and an `args` array and returns a single duplex stream joining together
 the stdin and stdout of the spawned process:
 
 ```js
-var spawn = require('child_process').spawn;
+const { spawn } = require('child_process')
 
 module.exports = function (cmd, args) {
-    // spawn the process and return a single stream
-    // joining together the stdin and stdout here
-};
+  // spawn the process and return a single stream
+  // joining together the stdin and stdout here
+}
 ```
 
 There is a very handy module you can use here: duplexer2. The duplexer2 module

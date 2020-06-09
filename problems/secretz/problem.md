@@ -20,13 +20,13 @@ of the file contents from the archive and:
 Using the tar module looks like:
 
 ```js
-var tar = require('tar');
-var parser = new tar.Parse();
+const tar = require('tar')
+const parser = new tar.Parse()
 parser.on('entry', function (e) {
-    console.dir(e);
+    console.dir(e)
 });
-var fs = require('fs');
-fs.createReadStream('file.tar').pipe(parser);
+const fs = require('fs')
+fs.createReadStream('file.tar').pipe(parser)
 ```
 
 Use `crypto.createHash('md5', { encoding: 'hex' })` to generate a stream that

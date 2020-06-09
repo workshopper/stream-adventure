@@ -1,9 +1,9 @@
-var through = require('through2')
-var split = require('split')
+const through = require('through2')
+const split = require('split')
 
-var lineCount = 0
-var tr = through(function (buf, _, next) {
-  var line = buf.toString()
+let lineCount = 0
+const tr = through(function (buf, _, next) {
+  const line = buf.toString()
   this.push(lineCount % 2 === 0
     ? line.toLowerCase() + '\n'
     : line.toUpperCase() + '\n'

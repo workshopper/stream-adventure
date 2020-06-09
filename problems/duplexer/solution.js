@@ -1,9 +1,7 @@
-// Here's the reference solution:
-
-var spawn = require('child_process').spawn
-var duplexer = require('duplexer2')
+const { spawn } = require('child_process')
+const duplexer = require('duplexer2')
 
 module.exports = function (cmd, args) {
-  var ps = spawn(cmd, args)
+  const ps = spawn(cmd, args)
   return duplexer(ps.stdin, ps.stdout)
 }

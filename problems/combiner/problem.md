@@ -4,14 +4,14 @@ Create a module in a new file named combiner.js, it should return a readable/wri
 You can use this code to start with:
 
 ```js
-var combine = require('stream-combiner')
+const combine = require('stream-combiner')
     
 module.exports = function () {
-    return combine(
-        // read newline-separated json,
-        // group books into genres,
-        // then gzip the output
-    )
+  return combine(
+    // read newline-separated json,
+    // group books into genres,
+    // then gzip the output
+  )
 }
 ```
 Your stream will be written a newline-separated JSON list of science fiction
@@ -48,8 +48,8 @@ arbitrary number of streams in between. Unlike the `duplexer` module, each
 stream is piped to the next. For example:
 
 ```js
-var combine = require('stream-combiner');
-var stream = combine(a, b, c, d);
+const combine = require('stream-combiner')
+const stream = combine(a, b, c, d)
 ```
 
 will internally do `a.pipe(b).pipe(c).pipe(d)` but the `stream` returned by
