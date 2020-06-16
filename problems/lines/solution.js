@@ -1,5 +1,5 @@
 const through = require('through2')
-const split = require('split')
+const split2 = require('split2')
 
 let lineCount = 0
 const tr = through(function (buf, _, next) {
@@ -12,6 +12,6 @@ const tr = through(function (buf, _, next) {
   next()
 })
 process.stdin
-  .pipe(split())
+  .pipe(split2())
   .pipe(tr)
   .pipe(process.stdout)

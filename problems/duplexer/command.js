@@ -1,9 +1,9 @@
 const through = require('through2')
-const split = require('split')
+const split2 = require('split2')
 const combine = require('stream-combiner')
 const offset = Number(process.argv[2])
 
-const tr = combine(split(), through(write))
+const tr = combine(split2(), through(write))
 process.stdin.pipe(tr).pipe(process.stdout)
 
 function write (buf, _, next) {

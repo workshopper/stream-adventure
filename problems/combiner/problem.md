@@ -61,15 +61,15 @@ front 'end' of the stream, reads the associated JSON, processes the input book
 data by grouping it by genre and produces a gzipped result stream from which 
 the result may be read.
 
-As in the previous LINES adventure, the `split` module is very handy here. You
+As in the previous LINES adventure, the `split2` module is very handy here. You
 can put a split stream directly into the stream-combiner pipeline.
 Note that split can send empty lines too.
 
-If you end up using `split` and `stream-combiner`, make sure to install them
+If you end up using `split2` and `stream-combiner`, make sure to install them
 into the directory where your solution file resides by doing:
 
 ```sh
-$ npm install stream-combiner split
+$ npm install stream-combiner split2
 ```
 
 To verify your solution run:
