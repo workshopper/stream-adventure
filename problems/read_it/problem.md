@@ -58,6 +58,7 @@ You can use the `push()` method to add content into the readable internal Buffer
 
 Implement a Readable stream, initiate a new stream instance from your implementation
 and pipe to `process.stdout`.
+You will receive the content to add to your stream like first argument.
 
 ### Docs
 * `stream.Readable`: https://nodejs.org/api/stream.html#stream_class_stream_readable
