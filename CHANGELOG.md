@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.1](https://github.com/substack/stream-adventure/compare/v4.2.0...v4.2.1) (2020-06-20)
+
+
+### Bug Fixes
+
+* **read_it:** specify how readable will receive content ([b877f22](https://github.com/substack/stream-adventure/commit/b877f22dacbc0448b84ca26905c3dcbcf4ad1f3f))
+
 ## 4.2.0 (2020-06-20)
 
 
