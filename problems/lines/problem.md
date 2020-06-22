@@ -41,9 +41,7 @@ $ echo -e 'one\ntwo\nthree' | node split.js
 ```
 
 Your own program could use `split2` in this way, and you should transform the
-input and pipe the output through to `process.stdout`. Keep in mind that,
-if you decide to use this technique, `split2` might be actually needed,
-depending on the versions of the other dependencies.
+input and pipe the output through to `process.stdout`.
 
 You are free to solve the challenge without `split2` module. In this case,
 you would have to add a new line after each line to have a passing match.
