@@ -1,6 +1,6 @@
 const combine = require('stream-combiner')
 const through = require('through2')
-const split = require('split')
+const split2 = require('split2')
 const zlib = require('zlib')
 
 module.exports = function () {
@@ -28,5 +28,5 @@ module.exports = function () {
     next()
   }
 
-  return combine(split(), grouper, zlib.createGzip())
+  return combine(split2(), grouper, zlib.createGzip())
 }
