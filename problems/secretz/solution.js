@@ -1,6 +1,5 @@
 const crypto = require('crypto')
 const tar = require('tar')
-const zlib = require('zlib')
 const concat = require('concat-stream')
 
 const parser = new tar.Parse()
@@ -18,5 +17,4 @@ const key = process.argv[3]
 const iv = process.argv[4]
 process.stdin
   .pipe(crypto.createDecipheriv(cipher, key, iv))
-  .pipe(zlib.createGunzip())
   .pipe(parser)
