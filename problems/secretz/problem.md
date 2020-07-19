@@ -7,12 +7,11 @@ You will receive the cipher algorithm name as process.argv[2], the cipher key as
 process.argv[3] and the cipher initialization vector as process.argv[4].
 You can pass these arguments directly through to `crypto.createDecipheriv()`.
 
-The built-in zlib library you get when you `require('zlib')` has a
-`zlib.createGunzip()` that returns a stream for gunzipping.
+The `tar` module from npm has a `tar.Parse()` constructor that can unzip gzipped
+tar files automatically ( if detected ) and  emits `entry` events for each file
+in the tar input.
 
-The `tar` module from npm has a `tar.Parse()` function that emits `'entry'`
-events for each file in the tar input. Each `entry` object is a readable stream
-of the file contents from the archive and:
+Each `entry` object is a readable stream of the file contents from the archive and:
 
     `entry.type` is the kind of file ('File', 'Directory', etc)
     `entry.path` is the file path
