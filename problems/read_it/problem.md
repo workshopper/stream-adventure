@@ -20,35 +20,35 @@ class MyStream extends Readable {
 }
 ```
 
-Note: This `_read` method MUST NOT be called by application code directly.
+Note: This `_read` method MUST NOT be called by application code directly. 
 It should be called by the internal `Readable` class methods only.
 
 ### Reading modes
 
-`Readable` streams operate in one of two modes: flowing and paused
+`Readable` streams operate in one of two modes: flowing and paused.
 
-* In flowing mode, data is read from the underlying system automatically and
+* In flowing mode, data is read from the underlying system automatically and 
   provided as quickly as possible.
 
-* In paused mode, the `read()` method must be called explicitly to read chunks
+* In paused mode, the `read()` method must be called explicitly to read chunks 
   of data from the stream.
 
-All Readable streams begin in paused mode but can be switched to flowing mode,
-and also can switch back to paused mode.
+All Readable streams begin in paused mode but can be switched to flowing mode 
+and also can switched back to paused mode.
 
 ### Consuming a Readable Stream
 
-* `readable.pipe(writable)`, attaching `Writable` stream to the readable, cause
-  it to switch automatically into flowing mode and push all of its data to the
+* `readable.pipe(writable)`, attaching `Writable` stream to the readable, cause 
+  it to switch automatically into flowing mode and push all of its data to the 
   attached `Writable`.
 
-* `readable.on('readable', ...)`, here the stream (`readable`) is in paused mode
+* `readable.on('readable', ...)`, here the stream (`readable`) is in paused mode 
   and have to use the `read(size)` method for start consuming the data.
 
-* `readable.on('data', ...)`, adding the `data` event handler switch the stream
-  to a flowing mode. We can pause and resume the stream by using `pause()`
-  and `resume()` methods respectively. This is useful when you need to do some
-  time-consuming action with the stream's data (such as writing to a database)
+* `readable.on('data', ...)`, adding the `data` event handler switch the stream 
+  to a flowing mode. We can pause and resume the stream by using `pause()` 
+  and `resume()` methods respectively. This is useful when you need to do some 
+  time-consuming action with the stream's data (such as writing to a database) 
 
 ### Adding data to stream
 
@@ -56,9 +56,10 @@ You can use the `push()` method to add content into the readable internal Buffer
 
 ### Challenge
 
-Implement a Readable stream, initiate a new stream instance from your implementation
+Implement a Readable stream, initiate a new stream instance from your implementation 
 and pipe to `process.stdout`.
-You will receive the content to add to your stream like first argument.
+You will receive the content to add to your stream as the first argument to your
+program (`process.argv[2]`).
 
 ### Docs
 * `stream.Readable`: https://nodejs.org/api/stream.html#stream_class_stream_readable
