@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.3.0](https://github.com/substack/stream-adventure/compare/v4.2.1...v4.3.0) (2020-09-16)
+
+
+### Features
+
+* add writable problem ([01a2be1](https://github.com/substack/stream-adventure/commit/01a2be1fdc82a8baa25fee6e8507280f8de91c96))
+
+
+### Bug Fixes
+
+* **duplexer_redux:** fix input message ([89795a0](https://github.com/substack/stream-adventure/commit/89795a040cdd6f59ff0d1d349debbe3266608c7d))
+* **read_it:** adjust wording on challenge instructions ([210cb33](https://github.com/substack/stream-adventure/commit/210cb33d92765cfcdae52fecf083364a0da8c563))
+* **read_it:** simplify reference solution ([4c8d6e2](https://github.com/substack/stream-adventure/commit/4c8d6e2ca19865a6122f79553f27ed1c3b6fc7c4))
+
 ### [4.2.1](https://github.com/substack/stream-adventure/compare/v4.2.0...v4.2.1) (2020-06-20)
 
 
