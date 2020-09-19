@@ -5,6 +5,6 @@ class ReadableStream extends Readable {
   }
 }
 
-const stream = new ReadableStream(process.argv[2])
+const stream = new ReadableStream()
 stream.push(process.argv[2])
 stream.pipe(process.stdout)
