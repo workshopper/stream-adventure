@@ -2,8 +2,8 @@
 
 A stream is an abstract interface for working with streaming data in Node.js.
 
-That means you can consume data as is loaded or produced, chunk by chunk (or
-piece by piece), instead get all in memory.
+That means you can consume data as it is loaded or produced, chunk by chunk (or
+piece by piece), instead of getting it all into memory to start consuming it.
 
 Streams can be readable, writable, or both.
 
