@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.1](https://github.com/substack/stream-adventure/compare/v4.3.0...v4.3.1) (2021-01-23)
+
+
+### Bug Fixes
+
+* ** write_to_me:** Typos ([eb9b09c](https://github.com/substack/stream-adventure/commit/eb9b09c88954530876d5ef291eab8cfdc29065eb))
+* **meet_pipe:** clarify stream explanation ([6e109b5](https://github.com/substack/stream-adventure/commit/6e109b5ecb63c4fc45d4e966a518e347a0203c05))
+* **read_it:** remove constructor args ([216bae6](https://github.com/substack/stream-adventure/commit/216bae6c843883919d4e0a16740633f232e2b536))
+
 ## [4.3.0](https://github.com/substack/stream-adventure/compare/v4.2.1...v4.3.0) (2020-09-16)
 
 
