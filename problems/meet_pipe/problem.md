@@ -21,7 +21,7 @@ return streams.
 
 ## The `pipe` method
 
-The `pipe` method allow you to connect the output of the readable stream as the
+The `pipe` method allows you to connect the output of the readable stream as the
 input of the writable stream
 
 ```js

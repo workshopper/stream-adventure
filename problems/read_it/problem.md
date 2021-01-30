@@ -34,7 +34,7 @@ It should be called by the internal `Readable` class methods only.
   of data from the stream.
 
 All Readable streams begin in paused mode but can be switched to flowing mode 
-and also can switched back to paused mode.
+and also can be switched back to paused mode.
 
 ### Consuming a Readable Stream
 
