@@ -6,5 +6,6 @@ const data = fs.readFileSync(path.join(__dirname, '../../lib/finnegans_wake.txt'
 const input = data.split('\n')
 
 exercise.inputStdin = input
+exercise.stdinMessageSeparator = '\n'
 
 module.exports = exercise
