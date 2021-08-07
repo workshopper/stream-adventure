@@ -57,4 +57,4 @@ Also you can use the `pipe` method, that we'd learned before.
 ### Challenge
 
 Implement a writable stream that writes in console `writing: ` + the given chunk
-And pipe it to `process.stdin`
+New chunks are sent through stdin.
