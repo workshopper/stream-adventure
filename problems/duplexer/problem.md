@@ -30,7 +30,7 @@ For child process you're outside so that process's stdin is writable to you.
     childProc.stdin is a Writable stream
     childProc.stdout is a Readable stream
 
-Also, have a look at the duplexer2 documentation and notice that singnature
+Also, have a look at the duplexer2 documentation and notice that signature
 of the exported function is `duplexer2([options], writable, readable)`
 which means that you might need to pass an options argument.
 
