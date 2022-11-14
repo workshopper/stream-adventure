@@ -2,7 +2,7 @@
 
 Go on an educational stream adventure!
 
-[![build status](https://secure.travis-ci.org/workshopper/stream-adventure.png)](https://travis-ci.org/workshopper/stream-adventure)
+[![build status](https://github.com/workshopper/stream-adventure/actions/workflows/master.yml/badge.svg?branch=master)](https://github.com/workshopper/stream-adventure/actions?query=branch:master)
 
 ## Install
 
